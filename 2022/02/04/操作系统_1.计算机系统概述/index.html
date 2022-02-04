@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="操作系统的基本概念操作系统的概念 控制和管理整个计算机系统的硬件与软件资源；合理地组织、调度计算机的工作与资源  操作系统是系统资源的管理者（软件资源+硬件资源）  用QQ与朋友聊天的过程：  1、在各个文件夹中找到QQ安装的位置  操作系统提供的功能：文件管理   2、双击QQ.exe  操作系统将程序从磁盘放入内存中，功能：存储器管理   3、QQ程序正确运行  对应的进程被处理机（CPU）处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统概述">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="操作系统的基本概念操作系统的概念 控制和管理整个计算机系统的硬件与软件资源；合理地组织、调度计算机的工作与资源  操作系统是系统资源的管理者（软件资源+硬件资源）  用QQ与朋友聊天的过程：  1、在各个文件夹中找到QQ安装的位置  操作系统提供的功能：文件管理   2、双击QQ.exe  操作系统将程序从磁盘放入内存中，功能：存储器管理   3、QQ程序正确运行  对应的进程被处理机（CPU）处">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-04T11:26:23.672Z">
+<meta property="article:modified_time" content="2022-02-04T11:59:48.490Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/","path":"2022/02/04/操作系统_1.计算机系统概述/","title":"计算机系统概述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机系统概述 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">操作系统的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的目标和功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的特征：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">操作系统的发展与分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%B7%A5%E6%93%8D%E4%BD%9C%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">手工操作阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.</span> <span class="nav-text">批处理阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.3.</span> <span class="nav-text">分时操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.4.</span> <span class="nav-text">实时操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.5.</span> <span class="nav-text">网络操作系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text">操作系统的运行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统的运行机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E4%B8%8E%E5%BC%82%E5%B8%B8"><span class="nav-number">3.2.</span> <span class="nav-text">中断与异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">3.3.</span> <span class="nav-text">系统调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%86%85%E6%A0%B8%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">操作系统的体系结构（内核如何设计）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%86%E4%B8%BA"><span class="nav-number">4.1.</span> <span class="nav-text">操作系统分为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%86%85%E6%A0%B8"><span class="nav-number">4.2.</span> <span class="nav-text">大内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%86%85%E6%A0%B8"><span class="nav-number">4.3.</span> <span class="nav-text">微内核</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机系统概述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-02-04 19:26:23 / 修改时间：19:59:48" itemprop="dateCreated datePublished" datetime="2022-02-04T19:26:23+08:00">2022-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">1.计算机系统概述</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：6.5k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈22 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="操作系统的基本概念"><a href="#操作系统的基本概念" class="headerlink" title="操作系统的基本概念"></a>操作系统的基本概念</h1><h2 id="操作系统的概念"><a href="#操作系统的概念" class="headerlink" title="操作系统的概念"></a>操作系统的概念</h2><ul>
+<li><p>控制和管理整个计算机系统的硬件与软件资源；合理地组织、调度计算机的工作与资源</p>
+<ul>
+<li><p>操作系统是系统资源的管理者（软件资源+硬件资源）</p>
+</li>
+<li><p>用QQ与朋友聊天的过程：</p>
+<ul>
+<li><p>1、在各个文件夹中找到QQ安装的位置</p>
+<ul>
+<li>操作系统提供的功能：文件管理</li>
+</ul>
+</li>
+<li><p>2、双击QQ.exe</p>
+<ul>
+<li>操作系统将程序从磁盘放入内存中，功能：存储器管理</li>
+</ul>
+</li>
+<li><p>3、QQ程序正确运行</p>
+<ul>
+<li>对应的进程被处理机（CPU）处理，为该进程分配CPU资源，功能：处理机管理</li>
+</ul>
+</li>
+<li><p>4、开始和朋友视频聊天</p>
+<ul>
+<li>将摄像头设备分配给进程，功能：设备管理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>为用户和其他软件提供方便接口与环境的程序集合</p>
+<ul>
+<li><p>向上层提供方便易用的服务</p>
+<ul>
+<li><p>硬件只能听得懂二进制指令，对外暴露了不友好的交互接口</p>
+</li>
+<li><p>在硬件之上安装了操作系统，操作系统对外暴露了友好的交互接口</p>
+</li>
+<li><p>封装思想：操作系统把这些硬件功能封装成简单易用的服务，使用户能更方便地使用计算机，用户无需关心底层硬件的原理，只需要对操作系统发出命令即可</p>
+</li>
+</ul>
+</li>
+<li><p>向上层提供方便易用的服务</p>
+<ul>
+<li><p>直接给用户使用</p>
+<ul>
+<li><p>例如：GUI（ 图形化用户接口）——现代操作系统一般都提供</p>
+<ul>
+<li><p>用户可以使用形象的图形界面进行操作，而不需要记忆复杂的命令、参数</p>
+</li>
+<li><p>例：在Windows操作系统中，删除一个文件只需要将文件拖拽到回收站即可</p>
+</li>
+</ul>
+</li>
+<li><p>早期操作系统没有图形化界面，一般使用命令接口进行交互</p>
+<ul>
+<li><p>联机命令接口：</p>
+<ul>
+<li><p>&#x3D;交互式命令接口</p>
+<ul>
+<li>特点：用户说一句，系统跟着做一句</li>
+</ul>
+</li>
+<li><p>1、Win键+R</p>
+</li>
+<li><p>2、输入cmd，回车，打开命令解释器</p>
+</li>
+<li><p>3、尝试使用time命令</p>
+</li>
+</ul>
+</li>
+<li><p>脱机命令接口</p>
+<ul>
+<li><p>&#x3D;批处理命令接口</p>
+<ul>
+<li>特点：用户说一堆，系统跟着做一堆</li>
+</ul>
+</li>
+<li><p>1、执行一个*.bat文件</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>给软件和程序员使用</p>
+<ul>
+<li><p>程序接口</p>
+<ul>
+<li><p>在程序中进行系统调用来使用程序接口</p>
+</li>
+<li><p>普通用户不能直接使用程序接口，只能通过程序代码间接使用</p>
+</li>
+<li><p>例：printf函数使用</p>
+<ul>
+<li><p>底层就用到了操作系统提供的和显示相关的系统调用</p>
+<ul>
+<li><p>系统调用类似于函数调用，是应用程序请求操作系统服务的唯一方式</p>
+</li>
+<li><p>系统调用&#x3D;广义指令</p>
+</li>
+</ul>
+</li>
+<li><p>操作系统收到系统调用请求之后，操作系统才会操作硬件</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>是计算机系统中最基本的系统软件——作为最接近硬件的层次</p>
+<ul>
+<li><p>实现对硬件机器功能的拓展</p>
+<ul>
+<li><p>裸机：没有任何软件支持的计算机</p>
+</li>
+<li><p>功能更强、使用更方便的机器：在裸机上安装操作系统，可以提供资源管理功能和方便用户的服务功能</p>
+</li>
+<li><p>扩充机器（虚拟机）：覆盖了软件的机器</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作系统的目标和功能"><a href="#操作系统的目标和功能" class="headerlink" title="操作系统的目标和功能"></a>操作系统的目标和功能</h2><ul>
+<li><p>管理功能</p>
+<ul>
+<li><p>处理机管理</p>
+<ul>
+<li><p>管理处理机的分配与运行，解决冲突问题，可以理解为对进程的管理</p>
+</li>
+<li><p>进程管理：进程控制、进程同步、进程通信、死锁处理、处理机调度</p>
+</li>
+</ul>
+</li>
+<li><p>存储器管理</p>
+<ul>
+<li><p>为了提高多道程序运行效率，方便用户使用</p>
+</li>
+<li><p>内存分配、地址映射、内存保护、共享和内存扩充</p>
+</li>
+</ul>
+</li>
+<li><p>文件管理</p>
+<ul>
+<li><p>操作系统负责管理文件的系统称为文件系统</p>
+</li>
+<li><p>文件存储空间的管理、目录管理、文件读写管理和保护</p>
+</li>
+</ul>
+</li>
+<li><p>设备管理</p>
+<ul>
+<li><p>完成用户的IO请求，方便用户使用设备，提高设备的利用率</p>
+</li>
+<li><p>缓冲管理、设备分配、设备处理、虚拟设备</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>接口功能</p>
+<ul>
+<li><p>命令接口</p>
+<ul>
+<li><p>联机控制方式</p>
+<ul>
+<li>交互式命令接口，适用于分时或者实时系统，就像人与机器对话一样</li>
+</ul>
+</li>
+<li><p>脱机控制方式</p>
+<ul>
+<li>又称批处理系统，提交一组作业，系统进行处理，用户不能干预作业的运行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>程序接口</p>
+<ul>
+<li><p>有一组系统调用命令组成（也称作系统调用或者广义指令）</p>
+</li>
+<li><p>例如：图形用户界面（GUT）</p>
+</li>
+</ul>
+</li>
+<li><p>操作系统用作扩存机器</p>
+<ul>
+<li><p>操作系统提供了资源管理功能和方便用户使用的各种服务功能，将机器改造为功能更强的机器</p>
+</li>
+<li><p>覆盖了软件的机器成为扩充机器，又称之为虚拟机</p>
+</li>
+</ul>
+</li>
+<li><p>封装思想</p>
+<ul>
+<li>操作系统把一些丑陋的硬件功能封装成简单易用的服务，使用户能更方便地使用计算机，用户无需关心底层硬件的原理，只需要对操作系统发出命令即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作系统的特征："><a href="#操作系统的特征：" class="headerlink" title="操作系统的特征："></a>操作系统的特征：</h2><p>对于单处理机来说，宏观上程序是井发的，微观上程序是交替执行的</p>
+<ul>
+<li><p>基本特征：井发、共享、虚拟、异步</p>
+</li>
+<li><p>并发（并发和共享是两个最基本的特征，两者互为存在条件）</p>
+<ul>
+<li><p>两个或者多个事件在同一时间间隔内发生</p>
+</li>
+<li><p>使得系统具有处理和调度多个程序同时执行的能力</p>
+</li>
+<li><p>操作系统的并发是通过分时实现的</p>
+</li>
+<li><p>操作系统是伴随着多道程序技术而出现的，因此操作系统和程序并发是一起诞生的</p>
+</li>
+<li><p>注意：并发是指在一个时间段；并行是指在同一个时刻</p>
+<ul>
+<li>并行是指系统具有同时执行或操作（硬件支持：多流水线或者多处理机）</li>
+</ul>
+</li>
+<li><p>重要考点</p>
+<ul>
+<li><p>单核CPU同一时刻只能执行一个程序，各个程序只能并发地执行</p>
+</li>
+<li><p>多核CPU同一时刻可以同时执行多个程序，多个程序可以并行地执行</p>
+</li>
+</ul>
+</li>
+<li><p>例：Intel的第八代i3处理器是4核CPU，意味着可以并行地执行4个程序</p>
+<ul>
+<li>即使是4核CPU，只要有4个以上程序需要同时运行，那么并发性依然是必不可少的，因此并发性是操作系统的一个最基本特性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>共享</p>
+<ul>
+<li><p>即资源共享，指系统中的资源可供内存中多个并发执行的进程共同使用</p>
+</li>
+<li><p>互斥共享方式</p>
+<ul>
+<li><p>例如打印机、磁带、摄像头，同一时间段只能供一个进程对资源进行访问</p>
+</li>
+<li><p>这种资源称作：临界资源或者独占资源</p>
+</li>
+</ul>
+</li>
+<li><p>同时访问方式</p>
+<ul>
+<li><p>一段时间内允许多个进程对资源进行访问</p>
+</li>
+<li><p>典型代表：磁盘设备，重入码编写的文件</p>
+</li>
+<li><p>注：</p>
+<ul>
+<li><p>同时是宏观上的，在微观上这些进程可能是交替的对资源进行访问（即分时共享）</p>
+</li>
+<li><p>有时也是微观上同时共享资源，同时打游戏和听歌，微观上同时共享扬声器</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例：QQ发送文件A，微信发送文件B</p>
+<ul>
+<li><p>1、两个进程正在并发执行（并发性）</p>
+<ul>
+<li>如果失去了并发性，则系统中只有一个程序正在运行，则共享性失去了存在的意义</li>
+</ul>
+</li>
+<li><p>2、需要共享的访问硬盘资源（共享性）</p>
+<ul>
+<li>如果失去了共享性，则QQ和微信不能同时访问硬盘资源，就无法实现同时发送文件，也就无法并发</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>虚拟（没有并发性，就没有虚拟性）</p>
+<ul>
+<li><p>一个物理上的实体变为若干逻辑上的对应物，这种技术也被称为虚拟技术</p>
+</li>
+<li><p>虚拟处理器：采用多道程序并发的方式，让每个终端用户感觉到有多个处理器</p>
+<ul>
+<li>时分复用技术</li>
+</ul>
+</li>
+<li><p>虚拟存储器：将物理存储变为虚拟存储器，逻辑上扩充存储器用量</p>
+<ul>
+<li>空分复用技术</li>
+</ul>
+</li>
+<li><p>也可以将一台IO设备虚拟为多台逻辑上的IO设备，并允许每个用户占用一台逻辑上的IO设备</p>
+</li>
+</ul>
+</li>
+<li><p>异步（没有并发性，就没有异步性）</p>
+<ul>
+<li>多道程序走走停停，进程以不可预知的速度向前走</li>
+</ul>
+</li>
+</ul>
+<h1 id="操作系统的发展与分类"><a href="#操作系统的发展与分类" class="headerlink" title="操作系统的发展与分类"></a>操作系统的发展与分类</h1><h2 id="手工操作阶段"><a href="#手工操作阶段" class="headerlink" title="手工操作阶段"></a>手工操作阶段</h2><ul>
+<li><p>程序的装入，运行，结果的输出都需要人为的干预</p>
+</li>
+<li><p>缺点</p>
+<ul>
+<li><p>用户独占全机</p>
+</li>
+<li><p>人机速度矛盾导致资源利用率低（特别是CPU利用不充分）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="批处理阶段"><a href="#批处理阶段" class="headerlink" title="批处理阶段"></a>批处理阶段</h2><ul>
+<li><p>为了解决人机矛盾以及CPU和I&#x2F;0设备之间速度不匹配的矛盾</p>
+</li>
+<li><p>单道批处理系统</p>
+<ul>
+<li><p>引入脱机输入&#x2F;输出技术（用外围机+磁带完成），并由监督程序负责作业的输入、输出</p>
+</li>
+<li><p>从磁带输入、输出到另一个磁带的时间变短：内存中始终保存一道作业，作业成批进行</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>自动性：一批作业自动执行，不需要人工干预</p>
+</li>
+<li><p>顺序性：各道作业依次执行</p>
+</li>
+<li><p>单道性：仅有一道程序执行</p>
+</li>
+</ul>
+</li>
+<li><p>优点：缓解了一定程度的人机速度矛盾，资源利用率有所提升</p>
+</li>
+<li><p>缺点</p>
+<ul>
+<li><p>内存中仅能有一道程序运行，只有该程序运行结束之后才能调入下一道程序</p>
+</li>
+<li><p>高速CPU有大量时间是在等待I&#x2F;O设备的完成，资源利用率仍然很低</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>多道批处理系统</p>
+<ul>
+<li><p>允许多个程序在CPU中交替运行，程序共享各种硬件和软件资源</p>
+</li>
+<li><p>操作系统正式诞生，用于支持多道程序并发进行</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>多道：计算机中同时存放多道相互独立的程序</p>
+</li>
+<li><p>宏观上并行：多道程序都会开始运行，但都没有运行完毕</p>
+</li>
+<li><p>微观上串行：多道程序轮流占有CPU，交替执行</p>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li><p>多道程序并发执行，共享计算机资源（输入设备、输出设备、CPU）</p>
+</li>
+<li><p>资源利用率高（CPU和其他资源更能保持“忙碌”状态，系统吞吐量增大）</p>
+</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li><p>响应时间过长，没有人机交互功能</p>
+<ul>
+<li>用户无法调试程序，也无法在程序运行过程中输入一些参数</li>
+</ul>
+</li>
+<li><p>设计复杂，要考虑各种资源调度问题</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h2><ul>
+<li><p>将处理器运行时间划分为时间片，将时间片分配给不同作业&#x2F;用户从而占用处理机</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>同时性：允许多个终端用户使用同一台计算机</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>交互性：方便进行人机对话，用户采用人机对话方式控制程序运行</p>
+</li>
+<li><p>独立性：多个用户彼此之间独立的操作，互不干扰</p>
+</li>
+<li><p>及时性：用户请求能在很短时间内获得响应</p>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li><p>用户请求可以被及时响应，解决了人机交互问题</p>
+</li>
+<li><p>允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在</p>
+</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>不能优先处理紧急任务<ul>
+<li>操作系统对各个用户&#x2F;作业是完全公平的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h2><ul>
+<li><p>保证在规定时间内完成某项任务</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>及时性：规定时间内完成规定任务</p>
+</li>
+<li><p>可靠性：输出的结果正确，系统运行时确保稳定</p>
+</li>
+</ul>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>硬实时系统：必须在绝对严格的规定时间内完成处理</p>
+<ul>
+<li>例：导弹控制系统、自动驾驶系统</li>
+</ul>
+</li>
+<li><p>软实时系统：能接受偶尔违反时间规定</p>
+<ul>
+<li>例：12306火车订票系统</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>能够优先响应一些紧急任务<ul>
+<li>计算机系统接收到外部信号后及时进行处理，并且在严格的时限内处理完事件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h2><ul>
+<li><p>伴随着计算机网络的发展而诞生的，能把网络中各个计算机有机地结合起来，实现数据传送等功能</p>
+</li>
+<li><p>实现网络中各种资源的共享（如文件共享）和各台计算机之间的通信</p>
+</li>
+</ul>
+<p>分布式计算机系统</p>
+<ul>
+<li><p>任意两台计算机之间没有主从之分，互相交换信息，并行工作、协同完成</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>分布性</p>
+</li>
+<li><p>并行性</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>个人计算机操作系统</p>
+<ul>
+<li><p>方便个人使用</p>
+</li>
+<li><p>广泛应用于文字处理，电子表格，游戏</p>
+</li>
+</ul>
+<h1 id="操作系统的运行环境"><a href="#操作系统的运行环境" class="headerlink" title="操作系统的运行环境"></a>操作系统的运行环境</h1><h2 id="操作系统的运行机制"><a href="#操作系统的运行机制" class="headerlink" title="操作系统的运行机制"></a>操作系统的运行机制</h2><ul>
+<li><p>程序运行原理</p>
+<ul>
+<li><p>程序运行的过程其实就是CPU执行一条一条的机器指令的过程</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>C语言代码——(通过编译器，翻译)——&gt;机器指令(二进制)：一条高级代码翻译过来可能对应多条机器指令</li>
+</ul>
+</li>
+<li><p>注：指令</p>
+<ul>
+<li><p>处理器（CPU）能识别、执行的最基本命令</p>
+</li>
+<li><p>指的是二进制机器指令</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>两种程序</p>
+<ul>
+<li><p>内核程序</p>
+<ul>
+<li>编写操作系统的程序，很多内核程序组成操作系统内核（内核）</li>
+</ul>
+</li>
+<li><p>应用程序</p>
+<ul>
+<li>运行在操作系统之上的程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>两种指令</p>
+<ul>
+<li><p>特权指令</p>
+<ul>
+<li><p>只允许操作系统内核使用的指令</p>
+</li>
+<li><p>注：在CPU设计和生产的时候就划分了特权指令和非特权指令，因此CPU执行一条指令前就能判断出其类型</p>
+</li>
+</ul>
+</li>
+<li><p>非特权指令</p>
+<ul>
+<li>允许应用程序使用的指令</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>两种处理机状态</p>
+<ul>
+<li><p>核心态</p>
+<ul>
+<li><p>怎么区分CPU正在运行的是内核程序，还是应用程序？</p>
+<ul>
+<li><p>CPU处于内核态时，说明此时正在运行的是内核程序，此时可以执行特权指令</p>
+</li>
+<li><p>CPU处于用户态时，说明此时正在运行的是应用程序，此时只能执行非特权指令</p>
+</li>
+</ul>
+</li>
+<li><p>怎么区分CPU处于哪种状态？内核态还是用户态</p>
+<ul>
+<li>cpu中有一个寄存器叫程序状态字寄存器（psw），其中有个二进制位，1表示“内态”，0表示“用户态”</li>
+</ul>
+</li>
+<li><p>别名</p>
+<ul>
+<li><p>内核态&#x3D;核心态&#x3D;管态</p>
+</li>
+<li><p>用户态&#x3D;目态</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用户态</p>
+</li>
+</ul>
+</li>
+<li><p>内核</p>
+<ul>
+<li><p>时钟管理：操作系统对用户提供标准时间，根据时钟对进程进行管理，实现进程切换</p>
+</li>
+<li><p>中断机制：初衷是为了提高多道程序运行环境中的CPU利用率 保护和恢复中断现场的信息，转移控制权到相关程序</p>
+</li>
+<li><p>原语</p>
+<ul>
+<li><p>内核是操作系统最重要、最核心的部分，处于系统的最底层，最接近硬件</p>
+</li>
+<li><p>由很多内核程序组成操作系统的内核</p>
+</li>
+<li><p>运行具有原子性，即只能一气呵成</p>
+</li>
+<li><p>系统控制的数据结构及处理</p>
+<ul>
+<li><p>进程管理：进程状态管理、进程调度和分派、创建和撤销进程控制块</p>
+</li>
+<li><p>存储器管理：存储器的空间分配和回收、内存信息保护程序、代码对换程序</p>
+</li>
+<li><p>设备管理：缓冲区管理设备分配和回收</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>内核态、用户态的切换</p>
+<ul>
+<li><p>内核态— &gt;用户态：执行一条特权指令——修改PSW的标志位为“用户态” ，这个动作意味着操作系统将主动让出CPU使用权</p>
+</li>
+<li><p>用户态—&gt;内核态：由“中断”引发，硬件自动完成变态过程，触发中断信号意味着操作系统将强行夺回CPU的使用权</p>
+<ul>
+<li>为什么触发中断信号：但凡需要操作系统介入的地方，都会触发中断信号</li>
+</ul>
+</li>
+<li><p>内核态和用户态的切换过程</p>
+<ul>
+<li><p>刚开机时，CPU处于内核态，操作系统内核程序在CPU上运行</p>
+</li>
+<li><p>开机完成后，用户启动应用程序</p>
+</li>
+<li><p>操作系统的内核程序就会在适当时间让出CPU，让应用程序在CPU上运行</p>
+<ul>
+<li><p>内核程序如何让出CPU？</p>
+</li>
+<li><p>执行一条特权指令把PSW的标志位设置为用户态</p>
+</li>
+</ul>
+</li>
+<li><p>此时应用程序运行在用户态</p>
+</li>
+<li><p>如果黑客在应用程序中植入一条特权指令</p>
+</li>
+<li><p>CPU发现执行的指令是特权指令，但是CPU处于用户态</p>
+</li>
+<li><p>这个非法事件会引发一个中断信号</p>
+<ul>
+<li>CPU检测到中断信号后，会立即变为核心态，并停止运行当前应用程序，转而运行处理中断信号的内核程序</li>
+</ul>
+</li>
+<li><p>中断使得操作系统再次夺回CPU的控制权</p>
+</li>
+<li><p>操作系统会对引发中断的事件进行处理，处理完之后再把CPU的使用权交给应用程序</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="中断与异常"><a href="#中断与异常" class="headerlink" title="中断与异常"></a>中断与异常</h2><ul>
+<li><p>中断的作用</p>
+<ul>
+<li><p>让操作系统内核强行夺回CPU使用权的唯一途径</p>
+</li>
+<li><p>使CPU有用户态变为核心态</p>
+<ul>
+<li><p>如果没有中断机制，那么一旦应用程序在CPU上运行，CPU就会一直运行这个应用程序（也就没有并发性）</p>
+</li>
+<li><p>注：访管指令是在用户态使用，将用户态转换为核心态，所以访管指令不是特权指令</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断的类型</p>
+<ul>
+<li><p>异常（内中断）</p>
+<ul>
+<li><p>与当前执行的指令有关，中断信号来源于CPU执行指令内部</p>
+</li>
+<li><p>分类：</p>
+<ul>
+<li><p>陷入：由陷入指令引发，是应用程序故意引发的</p>
+<ul>
+<li><p>陷入指令：应用程序自行执行，执行陷入指令后，用户态转换为核心态</p>
+</li>
+<li><p>意味着应用程序主动地将CPU控制权交还给操作系统内核，系统调用就是陷入指令完成的</p>
+</li>
+</ul>
+</li>
+<li><p>故障：由错误条件引发的，可能被内核程序修复</p>
+<ul>
+<li><p>内核程序修复故障后会把CPU使用权还给应用程序，让他继续执行下去</p>
+</li>
+<li><p>如：缺页故障</p>
+</li>
+</ul>
+</li>
+<li><p>终止：由致命错误引起的，内核程序无法修复该错误</p>
+<ul>
+<li><p>因此一般不再将CPU的使用权还给引发终止的应用程序，而是直接终止该应用程序</p>
+</li>
+<li><p>例如：</p>
+<ul>
+<li><p>CPU在用户态执行特权指令</p>
+</li>
+<li><p>执行的指令是非法的</p>
+<ul>
+<li><p>执行除法指令时除数为0</p>
+</li>
+<li><p>非法操作码、指令非法、指令的参数非法</p>
+</li>
+<li><p>地址越界，算术溢出</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>异常不能被屏蔽</p>
+</li>
+</ul>
+</li>
+<li><p>中断（外中断）</p>
+<ul>
+<li><p>与当前执行的指令无关，中断信号来源于CPU指令之外</p>
+</li>
+<li><p>例如：</p>
+<ul>
+<li><p>时钟中断：由时钟部件发来的中断信号</p>
+<ul>
+<li><p>时钟部件每隔一个时间片（如50ms）会给CPU发送一个时钟中断信号</p>
+</li>
+<li><p>时钟中断能够实现多道程序并发运行</p>
+</li>
+</ul>
+</li>
+<li><p>I&#x2F;O中断：当输入输出任务已经完成时，向CPU发送中断信号</p>
+</li>
+</ul>
+</li>
+<li><p>CPU在每条指令执行结束时，都会例行检查是否有外中断信号</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断机制的基本原理</p>
+<ul>
+<li><p>检测中断信号</p>
+<ul>
+<li><p>内中断：CPU在执行指令时会检查是否有异常产生</p>
+</li>
+<li><p>外中断：每个指令周期结束时，CPU都会检查是否有外中断信号需要处理</p>
+</li>
+</ul>
+</li>
+<li><p>找到相应的中断处理程序</p>
+<ul>
+<li><p>不同的中断信号，需要用不同的中断处理程序来处理</p>
+</li>
+<li><p>CPU检测到中断信号之后，会根据中断信号的类型去查询中断向量表，以此来找到相应的中断处理程序在内存中的存放位置</p>
+</li>
+<li><p>中断处理程序一定是内核程序，需要运行在内核态</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><ul>
+<li><p>什么是系统调用？</p>
+<ul>
+<li><p>操作系统作为用户和计算机硬件之间的接口，需要向上提供一些简单易用的服务。主要包括命令接口和程序接口。其中，程序接口由一组系统调用组成</p>
+<ul>
+<li><p>命令接口：给用户使用</p>
+</li>
+<li><p>程序接口（系统调用）：给应用程序使用</p>
+</li>
+</ul>
+</li>
+<li><p>系统调用是操作系统提供给应用程序使用的接口，可以理解为一种可供应用程序调用的特殊函数</p>
+</li>
+<li><p>应用程序可以通过系统调用来请求获得操作系统内核的服务</p>
+</li>
+</ul>
+</li>
+<li><p>系统调用和库函数的区别：</p>
+<ul>
+<li><p>操作系统向上提供系统调用，使得库函数能请求内核服务</p>
+</li>
+<li><p>高级编程语言向上提供库函数，封装系统调用，暴露出更好用的编程接口</p>
+</li>
+<li><p>普通应用程序可直接进行系统调用，也可以使用库函数，有的库函数进行系统调用（创建一个新文件），有的库函数不需要进行系统调用（取绝对值的函数）</p>
+</li>
+</ul>
+</li>
+<li><p>小例子：为什么系统调用是必须的？</p>
+<ul>
+<li><p>同时使用wps和word打印两份资料，两个进程是并发的——&gt;结果：两份资料混在一起</p>
+</li>
+<li><p>如何解决：由操作系统对共享资源进行统一管理，并向上提供系统调用。</p>
+<ul>
+<li>用户进程想要使用打印机这种共享资源，只能通过系统调用向操作系统内核发出请求，内核会对各个请求进行协调处理。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>什么功能要用系统调用实现？</p>
+<ul>
+<li><p>凡是与共享资源有关的操作（如存储分配、I&#x2F;O操作、文件管理等），都必须通过系统调用的方式向操作系统内核提供服务请求，由操作系统内核代为完成</p>
+</li>
+<li><p>这样可以保证系统的稳定性和安全性，防止用户进行非法操作</p>
+</li>
+<li><p>系统调用（按功能分类）</p>
+<ul>
+<li><p>设备功能：完成设备的请求或者释放，设备启动等功能</p>
+</li>
+<li><p>文件管理：完成文件的读、写、创建以及删除功能</p>
+</li>
+<li><p>进程控制：完成进程的创建、撤销、阻塞以及唤醒功能</p>
+</li>
+<li><p>进程通信：完成进程之间的消息传递和信号传递功能</p>
+</li>
+<li><p>内存管理：完成内存的分配、回收以及获取作业占用内存区大小及始址等功能</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>系统调用的过程：</p>
+<ul>
+<li><p>系统调用</p>
+<ul>
+<li><p>传递系统调用参数</p>
+<ul>
+<li><p>1、运行在用户态的应用程序运行传参指令（将系统调用需要的参数放到某些通用寄存器中），给CPU的寄存器中传递参数1</p>
+<ul>
+<li>参数1指明系统调用类型，如fork</li>
+</ul>
+</li>
+<li><p>2、应用程序可能继续向CPU的寄存器传递参数</p>
+<ul>
+<li>参数的个数取决于系统调用类型所需要的参数个数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>执行陷入指令（用户态）</p>
+<ul>
+<li>3、应用程序执行陷入指令（trap指令&#x2F;访管指令），引发内中断信号<ul>
+<li>该中断由陷入指令引发，因此转入相应的中断处理程序——即系统调用的入口程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>执行相应的内核请求程序对系统调用进行处理（核心态）</p>
+<ul>
+<li><p>4、通过运行系统调用入口程序中的指令，会检查CPU寄存器中的参数，判断用户需要哪种系统调用服务</p>
+</li>
+<li><p>5、系统调用入口程序会根据所需的系统调用类型，调用与系统调用类型对应的处理程序</p>
+</li>
+<li><p>6、该处理程序运行时，有可能根据其它参数具体的执行哪种服务</p>
+</li>
+</ul>
+</li>
+<li><p>返回应用程序</p>
+<ul>
+<li>7、处理程序执行完成后，CPU又会转为用户态，继续执行应用程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>程序员通过高级语言代码调用库函数，有的库函数中有可能封装了系统调用的具体细节</p>
+</li>
+<li><p>注意：</p>
+<ul>
+<li><p>陷入指令（非特权指令）是在用户态执行的，执行陷入指令后立即引发一个内中断，使CPU进入核心态</p>
+</li>
+<li><p>发出系统调用请求是在用户态，对系统调用的相应处理是在核心态下进行的</p>
+</li>
+<li><p>别名：陷入指令 &#x3D; trap指令 &#x3D; 访管指令</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="操作系统的体系结构（内核如何设计）"><a href="#操作系统的体系结构（内核如何设计）" class="headerlink" title="操作系统的体系结构（内核如何设计）"></a>操作系统的体系结构（内核如何设计）</h1><h2 id="操作系统分为"><a href="#操作系统分为" class="headerlink" title="操作系统分为"></a>操作系统分为</h2><ul>
+<li><p>内核</p>
+<ul>
+<li><p>与硬件关联较紧密的模块</p>
+<ul>
+<li><p>时钟管理</p>
+<ul>
+<li>利用时钟中断实现计时功能</li>
+</ul>
+</li>
+<li><p>中断处理</p>
+<ul>
+<li>负责实现中断机制</li>
+</ul>
+</li>
+<li><p>原语（设备驱动、CPU切换等）：</p>
+<ul>
+<li><p>原语是一种特殊的程序</p>
+</li>
+<li><p>处于操作系统最底层，是最接近硬件的部分</p>
+</li>
+<li><p>具有原子性。这段程序的运行必须是一气呵成的，不可被中断</p>
+</li>
+<li><p>运行时间短、调用频繁</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不会直接涉及硬件</p>
+<ul>
+<li><p>对系统资源进行管理的功能</p>
+<ul>
+<li><p>进程管理、存储器管理、设备管理等功能</p>
+</li>
+<li><p>这些管理工作更多的是对数据结构的操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>非内核</p>
+<ul>
+<li><p>如GUI</p>
+</li>
+<li><p>Ubuntu、CentOS的开发团队的主要工作是实现非内核功能，而内核都是用Linux内核</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="大内核"><a href="#大内核" class="headerlink" title="大内核"></a>大内核</h2><ul>
+<li><p>将操作系统的主要功能模块进行集中，从而用以提供高性能的系统服务</p>
+</li>
+<li><p>内容：内核中所有模块都运行在内核态</p>
+</li>
+<li><p>优点：</p>
+<ul>
+<li><p>性能高</p>
+<ul>
+<li><p>CPU状态转换次数少</p>
+</li>
+<li><p>各个管理模块之间共享信息，能够有效利用相互之间的有效特性</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>内核代码庞大，结构混乱，难以维护</li>
+</ul>
+</li>
+<li><p>应用：Linux、Unix</p>
+</li>
+</ul>
+<h2 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h2><ul>
+<li><p>背景：随着计算机体系结构的不断发展，操作系统提供的服务越来越多，接口形式越来越复杂</p>
+</li>
+<li><p>内容：将内核中最基本的功能（如：进程管理）保留在内核，将不需要在核心态执行的功能（对系统资源进行管理）转移到用户态执行，降低内核设计的复杂性</p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>内核功能少，结构清晰，方便维护</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>性能低，需要频繁的在核心态和用户态之间进行切换</li>
+</ul>
+</li>
+<li><p>应用：Windows NT</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_6.%E6%80%BB%E7%BA%BF/" rel="prev" title="总线">
+                  <i class="fa fa-chevron-left"></i> 总线
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_2.%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" rel="next" title="进程管理">
+                  进程管理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

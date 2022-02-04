@@ -2297,7 +2297,7 @@ pre code {
   content: ') ';
 }
 .category-all-page .category-list-child {
-  padding-left: 10px;
+  padding-left: 30px;
 }
 .event-list hr {
   background: #222;
@@ -2613,7 +2613,7 @@ hr {
   display: none;
 }
 .pagination {
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .pagination {
@@ -2627,7 +2627,7 @@ hr {
   padding: 10px 0;
 }
 .footer-inner {
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .footer-inner {
@@ -2673,7 +2673,7 @@ hr {
 }
 .use-motion .logo-line:first-of-type {
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: center;
 }
 .use-motion .logo-line:last-of-type {
   transform: scaleX(0);
@@ -2708,7 +2708,7 @@ hr {
 }
 @media (max-width: 767px) {
   .menu .menu-item a {
-    text-align: left;
+    text-align: center;
   }
 }
 .menu .menu-item .badge {
@@ -2719,7 +2719,7 @@ hr {
   text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
 .posts-expand.index .post-header {
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .posts-expand.index .post-header {
@@ -2747,7 +2747,7 @@ hr {
   margin-bottom: 20px;
 }
 .posts-expand .post-tags {
-  text-align: left;
+  text-align: center;
 }
 .posts-expand .post-tags a {
   background: var(--content-bg-color);
@@ -2762,7 +2762,7 @@ hr {
 }
 .post-button {
   margin-top: 20px;
-  text-align: left;
+  text-align: center;
 }
 .post-button .btn {
   background: none;
@@ -2852,7 +2852,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ff6ebe;
+  background: #d5b9ff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

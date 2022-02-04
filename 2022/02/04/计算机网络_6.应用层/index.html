@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="网络应用模型客户&#x2F;服务器模型 概述  在客户&#x2F;服务器（C&#x2F;S ）模型中，有一个总是打开的主机称为服务器，它服务于许多来自其他称为客户机的主机请求   工作流程  服务器处于接收请求的状态  客户机发出服务请求，并等待接收结果  服务器收到请求后，分析请求，进行必要的处理，得到结果并发送给客户机    主要特征  客户是服务请求方，服务器是服务提供方  网络中各计算机的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用层">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_6.%E5%BA%94%E7%94%A8%E5%B1%82/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="网络应用模型客户&#x2F;服务器模型 概述  在客户&#x2F;服务器（C&#x2F;S ）模型中，有一个总是打开的主机称为服务器，它服务于许多来自其他称为客户机的主机请求   工作流程  服务器处于接收请求的状态  客户机发出服务请求，并等待接收结果  服务器收到请求后，分析请求，进行必要的处理，得到结果并发送给客户机    主要特征  客户是服务请求方，服务器是服务提供方  网络中各计算机的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-04T11:27:04.969Z">
+<meta property="article:modified_time" content="2022-02-04T12:01:38.907Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_6.%E5%BA%94%E7%94%A8%E5%B1%82/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_6.%E5%BA%94%E7%94%A8%E5%B1%82/","path":"2022/02/04/计算机网络_6.应用层/","title":"应用层"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>应用层 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">网络应用模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7-x2F-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">客户&#x2F;服务器模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2P%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">P2P模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F%EF%BC%88DNS%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">域名系统（DNS）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%9F%9F%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">2.2.</span> <span class="nav-text">层次域名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.3.</span> <span class="nav-text">域名服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">域名解析过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%EF%BC%88FTP%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">文件传输协议（FTP）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">FTP的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.2.</span> <span class="nav-text">控制连接与数据连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">电子邮件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">电子邮件的组成结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E6%94%B6%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">电子邮件的收发过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8EMIME"><span class="nav-number">4.3.</span> <span class="nav-text">电子邮件格式与MIME</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP%E5%92%8CPOP3"><span class="nav-number">4.4.</span> <span class="nav-text">SMTP和POP3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E6%8A%A5%E6%96%87%E5%AD%98%E5%8F%96%E5%8D%8F%E8%AE%AE%EF%BC%88IMAP%EF%BC%89"><span class="nav-number">4.5.</span> <span class="nav-text">因特网报文存取协议（IMAP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">4.6.</span> <span class="nav-text">基于万维网的电子邮件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%87%E7%BB%B4%E7%BD%91%EF%BC%88WWW%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">万维网（WWW）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WWW%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">WWW的概念与组成结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%EF%BC%88HTTP%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">超文本传输协议（HTTP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">5.3.</span> <span class="nav-text">HTTP的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5%E4%B8%8E%E9%9D%9E%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5"><span class="nav-number">5.4.</span> <span class="nav-text">持久连接与非持久连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">5.5.</span> <span class="nav-text">HTTP的报文结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">5.6.</span> <span class="nav-text">状态码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_6.%E5%BA%94%E7%94%A8%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          应用层
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-02-04 19:27:04 / 修改时间：20:01:38" itemprop="dateCreated datePublished" datetime="2022-02-04T19:27:04+08:00">2022-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/6-%E5%BA%94%E7%94%A8%E5%B1%82/" itemprop="url" rel="index"><span itemprop="name">6.应用层</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：4.8k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈16 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="网络应用模型"><a href="#网络应用模型" class="headerlink" title="网络应用模型"></a>网络应用模型</h1><h2 id="客户-x2F-服务器模型"><a href="#客户-x2F-服务器模型" class="headerlink" title="客户&#x2F;服务器模型"></a>客户&#x2F;服务器模型</h2><ul>
+<li><p>概述</p>
+<ul>
+<li>在客户&#x2F;服务器（C&#x2F;S ）模型中，有一个总是打开的主机称为服务器，它服务于许多来自其他称为客户机的主机请求</li>
+</ul>
+</li>
+<li><p>工作流程</p>
+<ul>
+<li><p>服务器处于接收请求的状态</p>
+</li>
+<li><p>客户机发出服务请求，并等待接收结果</p>
+</li>
+<li><p>服务器收到请求后，分析请求，进行必要的处理，得到结果并发送给客户机</p>
+</li>
+</ul>
+</li>
+<li><p>主要特征</p>
+<ul>
+<li><p>客户是服务请求方，服务器是服务提供方</p>
+</li>
+<li><p>网络中各计算机的地位不平等，服务器可以通过对用户权限的限制来达到管理客户机的目的，使它们不能随意存储&#x2F;删除数据，或进行其他受限的网络活动</p>
+</li>
+<li><p>客户机相互之间不直接通信</p>
+</li>
+<li><p>可扩展性不佳</p>
+</li>
+</ul>
+</li>
+<li><p>客户&#x2F;服务器模型的应用</p>
+<ul>
+<li><p>Web</p>
+</li>
+<li><p>文件传输协议（FTP）</p>
+</li>
+<li><p>远程登录</p>
+</li>
+<li><p>电子邮件</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="P2P模型"><a href="#P2P模型" class="headerlink" title="P2P模型"></a>P2P模型</h2><ul>
+<li><p>概述</p>
+<ul>
+<li><p>各计算机没有固定的客户和服务器划分</p>
+</li>
+<li><p>任意一对计算机——称为对等方（ Peer ），直接相互通信</p>
+</li>
+<li><p>每个结点既作为客户访问其他结点的资源，也作为服务器提供资源给其他结点访问</p>
+</li>
+</ul>
+</li>
+<li><p>P2P应用</p>
+<ul>
+<li><p>PPlive</p>
+</li>
+<li><p>Bittorrent</p>
+</li>
+<li><p>电驴</p>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li><p>减轻了服务器的计算压力，消除了对某个服务器的完全依赖，提高了系统效率和资源利用率</p>
+</li>
+<li><p>多个客户机之间可以直接共享文档</p>
+</li>
+<li><p>可扩展性好，传统服务器有响应和带宽的限制，只能接受一定数量的请求</p>
+</li>
+<li><p>网络健壮性强，单个结点的失效不会影响其他部分的结点</p>
+</li>
+</ul>
+</li>
+<li><p>缺点（各大ISP（互联网提供商，如电信、网通等）通常对P2P应用持反对态度）</p>
+<ul>
+<li><p>占用较多的内存，影响整机速度</p>
+</li>
+<li><p>P2P下载会对硬盘造成较大的损任</p>
+</li>
+<li><p>使网络变得非常拥塞</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="域名系统（DNS）"><a href="#域名系统（DNS）" class="headerlink" title="域名系统（DNS）"></a>域名系统（DNS）</h1><h2 id="基本概述"><a href="#基本概述" class="headerlink" title="基本概述"></a>基本概述</h2><ul>
+<li><p>域名系统（ DNS ）是因特网使用的命名系统，用来把便于人们记忆的具有特定含义的主机名（如<a target="_blank" rel="noopener" href="http://www.cskaoyan.com/">www.cskaoyan.com</a> ）转换为便于机器处理的IP地址</p>
+</li>
+<li><p>地址 DNS系统采用客户&#x2F;服务器模型</p>
+</li>
+<li><p>协议运行在UDP之上，使用53号端口</p>
+</li>
+</ul>
+<h2 id="层次域名空间"><a href="#层次域名空间" class="headerlink" title="层次域名空间"></a>层次域名空间</h2><ul>
+<li><p>因特网采用层次树状结构的命名方法，任何一个连接到因特网的主机或路由器，都有一个唯一的层次结构名称，即域名</p>
+</li>
+<li><p>域名规则</p>
+<ul>
+<li><p>标号中的英文不区分大小写。</p>
+</li>
+<li><p>标号中除连字符（-）外不能使用其他的标点符号</p>
+</li>
+<li><p>每个标号不超过63个字符，多标号组成的完整域名最长不超过255个字符</p>
+</li>
+<li><p>级别最低的域名写在最左边，级别最高的顶级域名写在最右边</p>
+</li>
+</ul>
+</li>
+<li><p>顶级域名分类</p>
+<ul>
+<li><p>国家顶级域名（ nTLD ）：国家和某些地区的域名，如“.cn”表示中国， “us”表示美国， “.uk”表示英国</p>
+</li>
+<li><p>通用顶级域名（ gTLD ）：常见的有“.com” （公司）、“.net” （网络服务机构）&#x2F;“.org” （非营利性组织）和“.gov” （国家或政府部门）等</p>
+</li>
+<li><p>基础结构域名：这种顶级域名只有一个arpa，用于反向域名解析，因此又称反向域名</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="域名服务器"><a href="#域名服务器" class="headerlink" title="域名服务器"></a>域名服务器</h2><ul>
+<li><p>因特网的域名系统被设计成一个联机分布式的数据库系统，并采用客户&#x2F;服务器模型</p>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>根域名服务器：是最高层次的域名服务器，所有的根域名服务器都知道所有的顶级域名服务器的IP地址</p>
+</li>
+<li><p>顶级域名服务器</p>
+<ul>
+<li><p>负责管理在该顶级域名服务器注册的所有二级域名</p>
+</li>
+<li><p>收到DNS查询请求时，就给出相应的回答（可能是最后的结果，也可能是下一步应当查找的域名服务器的IP地址）</p>
+</li>
+</ul>
+</li>
+<li><p>授权域名服务器（权限域名服务器）</p>
+<ul>
+<li><p>每台主机都必须在授权域名服务器处登记</p>
+</li>
+<li><p>授权域名服务器总能将其管辖的主机名转换为该主机的IP地址</p>
+</li>
+</ul>
+</li>
+<li><p>本地域名服务器 </p>
+<ul>
+<li><p>当一台主机发出DNS查询请求时，这个查询请求报文就发送给该主机的本地域名服务器</p>
+</li>
+<li><p>每个因特网服务提供者（ISP ），或一所大学，甚至一所大学中的各个系，都可以拥有一个本地域名服务器</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="域名解析过程"><a href="#域名解析过程" class="headerlink" title="域名解析过程"></a>域名解析过程</h2><ul>
+<li><p>正向解析：把域名映射成为IP地址</p>
+</li>
+<li><p>反向解析：把IP地址映射成域名的过程</p>
+</li>
+<li><p>查询方式</p>
+<ul>
+<li><p>递归查询</p>
+<ul>
+<li>该方法给根域名服务造成的负载过大，所以在实际中几乎不使用</li>
+</ul>
+</li>
+<li><p>递归与迭代相结合的查询</p>
+<ul>
+<li><p>主机向本地域名服务器的查询采用的是递归查询</p>
+</li>
+<li><p>本地域名服务器向根域名服务器的查询采用迭代查询</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>域名解析的过程</p>
+<ul>
+<li><p>客户机向其本地域名服务器发出DNS请求报文</p>
+</li>
+<li><p>本地域名服务器收到请求后，查询本地缓存，若没有该记录，则以DNS客户的身份向根域名服务器发出解析请求</p>
+</li>
+<li><p>根域名服务器收到请求后，判断该域名属于域，将对应的顶级域名服务器<a target="_blank" rel="noopener" href="http://dns.com/">dns.com</a>的IP地址返回给本地域名服务器</p>
+</li>
+<li><p>本地域名服务器向顶级域名服务器<a target="_blank" rel="noopener" href="http://dns.com/">dns.com</a>发出解析请求报文</p>
+</li>
+<li><p>顶级域名服务器<a target="_blank" rel="noopener" href="http://dns.com/">dns.com</a>收到请求后，判断该域名属于<a target="_blank" rel="noopener" href="http://abc.com/">abc.com</a>域，因此将对应的授权域名服务器<a target="_blank" rel="noopener" href="http://dns.abc.com/">dns.abc.com</a>的IP地址返回给本地域名服务器</p>
+</li>
+<li><p>本地域名服务器向授权域名服务器<a target="_blank" rel="noopener" href="http://dns.abc.com/">dns.abc.com</a>发起解析请求报文</p>
+</li>
+<li><p>授权域名服务器<a target="_blank" rel="noopener" href="http://dns.abc.com/">dns.abc.com</a>收到请求后，将查询结果返回给本地域名服务器</p>
+</li>
+<li><p>本地域名服务器将查询结果保存到本地缓存，同时返回给客户机</p>
+</li>
+</ul>
+</li>
+<li><p>高速缓存</p>
+<ul>
+<li><p>注意</p>
+<ul>
+<li>主机名和IP地址之间的映射不是永久的，所以DNS服务器将在一段时间后丢弃高速缓存中的信息</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li><p>提高DNS的查询效率</p>
+</li>
+<li><p>减少因特网上的DNS查询报文数量</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="文件传输协议（FTP）"><a href="#文件传输协议（FTP）" class="headerlink" title="文件传输协议（FTP）"></a>文件传输协议（FTP）</h1><h2 id="FTP的工作原理"><a href="#FTP的工作原理" class="headerlink" title="FTP的工作原理"></a>FTP的工作原理</h2><ul>
+<li><p>概述</p>
+<ul>
+<li><p>FTP提供交互式的访问，允许客户指明文件的类型与格式，并允许文件具有存取权限</p>
+</li>
+<li><p>屏蔽了各计算机系统的细节，因而适合于在异构网络中的任意计算机之间传送文件</p>
+</li>
+<li><p>FTP采用客户服务器的工作方式，它使用TCP可靠的传输服务</p>
+</li>
+</ul>
+</li>
+<li><p>FTP功能</p>
+<ul>
+<li><p>提供不同种类主机系统（硬、软件体系等都可以不同）之间的文件传输能力</p>
+</li>
+<li><p>以用户权跟管理的方式提供用户对远程FTP服务器上的文件管理能力</p>
+</li>
+<li><p>以匿名FTP的方式提供公用文件共享的能力</p>
+</li>
+</ul>
+</li>
+<li><p>FTP进程组成</p>
+<ul>
+<li><p>主进程：负责接收新的请求</p>
+</li>
+<li><p>若干从属进程：处理单个请求</p>
+</li>
+</ul>
+</li>
+<li><p>工作步骤（FTP服务器必须在整个会话期间保留用户的状态信息）</p>
+<ul>
+<li><p>打开熟知端口21 （控制端口） ，使客户进程能够连接上</p>
+</li>
+<li><p>等待客户进程发连接请求</p>
+</li>
+<li><p>启动从属进程来处理客户进程发来的请求。主进程与从属进程并发执行，从属进程对客户进程的请求处理完毕后即终止</p>
+</li>
+<li><p>回到等待状态，继续接收其他客户进程的请求</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="控制连接与数据连接"><a href="#控制连接与数据连接" class="headerlink" title="控制连接与数据连接"></a>控制连接与数据连接</h2><ul>
+<li><p>特点：FTP在工作时使用两个并行的TCP连接</p>
+</li>
+<li><p>控制连接（端口号21）</p>
+<ul>
+<li><p>服务器监听21号端口，等待客户连接，建立在这个端口上的连接称为控制连接</p>
+</li>
+<li><p>控制连接用来传输控制信息（如连接请求、传送请求等） ，并且控制信息都以7位ASCII格式传送</p>
+</li>
+<li><p>控制连接在整个会话期间一直保持打开状态</p>
+</li>
+</ul>
+</li>
+<li><p>数据连接（端口号20）</p>
+<ul>
+<li><p>服务器端的控制进程在接收到FTP客户发来的文件传输请求后，就创建数据传送进程和数据连接</p>
+</li>
+<li><p>传送完毕后关闭“数据传送连接”并结束运行</p>
+</li>
+</ul>
+</li>
+<li><p>备注：使用两个不同的端口号可使协议更加简单和更容易实现</p>
+</li>
+</ul>
+<h1 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h1><h2 id="电子邮件的组成结构"><a href="#电子邮件的组成结构" class="headerlink" title="电子邮件的组成结构"></a>电子邮件的组成结构</h2><ul>
+<li><p>主要的组成</p>
+<ul>
+<li><p>用户代理：用户与电子邮件系统的接口</p>
+</li>
+<li><p>邮件服务器</p>
+<ul>
+<li><p>组成电子邮件系统的核心</p>
+</li>
+<li><p>发送和接收邮件</p>
+</li>
+<li><p>向用户回报发送情况</p>
+</li>
+</ul>
+</li>
+<li><p>邮件发送协议和读取协议</p>
+<ul>
+<li><p>SMTP ：邮件发送协议用于用户代理向邮件服务器发送邮件或在邮件服务器之间发送邮件</p>
+</li>
+<li><p>POP3 ：邮件读取协议用于用户代理从邮件服务器读取邮件</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="电子邮件的收发过程"><a href="#电子邮件的收发过程" class="headerlink" title="电子邮件的收发过程"></a>电子邮件的收发过程</h2><ul>
+<li><p>发信人调用用户代理来撰写和编辑要发送的邮件。用户代理用SMTP把邮件传送给发送方邮件服务器</p>
+</li>
+<li><p>发送方邮件服务器将邮件放入邮件缓存队列中，等待发送</p>
+</li>
+<li><p>运行在发送方邮件服务器的SMTP客户进程，发现邮件缓存中有待发送的邮件，就向运行在接收方邮件服务器的SMTP服务器进程发起建立TCP连接</p>
+</li>
+<li><p>TCP连接建立后， SMTP客户进程开始向远程SMTP服务器进程发送邮件。当所有待发送邮件发完后， SMTP就关闭所建立的TCP连接</p>
+</li>
+<li><p>运行在接收方邮件服务器中的SMTP服务器进程收到邮件后，将邮件放入收信人的用户邮箱，等待收信人在方便时进行读取</p>
+</li>
+<li><p>收信人打算收信时，调用用户代理，使用POP3 （或IMAP ）协议将自己的邮件从接收方邮件服务器的用户邮箱中取回（如果邮箱中有来信的话）</p>
+</li>
+</ul>
+<h2 id="电子邮件格式与MIME"><a href="#电子邮件格式与MIME" class="headerlink" title="电子邮件格式与MIME"></a>电子邮件格式与MIME</h2><ul>
+<li><p>电子邮件格式</p>
+<ul>
+<li><p>to是必需的关键字，后面填入一个或多个收件人的电子邮件地址</p>
+</li>
+<li><p>Subject是可选关键字，是邮件的主题，反映了邮件的主要内容。</p>
+</li>
+<li><p>From是必填的关键字，但它通常由邮件系统自动填入</p>
+</li>
+</ul>
+</li>
+<li><p>典型的邮件内容</p>
+<ul>
+<li><p>From：<a href="mailto:&#104;&#111;&#111;&#x70;&#x64;&#111;&#x67;&#64;&#104;&#117;&#115;&#116;&#x2e;&#101;&#x64;&#x75;&#x2e;&#x63;&#110;">&#104;&#111;&#111;&#x70;&#x64;&#111;&#x67;&#64;&#104;&#117;&#115;&#116;&#x2e;&#101;&#x64;&#x75;&#x2e;&#x63;&#110;</a></p>
+</li>
+<li><p>To:<a href="mailto:&#x61;&#x62;&#99;&#64;&#99;&#x73;&#107;&#97;&#x6f;&#x79;&#x61;&#x6e;&#x2e;&#99;&#111;&#x6d;">&#x61;&#x62;&#99;&#64;&#99;&#x73;&#107;&#97;&#x6f;&#x79;&#x61;&#x6e;&#x2e;&#99;&#111;&#x6d;</a></p>
+</li>
+<li><p>Subject:Say hell to Internet</p>
+</li>
+<li><p>blahblah······</p>
+</li>
+</ul>
+</li>
+<li><p>多用途网际邮件扩充（MIME）</p>
+<ul>
+<li><p>背景</p>
+<ul>
+<li><p>SMTP只能传送一定长度的ASCII码，许多其他非英语国家的文字（如中文）就无法传送</p>
+</li>
+<li><p>无法传送可执行文件及其他二进制对象</p>
+</li>
+</ul>
+</li>
+<li><p>继续使用目前的格式，增加了邮件主体的结构，并定义了传送非ASCII码的编码规则</p>
+</li>
+<li><p>内容</p>
+<ul>
+<li><p>5个新的邮件首部字段，包括MIME版本、类型</p>
+</li>
+<li><p>定义了许多邮件内容的格式，对多媒体电子邮件的表示方法进行了标准化</p>
+</li>
+<li><p>定义了传送编码，可对任何内容格式进行转换，而不会被邮件系统改变</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="SMTP和POP3"><a href="#SMTP和POP3" class="headerlink" title="SMTP和POP3"></a>SMTP和POP3</h2><ul>
+<li><p>简单邮件传输协议（SMTP）</p>
+<ul>
+<li><p>概述</p>
+<ul>
+<li><p>一种提供可靠且有效的电子邮件传输的协议，它控制两个相互通信的SMTP进程交换信息</p>
+</li>
+<li><p>使用客户&#x2F;服务器方式</p>
+</li>
+<li><p>发送邮件的SMTP进程是SMTP客户，而负责接收邮件的SMTP进程是SMTP服务器</p>
+</li>
+<li><p>TCP连接，端口号为25</p>
+</li>
+</ul>
+</li>
+<li><p>通信阶段</p>
+<ul>
+<li><p>连接建立</p>
+<ul>
+<li><p>发件人的邮件发送到发送方邮件服务器的邮件缓存中后， SMTP客户就每隔一定时间对邮件缓存扫描一次</p>
+</li>
+<li><p>发现有邮件，就使用SMTP的熟知端口号（25）与接收方邮件服务器的SMTP服务器建立TCP连接</p>
+</li>
+<li><p>SMTP不使用中间邮件服务器。TCP连接总是在发送方和接收方这两个邮件服务器之间直接建立</p>
+</li>
+</ul>
+</li>
+<li><p>邮件传送</p>
+<ul>
+<li><p>连接建立后，就可开始传送邮件</p>
+</li>
+<li><p>邮件的传送从MAIL命令开始， MALL命令后面有发件人的地址</p>
+</li>
+<li><p>SMTP服务器已准备好接收邮件，则回答250 OK，接着SMTP客户端发送一个或多个RCPT （收件人recipient的缩写）命令</p>
+</li>
+<li><p>RCPT命令的作用：先弄清接收方系统是否已做好接收邮件的准备，然后才发送邮件，避免浪费通信资源</p>
+</li>
+</ul>
+</li>
+<li><p>连接释放</p>
+<ul>
+<li><p>邮件发送完毕后， SMTP客户应发送QUIT命令</p>
+</li>
+<li><p>SMTP服务器返回的信息是221 （服务关闭） ，表示SMTP同意释放TCP连接</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li><p>1、SMTP不能传送可执行文件或者其他二进制对象</p>
+</li>
+<li><p>2、SMTP仅限于传送7位ASCII码，不能传送其他非英语国家的文字。</p>
+</li>
+<li><p>3、SMTP服务器会拒绝超过一定长度的邮件。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>POP3</p>
+<ul>
+<li><p>概述</p>
+<ul>
+<li><p>邮局协议（ POP）是一个非常简单但功能有限的邮件读取协议，现在使用的是它的第3个版本POP3 </p>
+</li>
+<li><p>当用户读取邮件时，用户代理向邮件服务器发出请求，拉取用户邮箱中的邮件</p>
+</li>
+<li><p>使用客户&#x2F;服务器的工作方式</p>
+</li>
+<li><p>在传输层使用TCP，端口号为110</p>
+</li>
+</ul>
+</li>
+<li><p>工作方式</p>
+<ul>
+<li><p>下载并保留</p>
+</li>
+<li><p>下载并删除</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="因特网报文存取协议（IMAP）"><a href="#因特网报文存取协议（IMAP）" class="headerlink" title="因特网报文存取协议（IMAP）"></a>因特网报文存取协议（IMAP）</h2><ul>
+<li><p>邮件接收协议，比POP复杂得多</p>
+</li>
+<li><p>用户提供了创建文件夹、在不同文件夹之间移动邮件及在远程文件夹中查询邮件的命令，为此IMAP服务器维护了会话用户的状态信息</p>
+</li>
+<li><p>允许用户代理只获取报文的某些部分</p>
+</li>
+</ul>
+<h2 id="基于万维网的电子邮件"><a href="#基于万维网的电子邮件" class="headerlink" title="基于万维网的电子邮件"></a>基于万维网的电子邮件</h2><ul>
+<li><p>特点</p>
+<ul>
+<li><p>用户浏览器与Hotmail或Gmail的邮件服务器之间的邮件发送或接收使用HTTP</p>
+</li>
+<li><p>在不同邮件服务器之间传送邮件时使用SMTP</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="万维网（WWW）"><a href="#万维网（WWW）" class="headerlink" title="万维网（WWW）"></a>万维网（WWW）</h1><h2 id="WWW的概念与组成结构"><a href="#WWW的概念与组成结构" class="headerlink" title="WWW的概念与组成结构"></a>WWW的概念与组成结构</h2><ul>
+<li><p>概念</p>
+<ul>
+<li><p>万维网（WWW）</p>
+<ul>
+<li><p>在这个空间中，有用的事物称为资源，并由一个全域“统一资源定位符” （URL ）标识。</p>
+</li>
+<li><p>这些资源通过超文本传输协议（ HTTP ）传送给使用者，而后者通过单击链接来获取资</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>内核部分标准构成</p>
+<ul>
+<li><p>统一资源定位符（ URL） ：负责标识万维网上的各种文档，并使每个文档在整个万维网的范围内具有唯一的标识符URL</p>
+</li>
+<li><p>超文本传输协议（HTTP ） ：一个应用层协议，它使用TCP连接进行可靠的传输， HTTP是万维网客户程序和服务器程序之间交互所必须严格遵守的协议</p>
+</li>
+<li><p>超文本标记语言（HTML） ：一种文档结构的标记语言，它使用一些约定的标记对页面上的各种信息（包括文字、声音、图像、视频等）、格式进行描述</p>
+</li>
+</ul>
+</li>
+<li><p>工作流程</p>
+<ul>
+<li><p>Web用户使用浏览器（指定URL ）与Web服务器建立连接，并发送浏览请求</p>
+</li>
+<li><p>Web服务器把URL转换为文件路径，并返回信息给Web浏览器</p>
+</li>
+<li><p>通信完成，关闭连接</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="超文本传输协议（HTTP）"><a href="#超文本传输协议（HTTP）" class="headerlink" title="超文本传输协议（HTTP）"></a>超文本传输协议（HTTP）</h2><ul>
+<li><p>概述</p>
+<ul>
+<li><p>HTTP定义了浏览器（万维网客户进程）怎样向万维网服务器请求万维网文档，以及服务器怎样把文档传送给浏览器</p>
+</li>
+<li><p>HTTP是面向事务的应用层协议</p>
+</li>
+<li><p>规定了在浏览器和服务器之间的请求和响应的格式与规则</p>
+</li>
+<li><p>是万维网上能够可靠地交换文件的重要基础</p>
+</li>
+</ul>
+</li>
+<li><p>HTTP的操作过程</p>
+<ul>
+<li><p>每个万维网站点都有一个服务器进程，它不断地监听TCP的端口80 （默认）</p>
+</li>
+<li><p>当监听到连接请求后便与浏览器建立连接</p>
+</li>
+<li><p>TCP连接建立后，浏览器就向服务器发送请求获取某个Web页面的HTTP请求</p>
+</li>
+<li><p>服务器收到HTTP请求后，将构建所请求Web页的必需信息，并通过HTTP响应返回给浏览器</p>
+</li>
+<li><p>浏览器再将信息进行解释，然后将Web页显示给用户</p>
+</li>
+<li><p>TCP连接释放</p>
+</li>
+</ul>
+</li>
+<li><p>HTTP报文</p>
+<ul>
+<li><p>请求报文</p>
+</li>
+<li><p>响应报文</p>
+</li>
+</ul>
+</li>
+<li><p>用户单击鼠标后发生的事件按顺序</p>
+<ul>
+<li><p>浏览器分析链接指向页面的URL。</p>
+</li>
+<li><p>浏览器向DNS请求解析域名的IP地址。</p>
+</li>
+<li><p>域名服务器DNS解析出IP地址</p>
+</li>
+<li><p>浏览器与该服务器建立TCP连接（默认端口号为80）</p>
+</li>
+<li><p>浏览器发出HTTP请求GET &#x2F;ch&#x2F;index.html</p>
+</li>
+<li><p>服务器通过HTTP响应把文件index.htm发送给浏览器</p>
+</li>
+<li><p>TCP连接释放</p>
+</li>
+<li><p>浏览器解释文件index.htm，并将Web页显示给用户</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP的特点"><a href="#HTTP的特点" class="headerlink" title="HTTP的特点"></a>HTTP的特点</h2><ul>
+<li><p>HTTP是无状态的，同一个客户第二次访问同一个服务器上的页面时，服务器的响应与第一次被访问时的相同</p>
+</li>
+<li><p>HTTP的无状态特性简化了服务器的设计，使服务器更容易支持大量并发的HTTP请求</p>
+</li>
+<li><p>使用Cookie加数据库的方式来跟踪用户的活动</p>
+</li>
+<li><p>HTTP采用TCP作为运输层协议，保证了数据的可靠传输</p>
+</li>
+<li><p>HTTP既可以使用非持久连接，也可以使用持久连接（ HTTP&#x2F;1.1支持）</p>
+</li>
+</ul>
+<h2 id="持久连接与非持久连接"><a href="#持久连接与非持久连接" class="headerlink" title="持久连接与非持久连接"></a>持久连接与非持久连接</h2><ul>
+<li><p>非持久连接：每个网页元素对象（如JPEG图形、Flash等）的传输都需要单独建立一个TCP连接</p>
+</li>
+<li><p>持久连接：是指万维网服务器在发送响应后仍然保持这条连接，使同一个客户和服务器可以继续在这条连接上传送后续的HTTP请求与响应报文</p>
+</li>
+<li><p>持久连接</p>
+<ul>
+<li><p>非流水线</p>
+<ul>
+<li>客户在收到前一个响应后才能发出下一个请求</li>
+</ul>
+</li>
+<li><p>流水线</p>
+<ul>
+<li>客户每遇到一个对象引用，就立即发出一个请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP的报文结构"><a href="#HTTP的报文结构" class="headerlink" title="HTTP的报文结构"></a>HTTP的报文结构</h2><ul>
+<li><p>HTTP是面向文本的</p>
+</li>
+<li><p>报文类型</p>
+<ul>
+<li><p>请求报文：从客户向服务器发送的请求报文。</p>
+<ul>
+<li><p>方法（操作）、意义</p>
+</li>
+<li><p>GET、请求读取由URL标识的信息</p>
+</li>
+<li><p>HEAD、请求读取由URL标识的信息的首部</p>
+</li>
+<li><p>POST、给服务器添加信息（如注释）</p>
+</li>
+<li><p>CONNECT、用于代理服务器</p>
+</li>
+</ul>
+</li>
+<li><p>响应报文：从服务器到客户的回答</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ul>
+<li><p>1xx表示通知信息的，如请求收到了或正在处理。</p>
+</li>
+<li><p>2xx表示成功，如接受或知道了。</p>
+</li>
+<li><p>3xx表示重定向，如要完成请求还必须采取进一步的行动</p>
+</li>
+<li><p>4xx表示客户的差错，如请求中有错误的语法或不能完成</p>
+</li>
+<li><p>5xx表示服务器的差错，如服务器失效无法完成请求</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_5.%E4%BC%A0%E8%BE%93%E5%B1%82/" rel="prev" title="传输层">
+                  <i class="fa fa-chevron-left"></i> 传输层
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_2.%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="next" title="线性表">
+                  线性表 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

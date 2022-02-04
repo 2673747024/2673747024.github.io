@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Java集合简介什么是集合（Collection）？集合就是“由若干个确定的元素所构成的整体”。例如，5只小兔构成的集合： 1234567┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐│   (\_(\     (\_&#x2F;)     (\_&#x2F;)     (\_&#x2F;)      (\(\   │    ( -.-)    (•.•)     (">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7.集合">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/04/Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_7.%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="Java集合简介什么是集合（Collection）？集合就是“由若干个确定的元素所构成的整体”。例如，5只小兔构成的集合： 1234567┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐│   (\_(\     (\_&#x2F;)     (\_&#x2F;)     (\_&#x2F;)      (\(\   │    ( -.-)    (•.•)     (">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:image" content="https://2673747024.github.io/7.%E9%9B%86%E5%90%88.assets/l.jpeg">
+<meta property="og:image" content="https://2673747024.github.io/7.%E9%9B%86%E5%90%88.assets/l-16418936951923.jpeg">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="article:published_time" content="2022-02-04T13:53:41.338Z">
+<meta property="article:modified_time" content="2022-02-04T14:57:01.102Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/png;base64,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">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/04/Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_7.%E9%9B%86%E5%90%88/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/04/Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_7.%E9%9B%86%E5%90%88/","path":"2022/02/04/Java_1.Java快速入门_7.集合/","title":"7.集合"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>7.集合 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E9%9B%86%E5%90%88%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Java集合简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.0.1.</span> <span class="nav-text">Collection</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8List"><span class="nav-number">2.</span> <span class="nav-text">使用List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.0.1.</span> <span class="nav-text">List的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAList"><span class="nav-number">2.0.2.</span> <span class="nav-text">创建List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86List"><span class="nav-number">2.0.3.</span> <span class="nav-text">遍历List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List%E5%92%8CArray%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.0.4.</span> <span class="nav-text">List和Array转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">2.0.5.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99equals%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">编写equals方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99equals"><span class="nav-number">3.0.1.</span> <span class="nav-text">编写equals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Map"><span class="nav-number">4.</span> <span class="nav-text">使用Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86Map"><span class="nav-number">4.0.1.</span> <span class="nav-text">遍历Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-2"><span class="nav-number">4.0.2.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99equals%E5%92%8ChashCode"><span class="nav-number">5.</span> <span class="nav-text">编写equals和hashCode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="nav-number">5.0.1.</span> <span class="nav-text">延伸阅读</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8EnumMap"><span class="nav-number">6.</span> <span class="nav-text">使用EnumMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8TreeMap"><span class="nav-number">7.</span> <span class="nav-text">使用TreeMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Properties"><span class="nav-number">8.</span> <span class="nav-text">使用Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">8.0.1.</span> <span class="nav-text">读取配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">8.0.2.</span> <span class="nav-text">写入配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81"><span class="nav-number">8.0.3.</span> <span class="nav-text">编码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Set"><span class="nav-number">9.</span> <span class="nav-text">使用Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-3"><span class="nav-number">9.0.1.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Queue"><span class="nav-number">10.</span> <span class="nav-text">使用Queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8PriorityQueue"><span class="nav-number">11.</span> <span class="nav-text">使用PriorityQueue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Deque"><span class="nav-number">12.</span> <span class="nav-text">使用Deque</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Stack"><span class="nav-number">13.</span> <span class="nav-text">使用Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stack%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">13.0.1.</span> <span class="nav-text">Stack的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">13.0.2.</span> <span class="nav-text">计算中缀表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-4"><span class="nav-number">13.0.3.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Iterator"><span class="nav-number">14.</span> <span class="nav-text">使用Iterator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Collections"><span class="nav-number">15.</span> <span class="nav-text">使用Collections</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%A9%BA%E9%9B%86%E5%90%88"><span class="nav-number">15.0.1.</span> <span class="nav-text">创建空集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%8D%95%E5%85%83%E7%B4%A0%E9%9B%86%E5%90%88"><span class="nav-number">15.0.2.</span> <span class="nav-text">创建单元素集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-number">15.0.3.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%97%E7%89%8C"><span class="nav-number">15.0.4.</span> <span class="nav-text">洗牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E9%9B%86%E5%90%88"><span class="nav-number">15.0.5.</span> <span class="nav-text">不可变集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88"><span class="nav-number">15.0.6.</span> <span class="nav-text">线程安全集合</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/04/Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_7.%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          7.集合
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-02-04 21:53:41 / 修改时间：22:57:01" itemprop="dateCreated datePublished" datetime="2022-02-04T21:53:41+08:00">2022-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/1-Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">1.Java快速入门</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：14.6k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈58 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Java集合简介"><a href="#Java集合简介" class="headerlink" title="Java集合简介"></a>Java集合简介</h1><p>什么是集合（Collection）？集合就是“由若干个确定的元素所构成的整体”。例如，5只小兔构成的集合：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐</span><br><span class="line"></span><br><span class="line">│   (\_(\     (\_/)     (\_/)     (\_/)      (\(\   │</span><br><span class="line">    ( -.-)    (•.•)     (&gt;.&lt;)     (^.^)     (=&#x27;.&#x27;)</span><br><span class="line">│  C(&quot;)_(&quot;)  (&quot;)_(&quot;)   (&quot;)_(&quot;)   (&quot;)_(&quot;)   O(_&quot;)&quot;)  │</span><br><span class="line"></span><br><span class="line">└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘</span><br></pre></td></tr></table></figure>
+
+<p>在数学中，我们经常遇到集合的概念。例如：</p>
+<ul>
+<li>有限集合：<ul>
+<li>一个班所有的同学构成的集合；</li>
+<li>一个网站所有的商品构成的集合；</li>
+<li>…</li>
+</ul>
+</li>
+<li>无限集合：<ul>
+<li>全体自然数集合：1，2，3，……</li>
+<li>有理数集合；</li>
+<li>实数集合；</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>为什么要在计算机中引入集合呢？这是为了便于处理一组类似的数据，例如：</p>
+<ul>
+<li>计算所有同学的总成绩和平均成绩；</li>
+<li>列举所有的商品名称和价格；</li>
+<li>……</li>
+</ul>
+<p>在Java中，如果一个Java对象可以在内部持有若干其他Java对象，并对外提供访问接口，我们把这种Java对象称为集合。很显然，Java的数组可以看作是一种集合：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span>[] ss = <span class="keyword">new</span> <span class="keyword">String</span>[<span class="number">10</span>]; <span class="comment">// 可以持有10个String对象</span></span><br><span class="line">ss[<span class="number">0</span>] = <span class="string">&quot;Hello&quot;</span>; <span class="comment">// 可以放入String对象</span></span><br><span class="line"><span class="keyword">String</span> first = ss[<span class="number">0</span>]; <span class="comment">// 可以获取String对象</span></span><br></pre></td></tr></table></figure>
+
+<p>既然Java提供了数组这种数据类型，可以充当集合，那么，我们为什么还需要其他集合类？这是因为数组有如下限制：</p>
+<ul>
+<li>数组初始化后大小不可变；</li>
+<li>数组只能按索引顺序存取。</li>
+</ul>
+<p>因此，我们需要各种不同类型的集合类来处理不同的数据，例如：</p>
+<ul>
+<li>可变大小的顺序链表；</li>
+<li>保证无重复元素的集合；</li>
+<li>…</li>
+</ul>
+<h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><p>Java标准库自带的<code>java.util</code>包提供了集合类：<code>Collection</code>，它是除<code>Map</code>外所有其他集合类的根接口。Java的<code>java.util</code>包主要提供了以下三种类型的集合：</p>
+<ul>
+<li><code>List</code>：一种有序列表的集合，例如，按索引排列的<code>Student</code>的<code>List</code>；</li>
+<li><code>Set</code>：一种保证没有重复元素的集合，例如，所有无重复名称的<code>Student</code>的<code>Set</code>；</li>
+<li><code>Map</code>：一种通过键值（key-value）查找的映射表集合，例如，根据<code>Student</code>的<code>name</code>查找对应<code>Student</code>的<code>Map</code>。</li>
+</ul>
+<p>Java集合的设计有几个特点：一是实现了接口和实现类相分离，例如，有序表的接口是<code>List</code>，具体的实现类有<code>ArrayList</code>，<code>LinkedList</code>等，二是支持泛型，我们可以限制在一个集合中只能放入同一种数据类型的元素，例如：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="keyword">String</span>&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;(); <span class="comment">// 只能放入String类型</span></span><br></pre></td></tr></table></figure>
+
+<p>最后，Java访问集合总是通过统一的方式——迭代器（Iterator）来实现，它最明显的好处在于无需知道集合内部元素是按什么方式存储的。</p>
+<p>由于Java的集合设计非常久远，中间经历过大规模改进，我们要注意到有一小部分集合类是遗留类，不应该继续使用：</p>
+<ul>
+<li><code>Hashtable</code>：一种线程安全的<code>Map</code>实现；</li>
+<li><code>Vector</code>：一种线程安全的<code>List</code>实现；</li>
+<li><code>Stack</code>：基于<code>Vector</code>实现的<code>LIFO</code>的栈。</li>
+</ul>
+<p>还有一小部分接口是遗留接口，也不应该继续使用：</p>
+<ul>
+<li><code>Enumeration&lt;E&gt;</code>：已被<code>Iterator&lt;E&gt;</code>取代。</li>
+</ul>
+<h1 id="使用List"><a href="#使用List" class="headerlink" title="使用List"></a>使用List</h1><p>在集合类中，<code>List</code>是最基础的一种集合：它是一种有序列表。</p>
+<p><code>List</code>的行为和数组几乎完全相同：<code>List</code>内部按照放入元素的先后顺序存放，每个元素都可以通过索引确定自己的位置，<code>List</code>的索引和数组一样，从<code>0</code>开始。</p>
+<p>数组和<code>List</code>类似，也是有序结构，如果我们使用数组，在添加和删除元素的时候，会非常不方便。例如，从一个已有的数组<code>&#123;&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;&#125;</code>中删除索引为<code>2</code>的元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">┌───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │ C │ D │ E │   │</span><br><span class="line">└───┴───┴───┴───┴───┴───┘</span><br><span class="line">              │   │</span><br><span class="line">          ┌───┘   │</span><br><span class="line">          │   ┌───┘</span><br><span class="line">          │   │</span><br><span class="line">          ▼   ▼</span><br><span class="line">┌───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │ D │ E │   │   │</span><br><span class="line">└───┴───┴───┴───┴───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>这个“删除”操作实际上是把<code>&#39;C&#39;</code>后面的元素依次往前挪一个位置，而“添加”操作实际上是把指定位置以后的元素都依次向后挪一个位置，腾出来的位置给新加的元素。这两种操作，用数组实现非常麻烦。</p>
+<p>因此，在实际应用中，需要增删元素的有序列表，我们使用最多的是<code>ArrayList</code>。实际上，<code>ArrayList</code>在内部使用了数组来存储所有元素。例如，一个<code>ArrayList</code>拥有5个元素，实际数组大小为<code>6</code>（即有一个空位）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size=5</span><br><span class="line">┌───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │ C │ D │ E │   │</span><br><span class="line">└───┴───┴───┴───┴───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>当添加一个元素并指定索引到<code>ArrayList</code>时，<code>ArrayList</code>自动移动需要移动的元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size=5</span><br><span class="line">┌───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │   │ C │ D │ E │</span><br><span class="line">└───┴───┴───┴───┴───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>然后，往内部指定索引的数组位置添加一个元素，然后把<code>size</code>加<code>1</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size=6</span><br><span class="line">┌───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │ F │ C │ D │ E │</span><br><span class="line">└───┴───┴───┴───┴───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>继续添加元素，但是数组已满，没有空闲位置的时候，<code>ArrayList</code>先创建一个更大的新数组，然后把旧数组的所有元素复制到新数组，紧接着用新数组取代旧数组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size=6</span><br><span class="line">┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │ F │ C │ D │ E │   │   │   │   │   │   │</span><br><span class="line">└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>现在，新数组就有了空位，可以继续添加一个元素到数组末尾，同时<code>size</code>加<code>1</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size=7</span><br><span class="line">┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐</span><br><span class="line">│ A │ B │ F │ C │ D │ E │ G │   │   │   │   │   │</span><br><span class="line">└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>可见，<code>ArrayList</code>把添加和删除的操作封装起来，让我们操作<code>List</code>类似于操作数组，却不用关心内部元素如何移动。</p>
+<p>我们考察<code>List&lt;E&gt;</code>接口，可以看到几个主要的接口方法：</p>
+<ul>
+<li>在末尾添加一个元素：<code>boolean add(E e)</code></li>
+<li>在指定索引添加一个元素：<code>boolean add(int index, E e)</code></li>
+<li>删除指定索引的元素：<code>E remove(int index)</code></li>
+<li>删除某个元素：<code>boolean remove(Object e)</code></li>
+<li>获取指定索引的元素：<code>E get(int index)</code></li>
+<li>获取链表大小（包含元素的个数）：<code>int size()</code></li>
+</ul>
+<p>但是，实现<code>List</code>接口并非只能通过数组（即<code>ArrayList</code>的实现方式）来实现，另一种<code>LinkedList</code>通过“链表”也实现了List接口。在<code>LinkedList</code>中，它的内部每个元素都指向下一个元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">        ┌───┬───┐   ┌───┬───┐   ┌───┬───┐   ┌───┬───┐</span><br><span class="line">HEAD ──&gt;│ A │ ●─┼──&gt;│ B │ ●─┼──&gt;│ C │ ●─┼──&gt;│ D │   │</span><br><span class="line">        └───┴───┘   └───┴───┘   └───┴───┘   └───┴───┘</span><br></pre></td></tr></table></figure>
+
+<p>我们来比较一下<code>ArrayList</code>和<code>LinkedList</code>：</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">ArrayList</th>
+<th align="left">LinkedList</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">获取指定元素</td>
+<td align="left">速度很快</td>
+<td align="left">需要从头开始查找元素</td>
+</tr>
+<tr>
+<td align="left">添加元素到末尾</td>
+<td align="left">速度很快</td>
+<td align="left">速度很快</td>
+</tr>
+<tr>
+<td align="left">在指定位置添加&#x2F;删除</td>
+<td align="left">需要移动元素</td>
+<td align="left">不需要移动元素</td>
+</tr>
+<tr>
+<td align="left">内存占用</td>
+<td align="left">少</td>
+<td align="left">较大</td>
+</tr>
+</tbody></table>
+<p>通常情况下，我们总是优先使用<code>ArrayList</code>。</p>
+<h3 id="List的特点"><a href="#List的特点" class="headerlink" title="List的特点"></a>List的特点</h3><p>使用<code>List</code>时，我们要关注<code>List</code>接口的规范。<code>List</code>接口允许我们添加重复的元素，即<code>List</code>内部的元素可以重复：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p><code>List</code>还允许添加<code>null</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<h3 id="创建List"><a href="#创建List" class="headerlink" title="创建List"></a>创建List</h3><p>除了使用<code>ArrayList</code>和<code>LinkedList</code>，我们还可以通过<code>List</code>接口提供的<code>of()</code>方法，根据给定元素快速创建<code>List</code>：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">List</span>&lt;Integer&gt; list = List.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是<code>List.of()</code>方法不接受<code>null</code>值，如果传入<code>null</code>，会抛出<code>NullPointerException</code>异常。</p>
+<h3 id="遍历List"><a href="#遍历List" class="headerlink" title="遍历List"></a>遍历List</h3><p>和数组类型，我们要遍历一个<code>List</code>，完全可以用<code>for</code>循环根据索引配合<code>get(int)</code>方法遍历：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>但这种方式并不推荐，一是代码复杂，二是因为<code>get(int)</code>方法只有<code>ArrayList</code>的实现是高效的，换成<code>LinkedList</code>后，索引越大，访问速度越慢。</p>
+<p>所以我们要始终坚持使用迭代器<code>Iterator</code>来访问<code>List</code>。<code>Iterator</code>本身也是一个对象，但它是由<code>List</code>的实例调用<code>iterator()</code>方法的时候创建的。<code>Iterator</code>对象知道如何遍历一个<code>List</code>，并且不同的<code>List</code>类型，返回的<code>Iterator</code>对象实现也是不同的，但总是具有最高的访问效率。</p>
+<p><code>Iterator</code>对象有两个方法：<code>boolean hasNext()</code>判断是否有下一个元素，<code>E next()</code>返回下一个元素。因此，使用<code>Iterator</code>遍历<code>List</code>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>有童鞋可能觉得使用<code>Iterator</code>访问<code>List</code>的代码比使用索引更复杂。但是，要记住，通过<code>Iterator</code>遍历<code>List</code>永远是最高效的方式。并且，由于<code>Iterator</code>遍历是如此常用，所以，Java的<code>for each</code>循环本身就可以帮我们使用<code>Iterator</code>遍历。把上面的代码再改写如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>上述代码就是我们编写遍历<code>List</code>的常见代码。</p>
+<p>实际上，只要实现了<code>Iterable</code>接口的集合类都可以直接用<code>for each</code>循环来遍历，Java编译器本身并不知道如何遍历集合对象，但它会自动把<code>for each</code>循环变成<code>Iterator</code>的调用，原因就在于<code>Iterable</code>接口定义了一个<code>Iterator&lt;E&gt; iterator()</code>方法，强迫集合类必须返回一个<code>Iterator</code>实例。</p>
+<h3 id="List和Array转换"><a href="#List和Array转换" class="headerlink" title="List和Array转换"></a>List和Array转换</h3><p>把<code>List</code>变为<code>Array</code>有三种方法，第一种是调用<code>toArray()</code>方法直接返回一个<code>Object[]</code>数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>这种方法会丢失类型信息，所以实际应用很少。</p>
+<p>第二种方式是给<code>toArray(T[])</code>传入一个类型相同的<code>Array</code>，<code>List</code>内部自动把元素复制到传入的<code>Array</code>中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>注意到这个<code>toArray(T[])</code>方法的泛型参数<code>&lt;T&gt;</code>并不是<code>List</code>接口定义的泛型参数<code>&lt;E&gt;</code>，所以，我们实际上可以传入其他类型的数组，例如我们传入<code>Number</code>类型的数组，返回的仍然是<code>Number</code>类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>但是，如果我们传入类型不匹配的数组，例如，<code>String[]</code>类型的数组，由于<code>List</code>的元素是<code>Integer</code>，所以无法放入<code>String</code>数组，这个方法会抛出<code>ArrayStoreException</code>。</p>
+<p>如果我们传入的数组大小和<code>List</code>实际的元素个数不一致怎么办？根据<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/List.html#toArray(T[])">List接口</a>的文档，我们可以知道：</p>
+<p>如果传入的数组不够大，那么<code>List</code>内部会创建一个新的刚好够大的数组，填充后返回；如果传入的数组比<code>List</code>元素还要多，那么填充完元素后，剩下的数组元素一律填充<code>null</code>。</p>
+<p>实际上，最常用的是传入一个“恰好”大小的数组：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer[]<span class="built_in"> array </span>= list.toArray(new Integer[list.size()]);</span><br></pre></td></tr></table></figure>
+
+<p>最后一种更简洁的写法是通过<code>List</code>接口定义的<code>T[] toArray(IntFunction&lt;T[]&gt; generator)</code>方法：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer[]<span class="built_in"> array </span>= list.toArray(Integer[]::new);</span><br></pre></td></tr></table></figure>
+
+<p>这种函数式写法我们会在后续讲到。</p>
+<p>反过来，把<code>Array</code>变为<code>List</code>就简单多了，通过<code>List.of(T...)</code>方法最简单：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer[]<span class="built_in"> array </span>= &#123; 1, 2, 3 &#125;;</span><br><span class="line">List&lt;Integer&gt; list = List.of(array);</span><br></pre></td></tr></table></figure>
+
+<p>对于JDK 11之前的版本，可以使用<code>Arrays.asList(T...)</code>方法把数组转换成<code>List</code>。</p>
+<p>要注意的是，返回的<code>List</code>不一定就是<code>ArrayList</code>或者<code>LinkedList</code>，因为<code>List</code>只是一个接口，如果我们调用<code>List.of()</code>，它返回的是一个只读<code>List</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>对只读<code>List</code>调用<code>add()</code>、<code>remove()</code>方法会抛出<code>UnsupportedOperationException</code>。</p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>给定一组连续的整数，例如：10，11，12，……，20，但其中缺失一个数字，试找出缺失的数字：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="built_in">public</span> <span class="keyword">class</span> Main &#123;</span><br><span class="line">    <span class="built_in">public</span> static <span class="type">void</span> main(String[] args) &#123;</span><br><span class="line">        // 构造从<span class="keyword">start</span>到<span class="keyword">end</span>的序列：</span><br><span class="line">        final <span class="type">int</span> start = <span class="number">10</span>;</span><br><span class="line">        final <span class="type">int</span> end = <span class="number">20</span>;</span><br><span class="line">        List&lt;<span class="type">Integer</span>&gt; list = <span class="built_in">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="keyword">start</span>; i &lt;= <span class="keyword">end</span>; i++) &#123;</span><br><span class="line">            list.<span class="keyword">add</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        // 随机删除List中的一个元素:</span><br><span class="line">        <span class="type">int</span> removed = list.remove((<span class="type">int</span>) (Math.random() * list.size()));</span><br><span class="line">        <span class="type">int</span> <span class="built_in">found</span> = findMissingNumber(<span class="keyword">start</span>, <span class="keyword">end</span>, list);</span><br><span class="line">        <span class="keyword">System</span>.<span class="keyword">out</span>.println(list.toString());</span><br><span class="line">        <span class="keyword">System</span>.<span class="keyword">out</span>.println(&quot;missing number: &quot; + <span class="built_in">found</span>);</span><br><span class="line">        <span class="keyword">System</span>.<span class="keyword">out</span>.println(removed == <span class="built_in">found</span> ? &quot;测试成功&quot; : &quot;测试失败&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>增强版：和上述题目一样，但整数不再有序，试找出缺失的数字：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="built_in">public</span> <span class="keyword">class</span> Main &#123;</span><br><span class="line">    <span class="built_in">public</span> static <span class="type">void</span> main(String[] args) &#123;</span><br><span class="line">        // 构造从<span class="keyword">start</span>到<span class="keyword">end</span>的序列：</span><br><span class="line">        final <span class="type">int</span> start = <span class="number">10</span>;</span><br><span class="line">        final <span class="type">int</span> end = <span class="number">20</span>;</span><br><span class="line">        List&lt;<span class="type">Integer</span>&gt; list = <span class="built_in">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="keyword">start</span>; i &lt;= <span class="keyword">end</span>; i++) &#123;</span><br><span class="line">            list.<span class="keyword">add</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        // 洗牌算法shuffle可以随机交换List中的元素位置:</span><br><span class="line">        Collections.shuffle(list);</span><br><span class="line">        // 随机删除List中的一个元素:</span><br><span class="line">        <span class="type">int</span> removed = list.remove((<span class="type">int</span>) (Math.random() * list.size()));</span><br><span class="line">        <span class="type">int</span> <span class="built_in">found</span> = findMissingNumber(<span class="keyword">start</span>, <span class="keyword">end</span>, list);</span><br><span class="line">        <span class="keyword">System</span>.<span class="keyword">out</span>.println(list.toString());</span><br><span class="line">        <span class="keyword">System</span>.<span class="keyword">out</span>.println(&quot;missing number: &quot; + <span class="built_in">found</span>);</span><br><span class="line">        <span class="keyword">System</span>.<span class="keyword">out</span>.println(removed == <span class="built_in">found</span> ? &quot;测试成功&quot; : &quot;测试失败&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>从<a target="_blank" rel="noopener" href="https://gitee.com/"><img src="data:image/png;base64,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" alt="img"></a>下载练习：<a target="_blank" rel="noopener" href="https://gitee.com/liaoxuefeng/learn-java/blob/master/practices/Java%E6%95%99%E7%A8%8B/70.%E9%9B%86%E5%90%88.1255943629175808/20.%E4%BD%BF%E7%94%A8List.1265112034799552/coll-list.zip?utm_source=blog_lxf">找出缺失的数字</a> （推荐使用<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1266092093733664">IDE练习插件</a>快速下载）</p>
+<h1 id="编写equals方法"><a href="#编写equals方法" class="headerlink" title="编写equals方法"></a>编写equals方法</h1><p>我们知道<code>List</code>是一种有序链表：<code>List</code>内部按照放入元素的先后顺序存放，并且每个元素都可以通过索引确定自己的位置。</p>
+<p><code>List</code>还提供了<code>boolean contains(Object o)</code>方法来判断<code>List</code>是否包含某个指定元素。此外，<code>int indexOf(Object o)</code>方法可以返回某个元素的索引，如果元素不存在，就返回<code>-1</code>。</p>
+<p>我们来看一个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>这里我们注意一个问题，我们往<code>List</code>中添加的<code>&quot;C&quot;</code>和调用<code>contains(&quot;C&quot;)</code>传入的<code>&quot;C&quot;</code>是不是同一个实例？</p>
+<p>如果这两个<code>&quot;C&quot;</code>不是同一个实例，这段代码是否还能得到正确的结果？我们可以改写一下代码测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>因为我们传入的是<code>new String(&quot;C&quot;)</code>，所以一定是不同的实例。结果仍然符合预期，这是为什么呢？</p>
+<p>因为<code>List</code>内部并不是通过<code>==</code>判断两个元素是否相等，而是使用<code>equals()</code>方法判断两个元素是否相等，例如<code>contains()</code>方法可以实现如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span> </span>&#123;</span><br><span class="line">    <span class="built_in">Object</span>[] elementData;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> <span class="function"><span class="title">contains</span>(<span class="params"><span class="built_in">Object</span> o</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; elementData.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (o.equals(elementData[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此，要正确使用<code>List</code>的<code>contains()</code>、<code>indexOf()</code>这些方法，放入的实例必须正确覆写<code>equals()</code>方法，否则，放进去的实例，查找不到。我们之所以能正常放入<code>String</code>、<code>Integer</code>这些对象，是因为Java标准库定义的这些类已经正确实现了<code>equals()</code>方法。</p>
+<p>我们以<code>Person</code>对象为例，测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>不出意外，虽然放入了<code>new Person(&quot;Bob&quot;)</code>，但是用另一个<code>new Person(&quot;Bob&quot;)</code>查询不到，原因就是<code>Person</code>类没有覆写<code>equals()</code>方法。</p>
+<h3 id="编写equals"><a href="#编写equals" class="headerlink" title="编写equals"></a>编写equals</h3><p>如何正确编写<code>equals()</code>方法？<code>equals()</code>方法要求我们必须满足以下条件：</p>
+<ul>
+<li>自反性（Reflexive）：对于非<code>null</code>的<code>x</code>来说，<code>x.equals(x)</code>必须返回<code>true</code>；</li>
+<li>对称性（Symmetric）：对于非<code>null</code>的<code>x</code>和<code>y</code>来说，如果<code>x.equals(y)</code>为<code>true</code>，则<code>y.equals(x)</code>也必须为<code>true</code>；</li>
+<li>传递性（Transitive）：对于非<code>null</code>的<code>x</code>、<code>y</code>和<code>z</code>来说，如果<code>x.equals(y)</code>为<code>true</code>，<code>y.equals(z)</code>也为<code>true</code>，那么<code>x.equals(z)</code>也必须为<code>true</code>；</li>
+<li>一致性（Consistent）：对于非<code>null</code>的<code>x</code>和<code>y</code>来说，只要<code>x</code>和<code>y</code>状态不变，则<code>x.equals(y)</code>总是一致地返回<code>true</code>或者<code>false</code>；</li>
+<li>对<code>null</code>的比较：即<code>x.equals(null)</code>永远返回<code>false</code>。</li>
+</ul>
+<p>上述规则看上去似乎非常复杂，但其实代码实现<code>equals()</code>方法是很简单的，我们以<code>Person</code>类为例：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Person</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先，我们要定义“相等”的逻辑含义。对于<code>Person</code>类，如果<code>name</code>相等，并且<code>age</code>相等，我们就认为两个<code>Person</code>实例相等。</p>
+<p>因此，编写<code>equals()</code>方法如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">boolean</span> <span class="function"><span class="title">equals</span>(<span class="params"><span class="built_in">Object</span> o</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (o <span class="keyword">instanceof</span> Person) &#123;</span><br><span class="line">        Person p = (Person) o;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.name.equals(p.name) &amp;&amp; <span class="built_in">this</span>.age == p.age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于引用字段比较，我们使用<code>equals()</code>，对于基本类型字段的比较，我们使用<code>==</code>。</p>
+<p>如果<code>this.name</code>为<code>null</code>，那么<code>equals()</code>方法会报错，因此，需要继续改写如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> boolean equals(Object o) &#123;</span><br><span class="line">    <span class="keyword">if</span> (o instanceof Person) &#123;</span><br><span class="line">        Person p = (Person) o;</span><br><span class="line">        boolean nameEquals = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.name == <span class="literal">null</span> &amp;&amp; p.name == <span class="literal">null</span>) &#123;</span><br><span class="line">            nameEquals = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.name != <span class="literal">null</span>) &#123;</span><br><span class="line">            nameEquals = <span class="keyword">this</span>.name.equals(p.name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nameEquals &amp;&amp; <span class="keyword">this</span>.age == p.age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>Person</code>有好几个引用类型的字段，上面的写法就太复杂了。要简化引用类型的比较，我们使用<code>Objects.equals()</code>静态方法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">boolean</span> <span class="function"><span class="title">equals</span>(<span class="params"><span class="built_in">Object</span> o</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (o <span class="keyword">instanceof</span> Person) &#123;</span><br><span class="line">        Person p = (Person) o;</span><br><span class="line">        <span class="keyword">return</span> Objects.equals(<span class="built_in">this</span>.name, p.name) &amp;&amp; <span class="built_in">this</span>.age == p.age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此，我们总结一下<code>equals()</code>方法的正确编写方法：</p>
+<ol>
+<li>先确定实例“相等”的逻辑，即哪些字段相等，就认为实例相等；</li>
+<li>用<code>instanceof</code>判断传入的待比较的<code>Object</code>是不是当前类型，如果是，继续比较，否则，返回<code>false</code>；</li>
+<li>对引用类型用<code>Objects.equals()</code>比较，对基本类型直接用<code>==</code>比较。</li>
+</ol>
+<p>使用<code>Objects.equals()</code>比较两个引用类型是否相等的目的是省去了判断<code>null</code>的麻烦。两个引用类型都是<code>null</code>时它们也是相等的。</p>
+<p>如果不调用<code>List</code>的<code>contains()</code>、<code>indexOf()</code>这些方法，那么放入的元素就不需要实现<code>equals()</code>方法。</p>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>给Person类增加equals方法，使得调用indexOf()方法返回正常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>从<a target="_blank" rel="noopener" href="https://gitee.com/"><img src="data:image/png;base64,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" alt="img"></a>下载练习：<a target="_blank" rel="noopener" href="https://gitee.com/liaoxuefeng/learn-java/blob/master/practices/Java%E6%95%99%E7%A8%8B/70.%E9%9B%86%E5%90%88.1255943629175808/30.%E7%BC%96%E5%86%99equals%E6%96%B9%E6%B3%95.1265116446975264/coll-equals.zip?utm_source=blog_lxf">覆写equals方法</a> （推荐使用<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1266092093733664">IDE练习插件</a>快速下载）</p>
+<h1 id="使用Map"><a href="#使用Map" class="headerlink" title="使用Map"></a>使用Map</h1><p>我们知道，<code>List</code>是一种顺序列表，如果有一个存储学生<code>Student</code>实例的<code>List</code>，要在<code>List</code>中根据<code>name</code>查找某个指定的<code>Student</code>的分数，应该怎么办？</p>
+<p>最简单的方法是遍历<code>List</code>并判断<code>name</code>是否相等，然后返回指定元素：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; list = ...</span><br><span class="line">Student <span class="keyword">target</span> = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">for</span> (Student s : list) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;Xiao Ming&quot;</span>.equals(s.name)) &#123;</span><br><span class="line">        <span class="keyword">target</span> = s;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="keyword">target</span>.score);</span><br></pre></td></tr></table></figure>
+
+<p>这种需求其实非常常见，即通过一个键去查询对应的值。使用<code>List</code>来实现存在效率非常低的问题，因为平均需要扫描一半的元素才能确定，而<code>Map</code>这种键值（key-value）映射表的数据结构，作用就是能高效通过<code>key</code>快速查找<code>value</code>（元素）。</p>
+<p>用<code>Map</code>来实现根据<code>name</code>查询某个<code>Student</code>的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>通过上述代码可知：<code>Map&lt;K, V&gt;</code>是一种键-值映射表，当我们调用<code>put(K key, V value)</code>方法时，就把<code>key</code>和<code>value</code>做了映射并放入<code>Map</code>。当我们调用<code>V get(K key)</code>时，就可以通过<code>key</code>获取到对应的<code>value</code>。如果<code>key</code>不存在，则返回<code>null</code>。和<code>List</code>类似，<code>Map</code>也是一个接口，最常用的实现类是<code>HashMap</code>。</p>
+<p>如果只是想查询某个<code>key</code>是否存在，可以调用<code>boolean containsKey(K key)</code>方法。</p>
+<p>如果我们在存储<code>Map</code>映射关系的时候，对同一个key调用两次<code>put()</code>方法，分别放入不同的<code>value</code>，会有什么问题呢？例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>重复放入<code>key-value</code>并不会有任何问题，但是一个<code>key</code>只能关联一个<code>value</code>。在上面的代码中，一开始我们把<code>key</code>对象<code>&quot;apple&quot;</code>映射到<code>Integer</code>对象<code>123</code>，然后再次调用<code>put()</code>方法把<code>&quot;apple&quot;</code>映射到<code>789</code>，这时，原来关联的<code>value</code>对象<code>123</code>就被“冲掉”了。实际上，<code>put()</code>方法的签名是<code>V put(K key, V value)</code>，如果放入的<code>key</code>已经存在，<code>put()</code>方法会返回被删除的旧的<code>value</code>，否则，返回<code>null</code>。</p>
+<p> 始终牢记：Map中不存在重复的key，因为放入相同的key，只会把原有的key-value对应的value给替换掉。</p>
+<p>此外，在一个<code>Map</code>中，虽然<code>key</code>不能重复，但<code>value</code>是可以重复的：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;<span class="keyword">String</span>, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;apple&quot;</span>, <span class="number">123</span>);</span><br><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;pear&quot;</span>, <span class="number">123</span>); <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历Map"><a href="#遍历Map" class="headerlink" title="遍历Map"></a>遍历Map</h3><p>对<code>Map</code>来说，要遍历<code>key</code>可以使用<code>for each</code>循环遍历<code>Map</code>实例的<code>keySet()</code>方法返回的<code>Set</code>集合，它包含不重复的<code>key</code>的集合：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>同时遍历<code>key</code>和<code>value</code>可以使用<code>for each</code>循环遍历<code>Map</code>对象的<code>entrySet()</code>集合，它包含每一个<code>key-value</code>映射：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p><code>Map</code>和<code>List</code>不同的是，<code>Map</code>存储的是<code>key-value</code>的映射关系，并且，它<em>不保证顺序</em>。在遍历的时候，遍历的顺序既不一定是<code>put()</code>时放入的<code>key</code>的顺序，也不一定是<code>key</code>的排序顺序。使用<code>Map</code>时，任何依赖顺序的逻辑都是不可靠的。以<code>HashMap</code>为例，假设我们放入<code>&quot;A&quot;</code>，<code>&quot;B&quot;</code>，<code>&quot;C&quot;</code>这3个<code>key</code>，遍历的时候，每个<code>key</code>会保证被遍历一次且仅遍历一次，但顺序完全没有保证，甚至对于不同的JDK版本，相同的代码遍历的输出顺序都是不同的！</p>
+<p> 遍历Map时，不可假设输出的key是有序的！</p>
+<h3 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h3><p>请编写一个根据<code>name</code>查找<code>score</code>的程序，并利用<code>Map</code>充当缓存，以提高查找效率：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>从<a target="_blank" rel="noopener" href="https://gitee.com/"><img src="data:image/png;base64,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" alt="img"></a>下载练习：<a target="_blank" rel="noopener" href="https://gitee.com/liaoxuefeng/learn-java/blob/master/practices/Java%E6%95%99%E7%A8%8B/70.%E9%9B%86%E5%90%88.1255943629175808/40.%E4%BD%BF%E7%94%A8Map.1265118019954528/coll-map.zip?utm_source=blog_lxf">find-student-score</a> （推荐使用<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1266092093733664">IDE练习插件</a>快速下载）</p>
+<h1 id="编写equals和hashCode"><a href="#编写equals和hashCode" class="headerlink" title="编写equals和hashCode"></a>编写equals和hashCode</h1><p>我们知道Map是一种键-值（key-value）映射表，可以通过key快速查找对应的value。</p>
+<p>以HashMap为例，观察下面的代码：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;<span class="keyword">String</span>, Person&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;a&quot;</span>, <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;Xiao Ming&quot;</span>));</span><br><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;b&quot;</span>, <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;Xiao Hong&quot;</span>));</span><br><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;c&quot;</span>, <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;Xiao Jun&quot;</span>));</span><br><span class="line"></span><br><span class="line">map.<span class="built_in">get</span>(<span class="string">&quot;a&quot;</span>); <span class="comment">// Person(&quot;Xiao Ming&quot;)</span></span><br><span class="line">map.<span class="built_in">get</span>(<span class="string">&quot;x&quot;</span>); <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+
+<p><code>HashMap</code>之所以能根据<code>key</code>直接拿到<code>value</code>，原因是它内部通过空间换时间的方法，用一个大数组存储所有<code>value</code>，并根据key直接计算出<code>value</code>应该存储在哪个索引：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  ┌───┐</span><br><span class="line">0 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">1 │ ●─┼───&gt; Person(&quot;Xiao Ming&quot;)</span><br><span class="line">  ├───┤</span><br><span class="line">2 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">3 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">4 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">5 │ ●─┼───&gt; Person(&quot;Xiao Hong&quot;)</span><br><span class="line">  ├───┤</span><br><span class="line">6 │ ●─┼───&gt; Person(&quot;Xiao Jun&quot;)</span><br><span class="line">  ├───┤</span><br><span class="line">7 │   │</span><br><span class="line">  └───┘</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>key</code>的值为<code>&quot;a&quot;</code>，计算得到的索引总是<code>1</code>，因此返回<code>value</code>为<code>Person(&quot;Xiao Ming&quot;)</code>，如果<code>key</code>的值为<code>&quot;b&quot;</code>，计算得到的索引总是<code>5</code>，因此返回<code>value</code>为<code>Person(&quot;Xiao Hong&quot;)</code>，这样，就不必遍历整个数组，即可直接读取<code>key</code>对应的<code>value</code>。</p>
+<p>当我们使用<code>key</code>存取<code>value</code>的时候，就会引出一个问题：</p>
+<p>我们放入<code>Map</code>的<code>key</code>是字符串<code>&quot;a&quot;</code>，但是，当我们获取<code>Map</code>的<code>value</code>时，传入的变量不一定就是放入的那个<code>key</code>对象。</p>
+<p>换句话讲，两个<code>key</code>应该是内容相同，但不一定是同一个对象。测试代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>因为在<code>Map</code>的内部，对<code>key</code>做比较是通过<code>equals()</code>实现的，这一点和<code>List</code>查找元素需要正确覆写<code>equals()</code>是一样的，即正确使用<code>Map</code>必须保证：作为<code>key</code>的对象必须正确覆写<code>equals()</code>方法。</p>
+<p>我们经常使用<code>String</code>作为<code>key</code>，因为<code>String</code>已经正确覆写了<code>equals()</code>方法。但如果我们放入的<code>key</code>是一个自己写的类，就必须保证正确覆写了<code>equals()</code>方法。</p>
+<p>我们再思考一下<code>HashMap</code>为什么能通过<code>key</code>直接计算出<code>value</code>存储的索引。相同的<code>key</code>对象（使用<code>equals()</code>判断时返回<code>true</code>）必须要计算出相同的索引，否则，相同的<code>key</code>每次取出的<code>value</code>就不一定对。</p>
+<p>通过<code>key</code>计算索引的方式就是调用<code>key</code>对象的<code>hashCode()</code>方法，它返回一个<code>int</code>整数。<code>HashMap</code>正是通过这个方法直接定位<code>key</code>对应的<code>value</code>的索引，继而直接返回<code>value</code>。</p>
+<p>因此，正确使用<code>Map</code>必须保证：</p>
+<ol>
+<li>作为<code>key</code>的对象必须正确覆写<code>equals()</code>方法，相等的两个<code>key</code>实例调用<code>equals()</code>必须返回<code>true</code>；</li>
+<li>作为<code>key</code>的对象还必须正确覆写<code>hashCode()</code>方法，且<code>hashCode()</code>方法要严格遵循以下规范：</li>
+</ol>
+<ul>
+<li>如果两个对象相等，则两个对象的<code>hashCode()</code>必须相等；</li>
+<li>如果两个对象不相等，则两个对象的<code>hashCode()</code>尽量不要相等。</li>
+</ul>
+<p>即对应两个实例<code>a</code>和<code>b</code>：</p>
+<ul>
+<li>如果<code>a</code>和<code>b</code>相等，那么<code>a.equals(b)</code>一定为<code>true</code>，则<code>a.hashCode()</code>必须等于<code>b.hashCode()</code>；</li>
+<li>如果<code>a</code>和<code>b</code>不相等，那么<code>a.equals(b)</code>一定为<code>false</code>，则<code>a.hashCode()</code>和<code>b.hashCode()</code>尽量不要相等。</li>
+</ul>
+<p>上述第一条规范是正确性，必须保证实现，否则<code>HashMap</code>不能正常工作。</p>
+<p>而第二条如果尽量满足，则可以保证查询效率，因为不同的对象，如果返回相同的<code>hashCode()</code>，会造成<code>Map</code>内部存储冲突，使存取的效率下降。</p>
+<p>正确编写<code>equals()</code>的方法我们已经在<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1265116446975264">编写equals方法</a>一节中讲过了，以<code>Person</code>类为例：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line">    <span class="keyword">String</span> firstName;</span><br><span class="line">    <span class="keyword">String</span> lastName;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把需要比较的字段找出来：</p>
+<ul>
+<li>firstName</li>
+<li>lastName</li>
+<li>age</li>
+</ul>
+<p>然后，引用类型使用<code>Objects.equals()</code>比较，基本类型使用<code>==</code>比较。</p>
+<p>在正确实现<code>equals()</code>的基础上，我们还需要正确实现<code>hashCode()</code>，即上述3个字段分别相同的实例，<code>hashCode()</code>返回的<code>int</code>必须相同：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span> &#123;</span><br><span class="line">    String firstName;</span><br><span class="line">    String lastName;</span><br><span class="line">    int age;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    int hashCode() &#123;</span><br><span class="line">        int <span class="built_in">h</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">h</span> = <span class="number">31</span> * <span class="built_in">h</span> + firstName.hashCode();</span><br><span class="line">        <span class="built_in">h</span> = <span class="number">31</span> * <span class="built_in">h</span> + lastName.hashCode();</span><br><span class="line">        <span class="built_in">h</span> = <span class="number">31</span> * <span class="built_in">h</span> + age;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">h</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意到<code>String</code>类已经正确实现了<code>hashCode()</code>方法，我们在计算<code>Person</code>的<code>hashCode()</code>时，反复使用<code>31*h</code>，这样做的目的是为了尽量把不同的<code>Person</code>实例的<code>hashCode()</code>均匀分布到整个<code>int</code>范围。</p>
+<p>和实现<code>equals()</code>方法遇到的问题类似，如果<code>firstName</code>或<code>lastName</code>为<code>null</code>，上述代码工作起来就会抛<code>NullPointerException</code>。为了解决这个问题，我们在计算<code>hashCode()</code>的时候，经常借助<code>Objects.hash()</code>来计算：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">return</span> Objects.<span class="title">hash</span><span class="params">(firstName, lastName, age)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以，编写<code>equals()</code>和<code>hashCode()</code>遵循的原则是：</p>
+<p><code>equals()</code>用到的用于比较的每一个字段，都必须在<code>hashCode()</code>中用于计算；<code>equals()</code>中没有使用到的字段，绝不可放在<code>hashCode()</code>中计算。</p>
+<p>另外注意，对于放入<code>HashMap</code>的<code>value</code>对象，没有任何要求。</p>
+<h3 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h3><p>既然<code>HashMap</code>内部使用了数组，通过计算<code>key</code>的<code>hashCode()</code>直接定位<code>value</code>所在的索引，那么第一个问题来了：hashCode()返回的<code>int</code>范围高达±21亿，先不考虑负数，<code>HashMap</code>内部使用的数组得有多大？</p>
+<p>实际上<code>HashMap</code>初始化时默认的数组大小只有16，任何<code>key</code>，无论它的<code>hashCode()</code>有多大，都可以简单地通过：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">int</span> index = key.hashCode() &amp; <span class="number">0</span>xf; // <span class="number">0</span>xf = <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<p>把索引确定在0～15，即永远不会超出数组范围，上述算法只是一种最简单的实现。</p>
+<p>第二个问题：如果添加超过16个<code>key-value</code>到<code>HashMap</code>，数组不够用了怎么办？</p>
+<p>添加超过一定数量的<code>key-value</code>时，<code>HashMap</code>会在内部自动扩容，每次扩容一倍，即长度为16的数组扩展为长度32，相应地，需要重新确定<code>hashCode()</code>计算的索引位置。例如，对长度为32的数组计算<code>hashCode()</code>对应的索引，计算方式要改为：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">int</span> index = key.hashCode() &amp; <span class="number">0</span>x<span class="number">1</span>f; // <span class="number">0</span>x<span class="number">1</span>f = <span class="number">31</span></span><br></pre></td></tr></table></figure>
+
+<p>由于扩容会导致重新分布已有的<code>key-value</code>，所以，频繁扩容对<code>HashMap</code>的性能影响很大。如果我们确定要使用一个容量为<code>10000</code>个<code>key-value</code>的<code>HashMap</code>，更好的方式是创建<code>HashMap</code>时就指定容量：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">Integer</span>&gt; <span class="built_in">map</span> = <span class="literal">new</span> HashMap&lt;&gt;(<span class="number">10000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>虽然指定容量是<code>10000</code>，但<code>HashMap</code>内部的数组长度总是2n，因此，实际数组长度被初始化为比<code>10000</code>大的<code>16384</code>（214）。</p>
+<p>最后一个问题：如果不同的两个<code>key</code>，例如<code>&quot;a&quot;</code>和<code>&quot;b&quot;</code>，它们的<code>hashCode()</code>恰好是相同的（这种情况是完全可能的，因为不相等的两个实例，只要求<code>hashCode()</code>尽量不相等），那么，当我们放入：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;a&quot;</span>, <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;Xiao Ming&quot;</span>));</span><br><span class="line">map.<span class="built_in">put</span>(<span class="string">&quot;b&quot;</span>, <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;Xiao Hong&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>时，由于计算出的数组索引相同，后面放入的<code>&quot;Xiao Hong&quot;</code>会不会把<code>&quot;Xiao Ming&quot;</code>覆盖了？</p>
+<p>当然不会！使用<code>Map</code>的时候，只要<code>key</code>不相同，它们映射的<code>value</code>就互不干扰。但是，在<code>HashMap</code>内部，确实可能存在不同的<code>key</code>，映射到相同的<code>hashCode()</code>，即相同的数组索引上，肿么办？</p>
+<p>我们就假设<code>&quot;a&quot;</code>和<code>&quot;b&quot;</code>这两个<code>key</code>最终计算出的索引都是5，那么，在<code>HashMap</code>的数组中，实际存储的不是一个<code>Person</code>实例，而是一个<code>List</code>，它包含两个<code>Entry</code>，一个是<code>&quot;a&quot;</code>的映射，一个是<code>&quot;b&quot;</code>的映射：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  ┌───┐</span><br><span class="line">0 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">1 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">2 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">3 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">4 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">5 │ ●─┼───&gt; List&lt;Entry&lt;String, Person&gt;&gt;</span><br><span class="line">  ├───┤</span><br><span class="line">6 │   │</span><br><span class="line">  ├───┤</span><br><span class="line">7 │   │</span><br><span class="line">  └───┘</span><br></pre></td></tr></table></figure>
+
+<p>在查找的时候，例如：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person p = map.<span class="built_in">get</span>(<span class="string">&quot;a&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>HashMap内部通过<code>&quot;a&quot;</code>找到的实际上是<code>List&lt;Entry&lt;String, Person&gt;&gt;</code>，它还需要遍历这个<code>List</code>，并找到一个<code>Entry</code>，它的<code>key</code>字段是<code>&quot;a&quot;</code>，才能返回对应的<code>Person</code>实例。</p>
+<p>我们把不同的<code>key</code>具有相同的<code>hashCode()</code>的情况称之为哈希冲突。在冲突的时候，一种最简单的解决办法是用<code>List</code>存储<code>hashCode()</code>相同的<code>key-value</code>。显然，如果冲突的概率越大，这个<code>List</code>就越长，<code>Map</code>的<code>get()</code>方法效率就越低，这就是为什么要尽量满足条件二：</p>
+<p> 如果两个对象不相等，则两个对象的hashCode()尽量不要相等。</p>
+<p><code>hashCode()</code>方法编写得越好，<code>HashMap</code>工作的效率就越高。</p>
+<h1 id="使用EnumMap"><a href="#使用EnumMap" class="headerlink" title="使用EnumMap"></a>使用EnumMap</h1><p>因为<code>HashMap</code>是一种通过对key计算<code>hashCode()</code>，通过空间换时间的方式，直接定位到value所在的内部数组的索引，因此，查找效率非常高。</p>
+<p>如果作为key的对象是<code>enum</code>类型，那么，还可以使用Java集合库提供的一种<code>EnumMap</code>，它在内部以一个非常紧凑的数组存储value，并且根据<code>enum</code>类型的key直接定位到内部数组的索引，并不需要计算<code>hashCode()</code>，不但效率最高，而且没有额外的空间浪费。</p>
+<p>我们以<code>DayOfWeek</code>这个枚举类型为例，为它做一个“翻译”功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.time.DayOfWeek;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>使用<code>EnumMap</code>的时候，我们总是用<code>Map</code>接口来引用它，因此，实际上把<code>HashMap</code>和<code>EnumMap</code>互换，在客户端看来没有任何区别。</p>
+<h1 id="使用TreeMap"><a href="#使用TreeMap" class="headerlink" title="使用TreeMap"></a>使用TreeMap</h1><p>我们已经知道，<code>HashMap</code>是一种以空间换时间的映射表，它的实现原理决定了内部的Key是无序的，即遍历<code>HashMap</code>的Key时，其顺序是不可预测的（但每个Key都会遍历一次且仅遍历一次）。</p>
+<p>还有一种<code>Map</code>，它在内部会对Key进行排序，这种<code>Map</code>就是<code>SortedMap</code>。注意到<code>SortedMap</code>是接口，它的实现类是<code>TreeMap</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">       ┌───┐</span><br><span class="line">       │Map│</span><br><span class="line">       └───┘</span><br><span class="line">         ▲</span><br><span class="line">    ┌────┴─────┐</span><br><span class="line">    │          │</span><br><span class="line">┌───────┐ ┌─────────┐</span><br><span class="line">│HashMap│ │SortedMap│</span><br><span class="line">└───────┘ └─────────┘</span><br><span class="line">               ▲</span><br><span class="line">               │</span><br><span class="line">          ┌─────────┐</span><br><span class="line">          │ TreeMap │</span><br><span class="line">          └─────────┘</span><br></pre></td></tr></table></figure>
+
+<p><code>SortedMap</code>保证遍历时以Key的顺序来进行排序。例如，放入的Key是<code>&quot;apple&quot;</code>、<code>&quot;pear&quot;</code>、<code>&quot;orange&quot;</code>，遍历的顺序一定是<code>&quot;apple&quot;</code>、<code>&quot;orange&quot;</code>、<code>&quot;pear&quot;</code>，因为<code>String</code>默认按字母排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>使用<code>TreeMap</code>时，放入的Key必须实现<code>Comparable</code>接口。<code>String</code>、<code>Integer</code>这些类已经实现了<code>Comparable</code>接口，因此可以直接作为Key使用。作为Value的对象则没有任何要求。</p>
+<p>如果作为Key的class没有实现<code>Comparable</code>接口，那么，必须在创建<code>TreeMap</code>时同时指定一个自定义排序算法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>注意到<code>Comparator</code>接口要求实现一个比较方法，它负责比较传入的两个元素<code>a</code>和<code>b</code>，如果<code>a&lt;b</code>，则返回负数，通常是<code>-1</code>，如果<code>a==b</code>，则返回<code>0</code>，如果<code>a&gt;b</code>，则返回正数，通常是<code>1</code>。<code>TreeMap</code>内部根据比较结果对Key进行排序。</p>
+<p>从上述代码执行结果可知，打印的Key确实是按照<code>Comparator</code>定义的顺序排序的。如果要根据Key查找Value，我们可以传入一个<code>new Person(&quot;Bob&quot;)</code>作为Key，它会返回对应的<code>Integer</code>值<code>2</code>。</p>
+<p>另外，注意到<code>Person</code>类并未覆写<code>equals()</code>和<code>hashCode()</code>，因为<code>TreeMap</code>不使用<code>equals()</code>和<code>hashCode()</code>。</p>
+<p>我们来看一个稍微复杂的例子：这次我们定义了<code>Student</code>类，并用分数<code>score</code>进行排序，高分在前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>在<code>for</code>循环中，我们确实得到了正确的顺序。但是，且慢！根据相同的Key：<code>new Student(&quot;Bob&quot;, 66)</code>进行查找时，结果为<code>null</code>！</p>
+<p>这是怎么肥四？难道<code>TreeMap</code>有问题？遇到<code>TreeMap</code>工作不正常时，我们首先回顾Java编程基本规则：出现问题，不要怀疑Java标准库，要从自身代码找原因。</p>
+<p>在这个例子中，<code>TreeMap</code>出现问题，原因其实出在这个<code>Comparator</code>上：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> int </span>compare(Student p1, Student p2) &#123;</span><br><span class="line">   <span class="built_in"> return </span>p1.score &gt; p2.score ? -1<span class="keyword"> :</span> 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>p1.score</code>和<code>p2.score</code>不相等的时候，它的返回值是正确的，但是，在<code>p1.score</code>和<code>p2.score</code>相等的时候，它并没有返回<code>0</code>！这就是为什么<code>TreeMap</code>工作不正常的原因：<code>TreeMap</code>在比较两个Key是否相等时，依赖Key的<code>compareTo()</code>方法或者<code>Comparator.compare()</code>方法。在两个Key相等时，必须返回<code>0</code>。因此，修改代码如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> int </span>compare(Student p1, Student p2) &#123;</span><br><span class="line">   <span class="built_in"> if </span>(p1.score == p2.score) &#123;</span><br><span class="line">       <span class="built_in"> return </span>0;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="built_in"> return </span>p1.score &gt; p2.score ? -1<span class="keyword"> :</span> 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者直接借助<code>Integer.compare(int, int)</code>也可以返回正确的比较结果。</p>
+<h1 id="使用Properties"><a href="#使用Properties" class="headerlink" title="使用Properties"></a>使用Properties</h1><p>在编写应用程序的时候，经常需要读写配置文件。例如，用户的设置：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上次最后打开的文件:</span></span><br><span class="line"><span class="attr">last_open_file</span>=/data/hello.txt</span><br><span class="line"><span class="comment"># 自动保存文件的时间间隔:</span></span><br><span class="line"><span class="attr">auto_save_interval</span>=<span class="number">60</span></span><br></pre></td></tr></table></figure>
+
+<p>配置文件的特点是，它的Key-Value一般都是<code>String</code>-<code>String</code>类型的，因此我们完全可以用<code>Map&lt;String, String&gt;</code>来表示它。</p>
+<p>因为配置文件非常常用，所以Java集合库提供了一个<code>Properties</code>来表示一组“配置”。由于历史遗留原因，<code>Properties</code>内部本质上是一个<code>Hashtable</code>，但我们只需要用到<code>Properties</code>自身关于读写配置的接口。</p>
+<h3 id="读取配置文件"><a href="#读取配置文件" class="headerlink" title="读取配置文件"></a>读取配置文件</h3><p>用<code>Properties</code>读取配置文件非常简单。Java默认配置文件以<code>.properties</code>为扩展名，每行以<code>key=value</code>表示，以<code>#</code>课开头的是注释。以下是一个典型的配置文件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setting.properties</span></span><br><span class="line"></span><br><span class="line"><span class="attr">last_open_file</span>=/data/hello.txt</span><br><span class="line"><span class="attr">auto_save_interval</span>=<span class="number">60</span></span><br></pre></td></tr></table></figure>
+
+<p>可以从文件系统读取这个<code>.properties</code>文件：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> f = <span class="string">&quot;setting.properties&quot;</span>;</span><br><span class="line">Properties props = <span class="keyword">new</span> <span class="type">Properties</span>();</span><br><span class="line">props.load(<span class="keyword">new</span> <span class="type">java</span>.io.FileInputStream(f));</span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> filepath = props.getProperty(<span class="string">&quot;last_open_file&quot;</span>);</span><br><span class="line"><span class="keyword">String</span> interval = props.getProperty(<span class="string">&quot;auto_save_interval&quot;</span>, <span class="string">&quot;120&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可见，用<code>Properties</code>读取配置文件，一共有三步：</p>
+<ol>
+<li>创建<code>Properties</code>实例；</li>
+<li>调用<code>load()</code>读取文件；</li>
+<li>调用<code>getProperty()</code>获取配置。</li>
+</ol>
+<p>调用<code>getProperty()</code>获取配置时，如果key不存在，将返回<code>null</code>。我们还可以提供一个默认值，这样，当key不存在的时候，就返回默认值。</p>
+<p>也可以从classpath读取<code>.properties</code>文件，因为<code>load(InputStream)</code>方法接收一个<code>InputStream</code>实例，表示一个字节流，它不一定是文件流，也可以是从jar包中读取的资源流：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Properties <span class="built_in">props</span> = <span class="built_in">new</span> Properties();</span><br><span class="line"><span class="built_in">props</span>.<span class="built_in">load</span>(getClass().getResourceAsStream(<span class="string">&quot;/common/setting.properties&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>试试从内存读取一个字节流：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> properties</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>如果有多个<code>.properties</code>文件，可以反复调用<code>load()</code>读取，后读取的key-value会覆盖已读取的key-value：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Properties <span class="built_in">props</span> = <span class="built_in">new</span> Properties();</span><br><span class="line"><span class="built_in">props</span>.<span class="built_in">load</span>(getClass().getResourceAsStream(<span class="string">&quot;/common/setting.properties&quot;</span>));</span><br><span class="line"><span class="built_in">props</span>.<span class="built_in">load</span>(<span class="built_in">new</span> FileInputStream(<span class="string">&quot;C:\\conf\\setting.properties&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码演示了<code>Properties</code>的一个常用用法：可以把默认配置文件放到classpath中，然后，根据机器的环境编写另一个配置文件，覆盖某些默认的配置。</p>
+<p><code>Properties</code>设计的目的是存储<code>String</code>类型的key－value，但<code>Properties</code>实际上是从<code>Hashtable</code>派生的，它的设计实际上是有问题的，但是为了保持兼容性，现在已经没法修改了。除了<code>getProperty()</code>和<code>setProperty()</code>方法外，还有从<code>Hashtable</code>继承下来的<code>get()</code>和<code>put()</code>方法，这些方法的参数签名是<code>Object</code>，我们在使用<code>Properties</code>的时候，不要去调用这些从<code>Hashtable</code>继承下来的方法。</p>
+<h3 id="写入配置文件"><a href="#写入配置文件" class="headerlink" title="写入配置文件"></a>写入配置文件</h3><p>如果通过<code>setProperty()</code>修改了<code>Properties</code>实例，可以把配置写入文件，以便下次启动时获得最新配置。写入配置文件使用<code>store()</code>方法：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Properties <span class="built_in">props</span> = <span class="built_in">new</span> Properties();</span><br><span class="line"><span class="built_in">props</span>.setProperty(<span class="string">&quot;url&quot;</span>, <span class="string">&quot;http://www.liaoxuefeng.com&quot;</span>);</span><br><span class="line"><span class="built_in">props</span>.setProperty(<span class="string">&quot;language&quot;</span>, <span class="string">&quot;Java&quot;</span>);</span><br><span class="line"><span class="built_in">props</span>.store(<span class="built_in">new</span> FileOutputStream(<span class="string">&quot;C:\\conf\\setting.properties&quot;</span>), <span class="string">&quot;这是写入的properties注释&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>早期版本的Java规定<code>.properties</code>文件编码是ASCII编码（ISO8859-1），如果涉及到中文就必须用<code>name=\u4e2d\u6587</code>来表示，非常别扭。从JDK9开始，Java的<code>.properties</code>文件可以使用UTF-8编码了。</p>
+<p>不过，需要注意的是，由于<code>load(InputStream)</code>默认总是以ASCII编码读取字节流，所以会导致读到乱码。我们需要用另一个重载方法<code>load(Reader)</code>读取：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Properties <span class="built_in">props</span> = <span class="built_in">new</span> Properties();</span><br><span class="line"><span class="built_in">props</span>.<span class="built_in">load</span>(<span class="built_in">new</span> FileReader(<span class="string">&quot;settings.properties&quot;</span>, StandardCharsets.UTF_8));</span><br></pre></td></tr></table></figure>
+
+<p>就可以正常读取中文。<code>InputStream</code>和<code>Reader</code>的区别是一个是字节流，一个是字符流。字符流在内存中已经以<code>char</code>类型表示了，不涉及编码问题。</p>
+<h1 id="使用Set"><a href="#使用Set" class="headerlink" title="使用Set"></a>使用Set</h1><p>我们知道，<code>Map</code>用于存储key-value的映射，对于充当key的对象，是不能重复的，并且，不但需要正确覆写<code>equals()</code>方法，还要正确覆写<code>hashCode()</code>方法。</p>
+<p>如果我们只需要存储不重复的key，并不需要存储映射的value，那么就可以使用<code>Set</code>。</p>
+<p><code>Set</code>用于存储不重复的元素集合，它主要提供以下几个方法：</p>
+<ul>
+<li>将元素添加进<code>Set&lt;E&gt;</code>：<code>boolean add(E e)</code></li>
+<li>将元素从<code>Set&lt;E&gt;</code>删除：<code>boolean remove(Object e)</code></li>
+<li>判断是否包含元素：<code>boolean contains(Object e)</code></li>
+</ul>
+<p>我们来看几个简单的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p><code>Set</code>实际上相当于只存储key、不存储value的<code>Map</code>。我们经常用<code>Set</code>用于去除重复元素。</p>
+<p>因为放入<code>Set</code>的元素和<code>Map</code>的key类似，都要正确实现<code>equals()</code>和<code>hashCode()</code>方法，否则该元素无法正确地放入<code>Set</code>。</p>
+<p>最常用的<code>Set</code>实现类是<code>HashSet</code>，实际上，<code>HashSet</code>仅仅是对<code>HashMap</code>的一个简单封装，它的核心代码如下：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class HashSet&lt;E&gt; implements Set&lt;E&gt; &#123;</span><br><span class="line">    <span class="comment">// 持有一个HashMap:</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">HashMap</span>&lt;E, <span class="keyword">Object</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 放入HashMap的value:</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">Object</span> PRESENT = <span class="keyword">new</span> <span class="keyword">Object</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> <span class="built_in">add</span>(E e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">map</span>.put(e, PRESENT) == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> contains(<span class="keyword">Object</span> o) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">map</span>.containsKey(o);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> remove(<span class="keyword">Object</span> o) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">map</span>.remove(o) == PRESENT;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Set</code>接口并不保证有序，而<code>SortedSet</code>接口则保证元素是有序的：</p>
+<ul>
+<li><code>HashSet</code>是无序的，因为它实现了<code>Set</code>接口，并没有实现<code>SortedSet</code>接口；</li>
+<li><code>TreeSet</code>是有序的，因为它实现了<code>SortedSet</code>接口。</li>
+</ul>
+<p>用一张图表示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">       ┌───┐</span><br><span class="line">       │Set│</span><br><span class="line">       └───┘</span><br><span class="line">         ▲</span><br><span class="line">    ┌────┴─────┐</span><br><span class="line">    │          │</span><br><span class="line">┌───────┐ ┌─────────┐</span><br><span class="line">│HashSet│ │SortedSet│</span><br><span class="line">└───────┘ └─────────┘</span><br><span class="line">               ▲</span><br><span class="line">               │</span><br><span class="line">          ┌─────────┐</span><br><span class="line">          │ TreeSet │</span><br><span class="line">          └─────────┘</span><br></pre></td></tr></table></figure>
+
+<p>我们来看<code>HashSet</code>的输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>注意输出的顺序既不是添加的顺序，也不是<code>String</code>排序的顺序，在不同版本的JDK中，这个顺序也可能是不同的。</p>
+<p>把<code>HashSet</code>换成<code>TreeSet</code>，在遍历<code>TreeSet</code>时，输出就是有序的，这个顺序是元素的排序顺序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>使用<code>TreeSet</code>和使用<code>TreeMap</code>的要求一样，添加的元素必须正确实现<code>Comparable</code>接口，如果没有实现<code>Comparable</code>接口，那么创建<code>TreeSet</code>时必须传入一个<code>Comparator</code>对象。</p>
+<h3 id="练习-3"><a href="#练习-3" class="headerlink" title="练习"></a>练习</h3><p>在聊天软件中，发送方发送消息时，遇到网络超时后就会自动重发，因此，接收方可能会收到重复的消息，在显示给用户看的时候，需要首先去重。请练习使用<code>Set</code>去除重复的消息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<h1 id="使用Queue"><a href="#使用Queue" class="headerlink" title="使用Queue"></a>使用Queue</h1><p>队列（<code>Queue</code>）是一种经常使用的集合。<code>Queue</code>实际上是实现了一个先进先出（FIFO：First In First Out）的有序表。它和<code>List</code>的区别在于，<code>List</code>可以在任意位置添加和删除元素，而<code>Queue</code>只有两个操作：</p>
+<ul>
+<li>把元素添加到队列末尾；</li>
+<li>从队列头部取出元素。</li>
+</ul>
+<p>超市的收银台就是一个队列：</p>
+<p><img src="/7.%E9%9B%86%E5%90%88.assets/l.jpeg" alt="queue"></p>
+<p>在Java的标准库中，队列接口<code>Queue</code>定义了以下几个方法：</p>
+<ul>
+<li><code>int size()</code>：获取队列长度；</li>
+<li><code>boolean add(E)</code>&#x2F;<code>boolean offer(E)</code>：添加元素到队尾；</li>
+<li><code>E remove()</code>&#x2F;<code>E poll()</code>：获取队首元素并从队列中删除；</li>
+<li><code>E element()</code>&#x2F;<code>E peek()</code>：获取队首元素但并不从队列中删除。</li>
+</ul>
+<p>对于具体的实现类，有的Queue有最大队列长度限制，有的Queue没有。注意到添加、删除和获取队列元素总是有两个方法，这是因为在添加或获取元素失败时，这两个方法的行为是不同的。我们用一个表格总结如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">throw Exception</th>
+<th align="left">返回false或null</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">添加元素到队尾</td>
+<td align="left">add(E e)</td>
+<td align="left">boolean offer(E e)</td>
+</tr>
+<tr>
+<td align="left">取队首元素并删除</td>
+<td align="left">E remove()</td>
+<td align="left">E poll()</td>
+</tr>
+<tr>
+<td align="left">取队首元素但不删除</td>
+<td align="left">E element()</td>
+<td align="left">E peek()</td>
+</tr>
+</tbody></table>
+<p>举个栗子，假设我们有一个队列，对它做一个添加操作，如果调用<code>add()</code>方法，当添加失败时（可能超过了队列的容量），它会抛出异常：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;<span class="keyword">String</span>&gt; q = ...</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    q.<span class="built_in">add</span>(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">&quot;添加成功&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(IllegalStateException e) &#123;</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">&quot;添加失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们调用<code>offer()</code>方法来添加元素，当添加失败时，它不会抛异常，而是返回<code>false</code>：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;String&gt; q =<span class="operator"> ...</span></span><br><span class="line"><span class="operator"></span><span class="keyword">if</span> (q.offer(<span class="string">&quot;Apple&quot;</span>)) &#123;</span><br><span class="line">    <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;添加成功&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;添加失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要从<code>Queue</code>中取出队首元素时，如果当前<code>Queue</code>是一个空队列，调用<code>remove()</code>方法，它会抛出异常：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;<span class="keyword">String</span>&gt; q = ...</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">String</span> s = q.<span class="built_in">remove</span>();</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">&quot;获取成功&quot;</span>);</span><br><span class="line">&#125; <span class="built_in"><span class="keyword">catch</span></span>(IllegalStateException e) &#123;</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">&quot;获取失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们调用<code>poll()</code>方法来取出队首元素，当获取失败时，它不会抛异常，而是返回<code>null</code>：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Queue</span>&lt;<span class="built_in">String</span>&gt; q = <span class="params">...</span></span><br><span class="line"><span class="built_in">String</span> s = q.poll();</span><br><span class="line"><span class="keyword">if</span> (s != <span class="built_in">null</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;获取成功&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;获取失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此，两套方法可以根据需要来选择使用。</p>
+<p>注意：不要把<code>null</code>添加到队列中，否则<code>poll()</code>方法返回<code>null</code>时，很难确定是取到了<code>null</code>元素还是队列为空。</p>
+<p>接下来我们以<code>poll()</code>和<code>peek()</code>为例来说说“获取并删除”与“获取但不删除”的区别。对于<code>Queue</code>来说，每次调用<code>poll()</code>，都会获取队首元素，并且获取到的元素已经从队列中被删除了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>如果用<code>peek()</code>，因为获取队首元素时，并不会从队列中删除这个元素，所以可以反复获取：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>从上面的代码中，我们还可以发现，<code>LinkedList</code>即实现了<code>List</code>接口，又实现了<code>Queue</code>接口，但是，在使用的时候，如果我们把它当作List，就获取List的引用，如果我们把它当作Queue，就获取Queue的引用：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是一个List:</span></span><br><span class="line">List&lt;<span class="keyword">String</span>&gt; list = <span class="keyword">new</span> <span class="type">LinkedList</span>&lt;&gt;();</span><br><span class="line"><span class="comment">// 这是一个Queue:</span></span><br><span class="line">Queue&lt;<span class="keyword">String</span>&gt; queue = <span class="keyword">new</span> <span class="type">LinkedList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>始终按照面向抽象编程的原则编写代码，可以大大提高代码的质量。</p>
+<h1 id="使用PriorityQueue"><a href="#使用PriorityQueue" class="headerlink" title="使用PriorityQueue"></a>使用PriorityQueue</h1><p>我们知道，<code>Queue</code>是一个先进先出（FIFO）的队列。</p>
+<p>在银行柜台办业务时，我们假设只有一个柜台在办理业务，但是办理业务的人很多，怎么办？</p>
+<p>可以每个人先取一个号，例如：<code>A1</code>、<code>A2</code>、<code>A3</code>……然后，按照号码顺序依次办理，实际上这就是一个<code>Queue</code>。</p>
+<p>如果这时来了一个VIP客户，他的号码是<code>V1</code>，虽然当前排队的是<code>A10</code>、<code>A11</code>、<code>A12</code>……但是柜台下一个呼叫的客户号码却是<code>V1</code>。</p>
+<p>这个时候，我们发现，要实现“VIP插队”的业务，用<code>Queue</code>就不行了，因为<code>Queue</code>会严格按FIFO的原则取出队首元素。我们需要的是优先队列：<code>PriorityQueue</code>。</p>
+<p><code>PriorityQueue</code>和<code>Queue</code>的区别在于，它的出队顺序与元素的优先级有关，对<code>PriorityQueue</code>调用<code>remove()</code>或<code>poll()</code>方法，返回的总是优先级最高的元素。</p>
+<p>要使用<code>PriorityQueue</code>，我们就必须给每个元素定义“优先级”。我们以实际代码为例，先看看<code>PriorityQueue</code>的行为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>我们放入的顺序是<code>&quot;apple&quot;</code>、<code>&quot;pear&quot;</code>、<code>&quot;banana&quot;</code>，但是取出的顺序却是<code>&quot;apple&quot;</code>、<code>&quot;banana&quot;</code>、<code>&quot;pear&quot;</code>，这是因为从字符串的排序看，<code>&quot;apple&quot;</code>排在最前面，<code>&quot;pear&quot;</code>排在最后面。</p>
+<p>因此，放入<code>PriorityQueue</code>的元素，必须实现<code>Comparable</code>接口，<code>PriorityQueue</code>会根据元素的排序顺序决定出队的优先级。</p>
+<p>如果我们要放入的元素并没有实现<code>Comparable</code>接口怎么办？<code>PriorityQueue</code>允许我们提供一个<code>Comparator</code>对象来判断两个元素的顺序。我们以银行排队业务为例，实现一个<code>PriorityQueue</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>实现<code>PriorityQueue</code>的关键在于提供的<code>UserComparator</code>对象，它负责比较两个元素的大小（较小的在前）。<code>UserComparator</code>总是把<code>V</code>开头的号码优先返回，只有在开头相同的时候，才比较号码大小。</p>
+<p>上面的<code>UserComparator</code>的比较逻辑其实还是有问题的，它会把<code>A10</code>排在<code>A2</code>的前面，请尝试修复该错误。</p>
+<h1 id="使用Deque"><a href="#使用Deque" class="headerlink" title="使用Deque"></a>使用Deque</h1><p>我们知道，<code>Queue</code>是队列，只能一头进，另一头出。</p>
+<p>如果把条件放松一下，允许两头都进，两头都出，这种队列叫双端队列（Double Ended Queue），学名<code>Deque</code>。</p>
+<p>Java集合提供了接口<code>Deque</code>来实现一个双端队列，它的功能是：</p>
+<ul>
+<li>既可以添加到队尾，也可以添加到队首；</li>
+<li>既可以从队首获取，又可以从队尾获取。</li>
+</ul>
+<p>我们来比较一下<code>Queue</code>和<code>Deque</code>出队和入队的方法：</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">Queue</th>
+<th align="left">Deque</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">添加元素到队尾</td>
+<td align="left">add(E e) &#x2F; offer(E e)</td>
+<td align="left">addLast(E e) &#x2F; offerLast(E e)</td>
+</tr>
+<tr>
+<td align="left">取队首元素并删除</td>
+<td align="left">E remove() &#x2F; E poll()</td>
+<td align="left">E removeFirst() &#x2F; E pollFirst()</td>
+</tr>
+<tr>
+<td align="left">取队首元素但不删除</td>
+<td align="left">E element() &#x2F; E peek()</td>
+<td align="left">E getFirst() &#x2F; E peekFirst()</td>
+</tr>
+<tr>
+<td align="left">添加元素到队首</td>
+<td align="left">无</td>
+<td align="left">addFirst(E e) &#x2F; offerFirst(E e)</td>
+</tr>
+<tr>
+<td align="left">取队尾元素并删除</td>
+<td align="left">无</td>
+<td align="left">E removeLast() &#x2F; E pollLast()</td>
+</tr>
+<tr>
+<td align="left">取队尾元素但不删除</td>
+<td align="left">无</td>
+<td align="left">E getLast() &#x2F; E peekLast()</td>
+</tr>
+</tbody></table>
+<p>对于添加元素到队尾的操作，<code>Queue</code>提供了<code>add()</code>&#x2F;<code>offer()</code>方法，而<code>Deque</code>提供了<code>addLast()</code>&#x2F;<code>offerLast()</code>方法。添加元素到对首、取队尾元素的操作在<code>Queue</code>中不存在，在<code>Deque</code>中由<code>addFirst()</code>&#x2F;<code>removeLast()</code>等方法提供。</p>
+<p>注意到<code>Deque</code>接口实际上扩展自<code>Queue</code>：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="symbol">Deque</span>&lt;<span class="symbol">E</span>&gt; <span class="symbol">extends</span> <span class="symbol">Queue</span>&lt;<span class="symbol">E</span>&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此，<code>Queue</code>提供的<code>add()</code>&#x2F;<code>offer()</code>方法在<code>Deque</code>中也可以使用，但是，使用<code>Deque</code>，最好不要调用<code>offer()</code>，而是调用<code>offerLast()</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>如果直接写<code>deque.offer()</code>，我们就需要思考，<code>offer()</code>实际上是<code>offerLast()</code>，我们明确地写上<code>offerLast()</code>，不需要思考就能一眼看出这是添加到队尾。</p>
+<p>因此，使用<code>Deque</code>，推荐总是明确调用<code>offerLast()</code>&#x2F;<code>offerFirst()</code>或者<code>pollFirst()</code>&#x2F;<code>pollLast()</code>方法。</p>
+<p><code>Deque</code>是一个接口，它的实现类有<code>ArrayDeque</code>和<code>LinkedList</code>。</p>
+<p>我们发现<code>LinkedList</code>真是一个全能选手，它即是<code>List</code>，又是<code>Queue</code>，还是<code>Deque</code>。但是我们在使用的时候，总是用特定的接口来引用它，这是因为持有接口说明代码的抽象层次更高，而且接口本身定义的方法代表了特定的用途。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不推荐的写法:</span></span><br><span class="line">LinkedList&lt;<span class="keyword">String</span>&gt; d1 = <span class="keyword">new</span> <span class="type">LinkedList</span>&lt;&gt;();</span><br><span class="line">d1.offerLast(<span class="string">&quot;z&quot;</span>);</span><br><span class="line"><span class="comment">// 推荐的写法：</span></span><br><span class="line">Deque&lt;<span class="keyword">String</span>&gt; d2 = <span class="keyword">new</span> <span class="type">LinkedList</span>&lt;&gt;();</span><br><span class="line">d2.offerLast(<span class="string">&quot;z&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可见面向抽象编程的一个原则就是：尽量持有接口，而不是具体的实现类。</p>
+<h1 id="使用Stack"><a href="#使用Stack" class="headerlink" title="使用Stack"></a>使用Stack</h1><p>栈（Stack）是一种后进先出（LIFO：Last In First Out）的数据结构。</p>
+<p>什么是LIFO呢？我们先回顾一下<code>Queue</code>的特点FIFO：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">          ────────────────────────</span><br><span class="line">  (\(\      (\(\    (\(\    (\(\      (\(\</span><br><span class="line"> (=&#x27;.&#x27;) ─&gt; (=&#x27;.&#x27;)  (=&#x27;.&#x27;)  (=&#x27;.&#x27;) ─&gt; (=&#x27;.&#x27;)</span><br><span class="line">O(_&quot;)&quot;)   O(_&quot;)&quot;) O(_&quot;)&quot;) O(_&quot;)&quot;)   O(_&quot;)&quot;)</span><br><span class="line">          ────────────────────────</span><br></pre></td></tr></table></figure>
+
+<p>所谓FIFO，是最先进队列的元素一定最早出队列，而LIFO是最后进<code>Stack</code>的元素一定最早出<code>Stack</code>。如何做到这一点呢？只需要把队列的一端封死：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">           ───────────────────────────────┐</span><br><span class="line">  (\(\       (\(\    (\(\    (\(\    (\(\ │</span><br><span class="line"> (=&#x27;.&#x27;) &lt;─&gt; (=&#x27;.&#x27;)  (=&#x27;.&#x27;)  (=&#x27;.&#x27;)  (=&#x27;.&#x27;)│</span><br><span class="line">O(_&quot;)&quot;)    O(_&quot;)&quot;) O(_&quot;)&quot;) O(_&quot;)&quot;) O(_&quot;)&quot;)│</span><br><span class="line">           ───────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<p>因此，<code>Stack</code>是这样一种数据结构：只能不断地往<code>Stack</code>中压入（push）元素，最后进去的必须最早弹出（pop）来：</p>
+<p><img src="/7.%E9%9B%86%E5%90%88.assets/l-16418936951923.jpeg" alt="donuts-stack"></p>
+<p><code>Stack</code>只有入栈和出栈的操作：</p>
+<ul>
+<li>把元素压栈：<code>push(E)</code>；</li>
+<li>把栈顶的元素“弹出”：<code>pop()</code>；</li>
+<li>取栈顶元素但不弹出：<code>peek()</code>。</li>
+</ul>
+<p>在Java中，我们用<code>Deque</code>可以实现<code>Stack</code>的功能：</p>
+<ul>
+<li>把元素压栈：<code>push(E)</code>&#x2F;<code>addFirst(E)</code>；</li>
+<li>把栈顶的元素“弹出”：<code>pop()</code>&#x2F;<code>removeFirst()</code>；</li>
+<li>取栈顶元素但不弹出：<code>peek()</code>&#x2F;<code>peekFirst()</code>。</li>
+</ul>
+<p>为什么Java的集合类没有单独的<code>Stack</code>接口呢？因为有个遗留类名字就叫<code>Stack</code>，出于兼容性考虑，所以没办法创建<code>Stack</code>接口，只能用<code>Deque</code>接口来“模拟”一个<code>Stack</code>了。</p>
+<p>当我们把<code>Deque</code>作为<code>Stack</code>使用时，注意只调用<code>push()</code>&#x2F;<code>pop()</code>&#x2F;<code>peek()</code>方法，不要调用<code>addFirst()</code>&#x2F;<code>removeFirst()</code>&#x2F;<code>peekFirst()</code>方法，这样代码更加清晰。</p>
+<h3 id="Stack的作用"><a href="#Stack的作用" class="headerlink" title="Stack的作用"></a>Stack的作用</h3><p>Stack在计算机中使用非常广泛，JVM在处理Java方法调用的时候就会通过栈这种数据结构维护方法调用的层次。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">    foo(<span class="number">123</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">String</span> <span class="function"><span class="title">foo</span>(<span class="params">x</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;F-&quot;</span> + bar(x + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> int <span class="function"><span class="title">bar</span>(<span class="params">int x</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x &lt;&lt; <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JVM会创建方法调用栈，每调用一个方法时，先将参数压栈，然后执行对应的方法；当方法返回时，返回值压栈，调用方法通过出栈操作获得方法返回值。</p>
+<p>因为方法调用栈有容量限制，嵌套调用过多会造成栈溢出，即引发<code>StackOverflowError</code>：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 测试无限递归调用</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>我们再来看一个<code>Stack</code>的用途：对整数进行进制的转换就可以利用栈。</p>
+<p>例如，我们要把一个<code>int</code>整数<code>12500</code>转换为十六进制表示的字符串，如何实现这个功能？</p>
+<p>首先我们准备一个空栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>然后计算12500÷16&#x3D;781…4，余数是<code>4</code>，把余数<code>4</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ 4 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>然后计算781÷16&#x3D;48…13，余数是<code>13</code>，<code>13</code>的十六进制用字母<code>D</code>表示，把余数<code>D</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ D │</span><br><span class="line">│   │</span><br><span class="line">│ 4 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>然后计算48÷16&#x3D;3…0，余数是<code>0</code>，把余数<code>0</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ 0 │</span><br><span class="line">│   │</span><br><span class="line">│ D │</span><br><span class="line">│   │</span><br><span class="line">│ 4 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>最后计算3÷16&#x3D;0…3，余数是<code>3</code>，把余数<code>3</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│ 3 │</span><br><span class="line">│   │</span><br><span class="line">│ 0 │</span><br><span class="line">│   │</span><br><span class="line">│ D │</span><br><span class="line">│   │</span><br><span class="line">│ 4 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>当商是<code>0</code>的时候，计算结束，我们把栈的所有元素依次弹出，组成字符串<code>30D4</code>，这就是十进制整数<code>12500</code>的十六进制表示的字符串。</p>
+<h3 id="计算中缀表达式"><a href="#计算中缀表达式" class="headerlink" title="计算中缀表达式"></a>计算中缀表达式</h3><p>在编写程序的时候，我们使用的带括号的数学表达式实际上是中缀表达式，即运算符在中间，例如：<code>1 + 2 * (9 - 5)</code>。</p>
+<p>但是计算机执行表达式的时候，它并不能直接计算中缀表达式，而是通过编译器把中缀表达式转换为后缀表达式，例如：<code>1 2 9 5 - * +</code>。</p>
+<p>这个编译过程就会用到栈。我们先跳过编译这一步（涉及运算优先级，代码比较复杂），看看如何通过栈计算后缀表达式。</p>
+<p>计算后缀表达式不考虑优先级，直接从左到右依次计算，因此计算起来简单。首先准备一个空的栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>然后我们依次扫描后缀表达式<code>1 2 9 5 - * +</code>，遇到数字<code>1</code>，就直接扔到栈里：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ 1 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>紧接着，遇到数字<code>2</code>，<code>9</code>，<code>5</code>，也扔到栈里：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│ 5 │</span><br><span class="line">│   │</span><br><span class="line">│ 9 │</span><br><span class="line">│   │</span><br><span class="line">│ 2 │</span><br><span class="line">│   │</span><br><span class="line">│ 1 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>接下来遇到减号时，弹出栈顶的两个元素，并计算<code>9-5=4</code>，把结果<code>4</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ 4 │</span><br><span class="line">│   │</span><br><span class="line">│ 2 │</span><br><span class="line">│   │</span><br><span class="line">│ 1 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>接下来遇到<code>*</code>号时，弹出栈顶的两个元素，并计算<code>2*4=8</code>，把结果<code>8</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ 8 │</span><br><span class="line">│   │</span><br><span class="line">│ 1 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>接下来遇到<code>+</code>号时，弹出栈顶的两个元素，并计算<code>1+8=9</code>，把结果<code>9</code>压栈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│   │</span><br><span class="line">│ 9 │</span><br><span class="line">└───┘</span><br></pre></td></tr></table></figure>
+
+<p>扫描结束后，没有更多的计算了，弹出栈的唯一一个元素，得到计算结果<code>9</code>。</p>
+<h3 id="练习-4"><a href="#练习-4" class="headerlink" title="练习"></a>练习</h3><p>请利用Stack把一个给定的整数转换为十六进制：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 转十六进制</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>进阶练习：</p>
+<p>请利用Stack把字符串中缀表达式编译为后缀表达式，然后再利用栈执行后缀表达式获得计算结果：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 高难度练习，慎重选择！</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>进阶练习2：</p>
+<p>请把带变量的中缀表达式编译为后缀表达式，执行后缀表达式时，传入变量的值并获得计算结果：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 超高难度练习，慎重选择！</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>从<a target="_blank" rel="noopener" href="https://gitee.com/"><img src="data:image/png;base64,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" alt="img"></a>下载练习：<a target="_blank" rel="noopener" href="https://gitee.com/liaoxuefeng/learn-java/blob/master/practices/Java%E6%95%99%E7%A8%8B/70.%E9%9B%86%E5%90%88.1255943629175808/120.%E4%BD%BF%E7%94%A8Stack.1265121668997888/coll-stack.zip?utm_source=blog_lxf">Stack练习</a> （推荐使用<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1266092093733664">IDE练习插件</a>快速下载）</p>
+<h1 id="使用Iterator"><a href="#使用Iterator" class="headerlink" title="使用Iterator"></a>使用Iterator</h1><p>Java的集合类都可以使用<code>for each</code>循环，<code>List</code>、<code>Set</code>和<code>Queue</code>会迭代每个元素，<code>Map</code>会迭代每个key。以<code>List</code>为例：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="string">&quot;Apple&quot;</span><span class="operator">,</span> <span class="string">&quot;Orange&quot;</span><span class="operator">,</span> <span class="string">&quot;Pear&quot;</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line"><span class="variable">for</span> <span class="punctuation">(</span><span class="built_in">String</span> <span class="variable">s</span> <span class="operator">:</span> <span class="variable">list</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="variable">System</span><span class="operator">.</span><span class="variable">out</span><span class="operator">.</span><span class="variable">println</span><span class="punctuation">(</span><span class="variable">s</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>实际上，Java编译器并不知道如何遍历<code>List</code>。上述代码能够编译通过，只是因为编译器把<code>for each</code>循环通过<code>Iterator</code>改写为了普通的<code>for</code>循环：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Iterator&lt;<span class="built_in">String</span>&gt; <span class="literal">it</span> = <span class="keyword">list</span>.iterator(); <span class="literal">it</span>.hasNext(); ) &#123;</span><br><span class="line">     <span class="built_in">String</span> s = <span class="literal">it</span>.next();</span><br><span class="line">     System.out.println(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们把这种通过<code>Iterator</code>对象遍历集合的模式称为迭代器。</p>
+<p>使用迭代器的好处在于，调用方总是以统一的方式遍历各种集合类型，而不必关系它们内部的存储结构。</p>
+<p>例如，我们虽然知道<code>ArrayList</code>在内部是以数组形式存储元素，并且，它还提供了<code>get(int)</code>方法。虽然我们可以用<code>for</code>循环遍历：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;list.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">    <span class="keyword">Object</span> value = list.<span class="built_in">get</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样一来，调用方就必须知道集合的内部存储结构。并且，如果把<code>ArrayList</code>换成<code>LinkedList</code>，<code>get(int)</code>方法耗时会随着index的增加而增加。如果把<code>ArrayList</code>换成<code>Set</code>，上述代码就无法编译，因为<code>Set</code>内部没有索引。</p>
+<p>用<code>Iterator</code>遍历就没有上述问题，因为<code>Iterator</code>对象是集合对象自己在内部创建的，它自己知道如何高效遍历内部的数据集合，调用方则获得了统一的代码，编译器才能把标准的<code>for each</code>循环自动转换为<code>Iterator</code>遍历。</p>
+<p>如果我们自己编写了一个集合类，想要使用<code>for each</code>循环，只需满足以下条件：</p>
+<ul>
+<li>集合类实现<code>Iterable</code>接口，该接口要求返回一个<code>Iterator</code>对象；</li>
+<li>用<code>Iterator</code>对象迭代集合内部数据。</li>
+</ul>
+<p>这里的关键在于，集合类通过调用<code>iterator()</code>方法，返回一个<code>Iterator</code>对象，这个对象必须自己知道如何遍历该集合。</p>
+<p>一个简单的<code>Iterator</code>示例如下，它总是以倒序遍历集合：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> Iterator</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>虽然<code>ReverseList</code>和<code>ReverseIterator</code>的实现类稍微比较复杂，但是，注意到这是底层集合库，只需编写一次。而调用方则完全按<code>for each</code>循环编写代码，根本不需要知道集合内部的存储逻辑和遍历逻辑。</p>
+<p>在编写<code>Iterator</code>的时候，我们通常可以用一个内部类来实现<code>Iterator</code>接口，这个内部类可以直接访问对应的外部类的所有字段和方法。例如，上述代码中，内部类<code>ReverseIterator</code>可以用<code>ReverseList.this</code>获得当前外部类的<code>this</code>引用，然后，通过这个<code>this</code>引用就可以访问<code>ReverseList</code>的所有字段和方法。</p>
+<h1 id="使用Collections"><a href="#使用Collections" class="headerlink" title="使用Collections"></a>使用Collections</h1><p><code>Collections</code>是JDK提供的工具类，同样位于<code>java.util</code>包中。它提供了一系列静态方法，能更方便地操作各种集合。</p>
+<p> 注意Collections结尾多了一个s，不是Collection！</p>
+<p>我们一般看方法名和参数就可以确认<code>Collections</code>提供的该方法的功能。例如，对于以下静态方法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> <span class="function"><span class="title">addAll</span>(<span class="params">Collection&lt;? <span class="built_in">super</span> T&gt; c, T... elements</span>)</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>addAll()</code>方法可以给一个<code>Collection</code>类型的集合添加若干元素。因为方法签名是<code>Collection</code>，所以我们可以传入<code>List</code>，<code>Set</code>等各种集合类型。</p>
+<h3 id="创建空集合"><a href="#创建空集合" class="headerlink" title="创建空集合"></a>创建空集合</h3><p><code>Collections</code>提供了一系列方法来创建空集合：</p>
+<ul>
+<li>创建空List：<code>List&lt;T&gt; emptyList()</code></li>
+<li>创建空Map：<code>Map&lt;K, V&gt; emptyMap()</code></li>
+<li>创建空Set：<code>Set&lt;T&gt; emptySet()</code></li>
+</ul>
+<p>要注意到返回的空集合是不可变集合，无法向其中添加或删除元素。</p>
+<p>此外，也可以用各个集合接口提供的<code>of(T...)</code>方法创建空集合。例如，以下创建空<code>List</code>的两个方法是等价的：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list1</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list2</span> <span class="operator">=</span> <span class="variable">Collections</span><span class="operator">.</span><span class="variable">emptyList</span><span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建单元素集合"><a href="#创建单元素集合" class="headerlink" title="创建单元素集合"></a>创建单元素集合</h3><p><code>Collections</code>提供了一系列方法来创建一个单元素集合：</p>
+<ul>
+<li>创建一个元素的List：<code>List&lt;T&gt; singletonList(T o)</code></li>
+<li>创建一个元素的Map：<code>Map&lt;K, V&gt; singletonMap(K key, V value)</code></li>
+<li>创建一个元素的Set：<code>Set&lt;T&gt; singleton(T o)</code></li>
+</ul>
+<p>要注意到返回的单元素集合也是不可变集合，无法向其中添加或删除元素。</p>
+<p>此外，也可以用各个集合接口提供的<code>of(T...)</code>方法创建单元素集合。例如，以下创建单元素<code>List</code>的两个方法是等价的：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list1</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="string">&quot;apple&quot;</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list2</span> <span class="operator">=</span> <span class="variable">Collections</span><span class="operator">.</span><span class="variable">singletonList</span><span class="punctuation">(</span><span class="string">&quot;apple&quot;</span><span class="punctuation">)</span><span class="operator">;</span></span><br></pre></td></tr></table></figure>
+
+<p>实际上，使用<code>List.of(T...)</code>更方便，因为它既可以创建空集合，也可以创建单元素集合，还可以创建任意个元素的集合：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list1</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">;</span> <span class="operator">//</span> <span class="variable">empty</span> <span class="variable">list</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list2</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="string">&quot;apple&quot;</span><span class="punctuation">)</span><span class="operator">;</span> <span class="operator">//</span> <span class="number">1</span> <span class="variable">element</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list3</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="string">&quot;apple&quot;</span><span class="operator">,</span> <span class="string">&quot;pear&quot;</span><span class="punctuation">)</span><span class="operator">;</span> <span class="operator">//</span> <span class="number">2</span> <span class="variable">elements</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">String</span><span class="operator">&gt;</span> <span class="variable">list4</span> <span class="operator">=</span> <span class="built_in">List</span><span class="operator">.</span><span class="variable">of</span><span class="punctuation">(</span><span class="string">&quot;apple&quot;</span><span class="operator">,</span> <span class="string">&quot;pear&quot;</span><span class="operator">,</span> <span class="string">&quot;orange&quot;</span><span class="punctuation">)</span><span class="operator">;</span> <span class="operator">//</span> <span class="number">3</span> <span class="variable">elements</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p><code>Collections</code>可以对<code>List</code>进行排序。因为排序会直接修改<code>List</code>元素的位置，因此必须传入可变<code>List</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<h3 id="洗牌"><a href="#洗牌" class="headerlink" title="洗牌"></a>洗牌</h3><p><code>Collections</code>提供了洗牌算法，即传入一个有序的<code>List</code>，可以随机打乱<code>List</code>内部元素的顺序，效果相当于让计算机洗牌：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<h3 id="不可变集合"><a href="#不可变集合" class="headerlink" title="不可变集合"></a>不可变集合</h3><p><code>Collections</code>还提供了一组方法把可变集合封装成不可变集合：</p>
+<ul>
+<li>封装成不可变List：<code>List&lt;T&gt; unmodifiableList(List&lt;? extends T&gt; list)</code></li>
+<li>封装成不可变Set：<code>Set&lt;T&gt; unmodifiableSet(Set&lt;? extends T&gt; set)</code></li>
+<li>封装成不可变Map：<code>Map&lt;K, V&gt; unmodifiableMap(Map&lt;? extends K, ? extends V&gt; m)</code></li>
+</ul>
+<p>这种封装实际上是通过创建一个代理对象，拦截掉所有修改方法实现的。我们来看看效果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>然而，继续对原始的可变<code>List</code>进行增删是可以的，并且，会直接影响到封装后的“不可变”<code>List</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<p>因此，如果我们希望把一个可变<code>List</code>封装成不可变<code>List</code>，那么，返回不可变<code>List</code>后，最好立刻扔掉可变<code>List</code>的引用，这样可以保证后续操作不会意外改变原始对象，从而造成“不可变”<code>List</code>变化了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+
+<p> Run</p>
+<h3 id="线程安全集合"><a href="#线程安全集合" class="headerlink" title="线程安全集合"></a>线程安全集合</h3><p><code>Collections</code>还提供了一组方法，可以把线程不安全的集合变为线程安全的集合：</p>
+<ul>
+<li>变为线程安全的List：<code>List&lt;T&gt; synchronizedList(List&lt;T&gt; list)</code></li>
+<li>变为线程安全的Set：<code>Set&lt;T&gt; synchronizedSet(Set&lt;T&gt; s)</code></li>
+<li>变为线程安全的Map：<code>Map&lt;K,V&gt; synchronizedMap(Map&lt;K,V&gt; m)</code></li>
+</ul>
+<p>多线程的概念我们会在后面讲。因为从Java 5开始，引入了更高效的并发集合类，所以上述这几个同步方法已经没有什么用了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/04/Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_6.%E6%B3%9B%E5%9E%8B/" rel="prev" title="6.泛型">
+                  <i class="fa fa-chevron-left"></i> 6.泛型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/04/Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_8.IO/" rel="next" title="8.IO">
+                  8.IO <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
