@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="线性表的定义和基本操作线性表的定义   名称 解释    特点 个数有限、逻辑上有序、元素所占空间相同   辨析 线性表是逻辑结构、顺序表和链表是存储结构   线性表的基本操作 9种基本操作：初始化、求表长、按值查找、按位查找、插入、删除、打印、判空、销毁   InitList(&amp;L) ：初始化表，构造一个空的线性表 Length(L) ：求表长，返回线性表L的长度，即L中数据元素的个数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性表">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_2.%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="线性表的定义和基本操作线性表的定义   名称 解释    特点 个数有限、逻辑上有序、元素所占空间相同   辨析 线性表是逻辑结构、顺序表和链表是存储结构   线性表的基本操作 9种基本操作：初始化、求表长、按值查找、按位查找、插入、删除、打印、判空、销毁   InitList(&amp;L) ：初始化表，构造一个空的线性表 Length(L) ：求表长，返回线性表L的长度，即L中数据元素的个数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/7d54b4a9-73f7-4d5f-893e-a2644b431f1d-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/b9edf3df-0fcb-4d9b-be5d-433d592d5d7d-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/60fe618f-db3c-4775-b651-154b65f8eefd-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/8f7c33ba-1cf0-49ff-bc5f-efcf600da748-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/1feef162-3fd7-490d-87ae-f87560e5defe-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/90a80651-f5fa-485d-810b-51b633a5af12-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/89bb048b-1802-4a33-ac7e-09adf8b985e3-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/e2c9e5aa-964d-4a43-b108-0f23717b4158-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/aa618e93-8f2c-4c95-9bf9-e66bc581e043-3224585.jpg">
+<meta property="article:published_time" content="2022-02-04T11:28:16.075Z">
+<meta property="article:modified_time" content="2022-02-04T16:10:49.049Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api2.mubu.com/v3/document_image/7d54b4a9-73f7-4d5f-893e-a2644b431f1d-3224585.jpg">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_2.%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_2.%E7%BA%BF%E6%80%A7%E8%A1%A8/","path":"2022/02/04/2-计算机408_3.数据结构_2.线性表/","title":"线性表"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>线性表 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">线性表的定义和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">线性表的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">线性表的基本操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">线性表的顺序表示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">顺序表的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text">顺序表上基本操作的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.1.</span> <span class="nav-text">插入操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE%EF%BC%88%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="nav-number">2.2.3.</span> <span class="nav-text">按值查找（顺序查找）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.</span> <span class="nav-text">线性表的链式表示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">两种实现方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.3.</span> <span class="nav-text">单链表的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.4.</span> <span class="nav-text">单链表上基本操作的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E5%A4%B4%E6%8F%92%E6%B3%95%E5%BB%BA%E7%AB%8B%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-number">3.4.1.</span> <span class="nav-text">采用头插法建立单链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E5%B0%BE%E6%8F%92%E6%B3%95%E5%BB%BA%E7%AB%8B%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-number">3.4.2.</span> <span class="nav-text">采用尾插法建立单链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E5%BA%8F%E5%8F%B7%E6%9F%A5%E6%89%BE%E7%BB%93%E7%82%B9%E5%80%BC%EF%BC%88%E9%93%BE%E8%A1%A8%E7%9A%84%E6%9C%AC%E8%BA%AB%E7%89%B9%E7%82%B9%E5%8E%9F%E5%9B%A0%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%8F%AA%E8%83%BD%E4%BE%9D%E6%AC%A1%E9%81%8D%E5%8E%86%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="nav-number">3.4.3.</span> <span class="nav-text">按序号查找结点值（链表的本身特点原因，查找只能依次遍历查找）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE%E8%A1%A8%E7%BB%93%E7%82%B9%EF%BC%88%E9%93%BE%E8%A1%A8%E7%9A%84%E6%9C%AC%E8%BA%AB%E7%89%B9%E7%82%B9%E5%8E%9F%E5%9B%A0%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%8F%AA%E8%83%BD%E4%BE%9D%E6%AC%A1%E9%81%8D%E5%8E%86%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="nav-number">3.4.4.</span> <span class="nav-text">按值查找表结点（链表的本身特点原因，查找只能依次遍历查找）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E7%BB%93%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="nav-number">3.4.5.</span> <span class="nav-text">插入结点操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%9F%90%E4%B8%80%E7%BB%93%E7%82%B9%E8%BF%9B%E8%A1%8C%E5%89%8D%E6%8F%92%E6%93%8D%E4%BD%9C"><span class="nav-number">3.4.6.</span> <span class="nav-text">对某一结点进行前插操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="nav-number">3.4.7.</span> <span class="nav-text">删除结点操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9-p"><span class="nav-number">3.4.8.</span> <span class="nav-text">删除结点*p</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E8%A1%A8%E9%95%BF%E6%93%8D%E4%BD%9C"><span class="nav-number">3.4.9.</span> <span class="nav-text">求表长操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="nav-number">3.5.</span> <span class="nav-text">双链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="nav-number">3.6.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8"><span class="nav-number">3.7.</span> <span class="nav-text">静态链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">3.8.</span> <span class="nav-text">顺序表和链表的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E5%8F%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">3.9.</span> <span class="nav-text">选取存储结构</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_2.%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线性表
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-04 19:28:16" itemprop="dateCreated datePublished" datetime="2022-02-04T19:28:16+08:00">2022-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-05 00:10:49" itemprop="dateModified" datetime="2022-02-05T00:10:49+08:00">2022-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/" itemprop="url" rel="index"><span itemprop="name">计算机408</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">3.数据结构</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2-%E7%BA%BF%E6%80%A7%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">2.线性表</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：3.1k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈10 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="线性表的定义和基本操作"><a href="#线性表的定义和基本操作" class="headerlink" title="线性表的定义和基本操作"></a>线性表的定义和基本操作</h1><h2 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>特点</td>
+<td>个数有限、逻辑上有序、元素所占空间相同</td>
+</tr>
+<tr>
+<td>辨析</td>
+<td>线性表是逻辑结构、顺序表和链表是存储结构</td>
+</tr>
+</tbody></table>
+<h2 id="线性表的基本操作"><a href="#线性表的基本操作" class="headerlink" title="线性表的基本操作"></a>线性表的基本操作</h2><blockquote>
+<p>9种基本操作：初始化、求表长、按值查找、按位查找、插入、删除、打印、判空、销毁</p>
+</blockquote>
+<ul>
+<li>InitList(&amp;L) ：初始化表，构造一个空的线性表</li>
+<li>Length(L) ：求表长，返回线性表L的长度，即L中数据元素的个数</li>
+<li>LocateElem(L，e) ：按值查找操作，在表L中查找具有给定关键字值的元素</li>
+<li>Getilem(L，i) ：按位查找操作，获取表L中第个位置的元素的值</li>
+<li>Listinsert (&amp;L，i，e)：插入操作。在表L中的第个位置上插入指定元素</li>
+<li>ListDelete(&amp;L，i，&amp;e)：删除操作，除表L中第i个位置的元素，并用e返回删除元素的值</li>
+<li>PrintList(L)：输出操作，按前后顺序输出线性表L的所有元素值</li>
+<li>Empty (L)：判空操作,若L为空表,则返回true,否则返回false</li>
+<li>DestroyList(&amp;L)：销毁操作，销毁线性表，并释放线性表L所占用的内存空间</li>
+</ul>
+<h1 id="线性表的顺序表示"><a href="#线性表的顺序表示" class="headerlink" title="线性表的顺序表示"></a>线性表的顺序表示</h1><h2 id="顺序表的定义"><a href="#顺序表的定义" class="headerlink" title="顺序表的定义"></a>顺序表的定义</h2><ul>
+<li><p>线性表的顺序存储又称顺序表（逻辑上相邻的两个元素在物理位置上也相邻）</p>
+</li>
+<li><p>用一组地址连续的存储单元依次存储线性表中的数据元素</p>
+</li>
+<li><p>一维数组空间分配</p>
+<ul>
+<li><p>静态分配</p>
+<ul>
+<li>静态分配 数组的大小和空间已经固定，一旦空间占满，再加入新的数据将会产生溢出，程序就会崩溃</li>
+</ul>
+</li>
+<li><p>动态存储</p>
+<ul>
+<li><p>存储数组的空间是在程序执行过程中通过动态存储分配语句分配</p>
+</li>
+<li><p>一旦数据空间占满，就另外开辟一块更大的存储空间，用以替换原来的存储空间</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意</p>
+<ul>
+<li>动态分配仍然是顺序存储结构，物理结构没有变化，依然是随机存取方式只是分配的空间大小可以在运行时决定</li>
+</ul>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>随机访问，即通过首地址和元素序号可在时间O(1)内找到指定的元素</p>
+</li>
+<li><p>存储密度高，每个结点只存储数据元素</p>
+<ul>
+<li>与链表形成对比</li>
+</ul>
+</li>
+<li><p>逻辑上相邻的元素物理上也相邻，当执行插入和删除操作时，需要移动大量元素</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="顺序表上基本操作的实现"><a href="#顺序表上基本操作的实现" class="headerlink" title="顺序表上基本操作的实现"></a>顺序表上基本操作的实现</h2><h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><ul>
+<li><p>由于顺序表的中元素的物理位置是相邻的，所以当插入新元素的时候就需要对表中的元素进行整体移动 插入操作</p>
+</li>
+<li><p>实现情况（长度为n）</p>
+<ul>
+<li><p>最好情况：在表尾插入（i &#x3D; n+1），元素后移语句将不执行，时间复杂度为O(1)</p>
+</li>
+<li><p>最坏情况：在表头插入（i &#x3D; 1），元素后移语句将执行n次，时间复杂度为O(n)</p>
+</li>
+<li><p>平均情况</p>
+<ul>
+<li><p>假设pi （pi &#x3D; 1&#x2F;(n+1)）是在第i个位置上插入一个结点的概率</p>
+</li>
+<li><p>则在长度为n的线性表中插入一个结点时，移动节点的平均次数为<img src="https://api2.mubu.com/v3/document_image/7d54b4a9-73f7-4d5f-893e-a2644b431f1d-3224585.jpg" alt="img"></p>
+</li>
+<li><p>时间复杂度为O(n)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><ul>
+<li><p>即为移动元素，对想要删除的元素进行覆盖</p>
+</li>
+<li><p>最好情况：删除表尾元素（i&#x3D;n） ，无须移动元素，时间复杂度为O(1)</p>
+</li>
+<li><p>最坏情况：删除表头元素（i&#x3D;1），需移动除第一个元素外的所有元素，时间复杂度为0（n）</p>
+</li>
+<li><p>平均情况</p>
+<ul>
+<li><p>假设pi （pi&#x3D;1&#x2F;n）是在第i个位置上删除一个结点的概率</p>
+</li>
+<li><p>则在长度为n的线性表中删除一个结点时，删除节点的平均次数为<img src="https://api2.mubu.com/v3/document_image/b9edf3df-0fcb-4d9b-be5d-433d592d5d7d-3224585.jpg" alt="img"></p>
+</li>
+<li><p>时间复杂度为O(n)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="按值查找（顺序查找）"><a href="#按值查找（顺序查找）" class="headerlink" title="按值查找（顺序查找）"></a>按值查找（顺序查找）</h3><ul>
+<li><p>最好情况：查找的元素就在表头，仅需比较一次，时间复杂度为O(1)</p>
+</li>
+<li><p>最坏情况：查找的元素在表尾（或不存在）时，需要比较n次，时间复杂度为O(n)</p>
+</li>
+<li><p>平均情况</p>
+<ul>
+<li><p>假设pi（pi&#x3D;1&#x2F;n）是查找的元素在第i （1&lt;&#x3D;i&lt;&#x3D;L.1ength ）个位置上的概率</p>
+</li>
+<li><p>则在长度为n的线性表中查找值为e的元素所需比较的平均次数为<img src="https://api2.mubu.com/v3/document_image/60fe618f-db3c-4775-b651-154b65f8eefd-3224585.jpg" alt="img"></p>
+</li>
+<li><p>时间复杂度为O(n)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="线性表的链式表示"><a href="#线性表的链式表示" class="headerlink" title="线性表的链式表示"></a>线性表的链式表示</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li><p>顺序表</p>
+<ul>
+<li><p>优点：可以随时存取表中的任意一个元素</p>
+</li>
+<li><p>缺点：插入和删除操作需要移动大量元素</p>
+</li>
+</ul>
+</li>
+<li><p>链式存储线性表</p>
+<ul>
+<li><p>优点：不需要使用地址连续的存储单元，插入和删除操作不需要移动元素，而只需修改指针</p>
+</li>
+<li><p>缺点：失去顺序表可随机存取的优点</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="两种实现方式"><a href="#两种实现方式" class="headerlink" title="两种实现方式"></a>两种实现方式</h2><ul>
+<li><p>带头结点</p>
+<ul>
+<li>空表判断：L&#x3D;&#x3D;NULL，代码书写不便</li>
+</ul>
+</li>
+<li><p>不带头结点</p>
+<ul>
+<li>空表判断： L—&gt;next&#x3D;&#x3D;NULL，写代码更方便</li>
+</ul>
+</li>
+</ul>
+<h2 id="单链表的定义"><a href="#单链表的定义" class="headerlink" title="单链表的定义"></a>单链表的定义</h2><ul>
+<li><p>线性表的链式存储又称单链表，它是指通过一组任意的存储单元来存储线性表中的数据元素</p>
+</li>
+<li><p>对每个链表结点，除存放元素自身的信息外，还需要存放一个指向其后继的指针</p>
+</li>
+<li><p>结构</p>
+<ul>
+<li><p>data ：数据域，存放数据元素</p>
+</li>
+<li><p>next ：指针域存放其后继结点的地址</p>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>解决顺序表需要大量连续存储单元的缺点</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li><p>单链表附加指针域，浪费存储空间</p>
+</li>
+<li><p>查找某个特定的结点时，需要从表头开始遍历，依次查找</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="单链表上基本操作的实现"><a href="#单链表上基本操作的实现" class="headerlink" title="单链表上基本操作的实现"></a>单链表上基本操作的实现</h2><h3 id="采用头插法建立单链表"><a href="#采用头插法建立单链表" class="headerlink" title="采用头插法建立单链表"></a>采用头插法建立单链表</h3><ul>
+<li><p>从一个空表开始，生成新结点并将读取到的数据存放到新结点的数据域中，然后将新结点插入到当前链表的表头，即头结点之后</p>
+</li>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/8f7c33ba-1cf0-49ff-bc5f-efcf600da748-3224585.jpg" alt="img"></p>
+</li>
+<li><p>时间复杂度</p>
+<ul>
+<li><p>每个结点插入的时间复杂度为O(1)</p>
+</li>
+<li><p>设单链表长为n则总时间复杂度为0(n)</p>
+</li>
+</ul>
+</li>
+<li><p>优点：算法实现简单</p>
+</li>
+<li><p>缺点：生成的链表中结点的次序和输入数据的顺序不一致</p>
+<ul>
+<li>可以利用这个特点进行链表转置</li>
+</ul>
+</li>
+</ul>
+<h3 id="采用尾插法建立单链表"><a href="#采用尾插法建立单链表" class="headerlink" title="采用尾插法建立单链表"></a>采用尾插法建立单链表</h3><ul>
+<li><p>该方法将新结点插入到当前链表的表尾，为此必须增加一个尾指针r，使其始终指向当前链表的尾结点</p>
+</li>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/1feef162-3fd7-490d-87ae-f87560e5defe-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+<h3 id="按序号查找结点值（链表的本身特点原因，查找只能依次遍历查找）"><a href="#按序号查找结点值（链表的本身特点原因，查找只能依次遍历查找）" class="headerlink" title="按序号查找结点值（链表的本身特点原因，查找只能依次遍历查找）"></a>按序号查找结点值（链表的本身特点原因，查找只能依次遍历查找）</h3><ul>
+<li>时间复杂度O(n)</li>
+</ul>
+<h3 id="按值查找表结点（链表的本身特点原因，查找只能依次遍历查找）"><a href="#按值查找表结点（链表的本身特点原因，查找只能依次遍历查找）" class="headerlink" title="按值查找表结点（链表的本身特点原因，查找只能依次遍历查找）"></a>按值查找表结点（链表的本身特点原因，查找只能依次遍历查找）</h3><ul>
+<li>时间复杂度O(n)</li>
+</ul>
+<h3 id="插入结点操作"><a href="#插入结点操作" class="headerlink" title="插入结点操作"></a>插入结点操作</h3><ul>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/90a80651-f5fa-485d-810b-51b633a5af12-3224585.jpg" alt="img"></p>
+</li>
+<li><p>实现代码段</p>
+<ul>
+<li><p>p &#x3D; GetElem(L，i-1);</p>
+</li>
+<li><p>s-&gt;next&#x3D;p-&gt;next;</p>
+</li>
+<li><p>p-&gt;next&#x3D;s;</p>
+</li>
+</ul>
+</li>
+<li><p>若在给定的节点下进行插入，则时间复杂度为0（1）</p>
+</li>
+<li><p>本算法主要的时间开销在于查找第i-1个元素，时间复杂度为0（n）</p>
+</li>
+</ul>
+<h3 id="对某一结点进行前插操作"><a href="#对某一结点进行前插操作" class="headerlink" title="对某一结点进行前插操作"></a>对某一结点进行前插操作</h3><ul>
+<li><p>即寻找到要插入结点的前一个结点，然后按照正常插入方法执行即可</p>
+</li>
+<li><p>时间复杂度为O(n)</p>
+</li>
+</ul>
+<h3 id="删除结点操作"><a href="#删除结点操作" class="headerlink" title="删除结点操作"></a>删除结点操作</h3><ul>
+<li><p>删除结点操作是将单链表的第1个结点删除。先检查删除位置的合法性，后查找表中第i-1个结点即被删结点的前驱结点，再将其删除</p>
+</li>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/89bb048b-1802-4a33-ac7e-09adf8b985e3-3224585.jpg" alt="img"></p>
+</li>
+<li><p>该算法的</p>
+</li>
+</ul>
+<h3 id="删除结点-p"><a href="#删除结点-p" class="headerlink" title="删除结点*p"></a>删除结点*p</h3><ul>
+<li><p>方法一</p>
+<ul>
+<li><p>求表长操</p>
+</li>
+<li><p>要删除某个给定结点*p，通常的做法是先从链表的头结点开始顺序找到其前驱结点然后再执行删除操作</p>
+</li>
+<li><p>算法的时间复杂度为0（n）</p>
+</li>
+</ul>
+</li>
+<li><p>方法二</p>
+<ul>
+<li><p>删除*p的后继结点操作来实现，实质就是将其后继结点的值赋予其自身，然后删除后继结点</p>
+</li>
+<li><p>时间复杂度为0（1）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="求表长操作"><a href="#求表长操作" class="headerlink" title="求表长操作"></a>求表长操作</h3><ul>
+<li><p>从第一个结点开始顺序依次访问表中的每个结点，为此需要设置一个计数器变量，每访问一个结点，计数器加1，直到访问到空结点为止</p>
+</li>
+<li><p>算法的时间复杂度为0（n）</p>
+</li>
+</ul>
+<h2 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h2><ul>
+<li><p>单链表的缺点</p>
+<ul>
+<li><p>单链表只能从头结点依次顺序地向后遍历</p>
+</li>
+<li><p>不能够快速的对其前驱结点进行操作</p>
+</li>
+</ul>
+</li>
+<li><p>概念</p>
+<ul>
+<li>双链表结点中有两个指针prior和next，分别指向其前驱结点和后继结点</li>
+</ul>
+</li>
+<li><p>双链表的插入操作</p>
+<ul>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/e2c9e5aa-964d-4a43-b108-0f23717b4158-3224585.jpg" alt="img"></p>
+</li>
+<li><p>原则就是在进行双链表插入的时候要保证不会造成断链</p>
+</li>
+</ul>
+</li>
+<li><p>双链表的删除操作</p>
+<ul>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/aa618e93-8f2c-4c95-9bf9-e66bc581e043-3224585.jpg" alt="img"></p>
+</li>
+<li><p>原则仍然是在进行操作的时候一定要考虑是否会造成断链</p>
+</li>
+</ul>
+</li>
+<li><p>操作的时候一定要考虑，本操作顺序是否会造成后继结点的丢失</p>
+</li>
+</ul>
+<h2 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h2><ul>
+<li><p>循环单链表</p>
+<ul>
+<li><p>循环单链表和单链表的区别在于，表中最后一个结点的指针不是NULL，而改为指向头结点，形成了一个环</p>
+</li>
+<li><p>判空条件：头结点的指针是否等于头指针</p>
+</li>
+<li><p>仅设尾指针</p>
+<ul>
+<li><p>如果是要在链首之前插入结点，此时效率明显更高</p>
+</li>
+<li><p>时间复杂度O(1)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>循环双链表</p>
+<ul>
+<li><p>在循环双链表中，头结点的prior指针还要指向表尾结点</p>
+</li>
+<li><p>在循环双链表L中,某结点*p为尾结点时,p-&gt;next&#x3D;&#x3D;L</p>
+</li>
+<li><p>当循环双链表为空表时，其头结点的prior域和next都等于L</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h2><ul>
+<li><p>基本结构</p>
+<ul>
+<li><p>静态链表借助数组来描述线性表的链式存储结构</p>
+<ul>
+<li>静态链表也要预先分配一块连续的内存空间</li>
+</ul>
+</li>
+<li><p>结点也有数据域data和指针域next</p>
+<ul>
+<li>这里的指针是结点的相对地址（数组下标），又称游标</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>静态链表以next &#x3D;&#x3D; -1作为其结束的标志</p>
+</li>
+<li><p>静态链表的插入、删除操作与动态链表的相同，只需要修改指针，而不需要移动元素</p>
+</li>
+</ul>
+</li>
+<li><p>优点：增、删操作不需要大量移动元素</p>
+</li>
+<li><p>缺点：不能随机存取，只能从头结点开始依次往后查找；容量固定不可变</p>
+</li>
+<li><p>适用场景：①不支持指针的低级语言；②数据元素数量固定不变的场景（如操作系统的文件分配表FAT）</p>
+</li>
+</ul>
+<h2 id="顺序表和链表的比较"><a href="#顺序表和链表的比较" class="headerlink" title="顺序表和链表的比较"></a>顺序表和链表的比较</h2><ul>
+<li><p>存取（读写）方式</p>
+<ul>
+<li><p>顺序表可以顺序存取，也可以随机存取</p>
+</li>
+<li><p>链表只能从表头顺序存取元素</p>
+</li>
+</ul>
+</li>
+<li><p>逻辑结构与物理结构</p>
+<ul>
+<li><p>顺序存储：逻辑上相邻的元素，对应的物理存储位置也相邻</p>
+</li>
+<li><p>链式存储：逻辑上相邻的元素，物理存储位置则不一定相邻，对应的逻辑关系是通过指针链接来表示的</p>
+</li>
+</ul>
+</li>
+<li><p>查找、插入和删除操作</p>
+<ul>
+<li><p>按值查找</p>
+<ul>
+<li><p>顺序表有序：可采用折半查找此时的时间复杂度为O(log2n)</p>
+</li>
+<li><p>顺序表无序时：两者的时间复杂度均为O(n)</p>
+</li>
+</ul>
+</li>
+<li><p>对于按序号查找</p>
+<ul>
+<li><p>顺序表支持随机访问，时间复杂度仅为O(1)</p>
+</li>
+<li><p>链表的平均时间复杂度为O(n)</p>
+</li>
+</ul>
+</li>
+<li><p>插入、删除操作</p>
+<ul>
+<li><p>顺序表：平均需要移动半个表长的元素</p>
+</li>
+<li><p>链表：只需修改相关结点的指针域</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>空间分配</p>
+<ul>
+<li><p>顺序存储</p>
+<ul>
+<li><p>静态分配</p>
+<ul>
+<li>存储空间满则无法进行扩充会出现内存溢出</li>
+</ul>
+</li>
+<li><p>动态分配</p>
+<ul>
+<li>对空间进行扩充的时候需要进行数据移动，效率低下</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连式存储</p>
+<ul>
+<li>空间分配非常灵活</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="选取存储结构"><a href="#选取存储结构" class="headerlink" title="选取存储结构"></a>选取存储结构</h2><ul>
+<li><p>基于存储的考虑</p>
+<ul>
+<li><p>难以估计线性表的长度或存储规模时，不宜采用顺序表</p>
+</li>
+<li><p>链表不用事先估计存储规模，但链表的存储密度较低</p>
+</li>
+</ul>
+</li>
+<li><p>基于运算的考虑</p>
+<ul>
+<li><p>按序号访问数据元素</p>
+<ul>
+<li>顺序表优于链表</li>
+</ul>
+</li>
+<li><p>进行插入、删除等操作</p>
+<ul>
+<li>链表优于顺序表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基于环境的考虑</p>
+<ul>
+<li><p>顺序表基于数组更容易实习</p>
+</li>
+<li><p>链表基于指针，在某些编程语言中不适合实现</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_4.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_6.%E5%BA%94%E7%94%A8%E5%B1%82/" rel="prev" title="应用层">
+                  <i class="fa fa-chevron-left"></i> 应用层
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/04/4-Java_1.Java%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8_1.%E5%85%A5%E9%97%A8/" rel="next" title="1.入门">
+                  1.入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

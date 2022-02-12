@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="串的定义和实现基本概述 串是由零个或多个字符组成的有限序列  串的长度：串中字符的个数n（不包括双引号）  子串：  串中任意个连续的字符组成的子序列称为该串的子串  空串也是串的子串    主串：  包含子串的串相应地称为主串   子串在主串中的位置：  以子串的第一个字符在主串中的位置来表示（位序从1开始）   空格串  由一个或多个空格（空格是特殊字符）组成的串称为空格串  其长度为串中空格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="串">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4%E4%B8%B2/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="串的定义和实现基本概述 串是由零个或多个字符组成的有限序列  串的长度：串中字符的个数n（不包括双引号）  子串：  串中任意个连续的字符组成的子序列称为该串的子串  空串也是串的子串    主串：  包含子串的串相应地称为主串   子串在主串中的位置：  以子串的第一个字符在主串中的位置来表示（位序从1开始）   空格串  由一个或多个空格（空格是特殊字符）组成的串称为空格串  其长度为串中空格">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/6f38494f-d110-4017-9e7f-688478482cff-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/c873e70d-f946-4e0d-b20c-b7013fd8c4f2-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/60b11cc0-d817-46ed-90e3-480ab0b5078b-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/ebf88b81-0e2a-42be-a54a-b13dd7200bba-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/ac92342e-0671-4fb4-bbba-b0cdeb81574e-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/9d0b81cf-573b-4c1a-94f0-2ad83c42c429-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/514a02e0-311d-449d-9929-ac176e0f3b40-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/43efb11e-49c9-4029-bbb3-10912eb4e737-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/89c3f6d1-3689-448f-a40f-6e00bc33da2b-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/a88b042a-2908-4973-b89c-53883a9a09ea-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/e1ce0c35-546d-4cfe-b05c-5280388e9c3d-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/ae518220-3440-41e4-9be3-fd6ab2f85331-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/c3ffdfff-b544-4fa3-809f-573fba7e8ee7-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/8332efd4-12f0-4042-b866-f161961873cc-3224585.jpg">
+<meta property="article:published_time" content="2022-02-03T14:59:42.364Z">
+<meta property="article:modified_time" content="2022-02-04T16:11:23.033Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api2.mubu.com/v3/document_image/6f38494f-d110-4017-9e7f-688478482cff-3224585.jpg">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4%E4%B8%B2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4%E4%B8%B2/","path":"2022/02/03/2-计算机408_3.数据结构_4串/","title":"串"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>串 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">串的定义和实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">串的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E9%95%BF%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E8%A1%A8%E7%A4%BA%EF%BC%88%E9%9D%99%E6%80%81%E6%95%B0%E7%BB%84%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">定长顺序存储表示（静态数组）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%88%86%E9%85%8D%E5%AD%98%E5%82%A8%E8%A1%A8%E5%85%83%EF%BC%88%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">堆分配存储表元（动态数组）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E9%93%BE%E5%AD%98%E5%82%A8%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.3.</span> <span class="nav-text">块链存储表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">串的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BB%99%E5%AD%97%E7%AC%A6%E9%9B%86%E7%BC%96%E7%A0%81"><span class="nav-number">1.4.</span> <span class="nav-text">字符集编码：给字符集编码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">2.</span> <span class="nav-text">串的模式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%EF%BC%88%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">简单的模式匹配算法（朴素模式匹配算法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E4%B8%80KMP%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">改进的模式匹配算法一KMP算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KMP%E7%AE%97%E6%B3%95%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BC%98%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">KMP算法的进一步优化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_4%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          串
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-03 22:59:42" itemprop="dateCreated datePublished" datetime="2022-02-03T22:59:42+08:00">2022-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-05 00:11:23" itemprop="dateModified" datetime="2022-02-05T00:11:23+08:00">2022-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/" itemprop="url" rel="index"><span itemprop="name">计算机408</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">3.数据结构</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/4-%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">4.串</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：3k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈10 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="串的定义和实现"><a href="#串的定义和实现" class="headerlink" title="串的定义和实现"></a>串的定义和实现</h1><h2 id="基本概述"><a href="#基本概述" class="headerlink" title="基本概述"></a>基本概述</h2><ul>
+<li><p>串是由零个或多个字符组成的有限序列</p>
+</li>
+<li><p>串的长度：串中字符的个数n（不包括双引号）</p>
+</li>
+<li><p>子串：</p>
+<ul>
+<li><p>串中任意个连续的字符组成的子序列称为该串的子串</p>
+</li>
+<li><p>空串也是串的子串</p>
+</li>
+</ul>
+</li>
+<li><p>主串：</p>
+<ul>
+<li>包含子串的串相应地称为主串</li>
+</ul>
+</li>
+<li><p>子串在主串中的位置：</p>
+<ul>
+<li>以子串的第一个字符在主串中的位置来表示（位序从1开始）</li>
+</ul>
+</li>
+<li><p>空格串</p>
+<ul>
+<li><p>由一个或多个空格（空格是特殊字符）组成的串称为空格串</p>
+</li>
+<li><p>其长度为串中空格字符的个数，每个空格字符占1B</p>
+</li>
+</ul>
+</li>
+<li><p>空串</p>
+<ul>
+<li>串中没有字符，其长度为0</li>
+</ul>
+</li>
+<li><p>串与线性表的区别</p>
+<ul>
+<li><p>串是一种特殊的线性表，数据元素之间呈线性关系</p>
+</li>
+<li><p>1、线性表的数据元素是任意数据类型</p>
+<ul>
+<li>串的数据元素的数据类型是字符集，对数据类型进行限制</li>
+</ul>
+</li>
+<li><p>2、线性表的基本操作对象是单个字符，串的基本操作对象是子串</p>
+</li>
+</ul>
+</li>
+<li><p>串相等：</p>
+<ul>
+<li>当两个串的长度相等且每个对应位置的字符都相等时，称这两个串是相等的</li>
+</ul>
+</li>
+</ul>
+<h2 id="串的存储结构"><a href="#串的存储结构" class="headerlink" title="串的存储结构"></a>串的存储结构</h2><h3 id="定长顺序存储表示（静态数组）"><a href="#定长顺序存储表示（静态数组）" class="headerlink" title="定长顺序存储表示（静态数组）"></a>定长顺序存储表示（静态数组）</h3><ul>
+<li><p>类似于线性表的顺序存储结构，用一组地址连续的存储单元存储串值的字符序列</p>
+</li>
+<li><p>截断：串的实际长度只能小于等于MAXLEN，超过预定义长度的串值会被舍去</p>
+</li>
+<li><p>静态数组的存储空间不需要手动释放（free），在函数执行结束后，系统会自动释放静态数组的存储空间</p>
+</li>
+<li><p>优缺点：</p>
+<ul>
+<li><p>优点：随机存取</p>
+</li>
+<li><p>缺点：无法进行空间的拓展和收缩（插入、删除）</p>
+</li>
+</ul>
+</li>
+<li><p>串表示方法</p>
+<ul>
+<li><p>1、用一个额外的变量来存放串的长度</p>
+</li>
+<li><p>2、串值后面加一个不计入串长的结束标记字符”\0”，此时的串长为隐含值</p>
+</li>
+<li><p>弊端</p>
+<ul>
+<li><p>串值序列的长度超过上界，约定用截断法处理</p>
+</li>
+<li><p>解决方法</p>
+<ul>
+<li>用不限定串长的最大长度，即采用动态分配的方式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>四种方案</p>
+<ul>
+<li><p>方案1：Length放在静态数组末尾，优点：对字符串长度无限制</p>
+</li>
+<li><p>方案2：Length放在ch[0]，缺点：Length只有一个字节，串长度最大是255</p>
+</li>
+<li><p>方案3：缺点需要从ch[0]开始往后扫描，如果经常访问字符串长度，方案不可取</p>
+</li>
+<li><p>方案4：舍弃ch[0]，声明int Length，优点：兼具方案1和方案2优点</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="堆分配存储表元（动态数组）"><a href="#堆分配存储表元（动态数组）" class="headerlink" title="堆分配存储表元（动态数组）"></a>堆分配存储表元（动态数组）</h3><ul>
+<li><p>堆分配存储表示仍然以一组地址连续的存储单元存放串值的字符序列，但它们的存储空间是在程序执行过程中动态分配得到的</p>
+<ul>
+<li><p>malloc函数：申请存储空间</p>
+</li>
+<li><p>free函数：手动释放空间</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="块链存储表示"><a href="#块链存储表示" class="headerlink" title="块链存储表示"></a>块链存储表示</h3><ul>
+<li><p>每个结点既可以存放一个字符，也可以存放多个字符。每个结点称为块，整个链表称为块链结构</p>
+<ul>
+<li><p>每个结点存储1个字符1B，一个指针4B，存储密度低</p>
+</li>
+<li><p>每个结点存储多个字符，可以提高存储密度（每个结点实际有用的数据所占据的空间比例会升高）</p>
+<ul>
+<li>结点的字符数不足，使用（#）号键或\0填充</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/6f38494f-d110-4017-9e7f-688478482cff-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="串的基本操作"><a href="#串的基本操作" class="headerlink" title="串的基本操作"></a>串的基本操作</h2><ul>
+<li><p>StrAssign（&amp;T,chars）：赋值操作。把串赋值为chars</p>
+</li>
+<li><p>StrCopy（&amp;T，S ）：复制操作。由串S复制得到串T</p>
+</li>
+<li><p>StrEmpty（S）：判空操作。若S为空串则返回TRUE,否则返回FALSE</p>
+</li>
+<li><p>Strcompare（S，T ）：比较操作。若S&gt;T，则返回值&gt;0：若s&#x3D;T，则返回值&#x3D;0：若s&lt;T，则返回值&lt;0</p>
+<ul>
+<li><p>从第一个字符开始往后依次对比，先出现更大字符的串就更大（应用：英语单词按字母进行排序）</p>
+</li>
+<li><p>长串的前缀与短串相同时，长串更大</p>
+</li>
+<li><p>&#x2F;&#x2F;对于两个字符串的第i个值进行一一对比，i从0开始，如果值不相等，返回S中对应字符的ASCII码-T中对应字符的ASCII码<img src="https://api2.mubu.com/v3/document_image/c873e70d-f946-4e0d-b20c-b7013fd8c4f2-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;扫描完所有的字符都相同，则长度长的串更大，返回S的长度-T的长度<img src="https://api2.mubu.com/v3/document_image/60b11cc0-d817-46ed-90e3-480ab0b5078b-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>StrLength（S）：求串长。返回串S的元素个数</p>
+<ul>
+<li>顺序存储方案4：就是返回Length的值</li>
+</ul>
+</li>
+<li><p>SubString（&amp;Sub，S，pos，len）：求子串。用Sub返回串S的第pos个字符起长度为len的子串</p>
+<ul>
+<li><p>&#x2F;&#x2F;判断子串范围越界（pos+len-1不能超过子串的长度）<img src="https://api2.mubu.com/v3/document_image/ebf88b81-0e2a-42be-a54a-b13dd7200bba-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;将从第pos个字节开始，将S的字符一一赋值给Sub串<img src="https://api2.mubu.com/v3/document_image/ac92342e-0671-4fb4-bbba-b0cdeb81574e-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;设置串的长度<img src="https://api2.mubu.com/v3/document_image/9d0b81cf-573b-4c1a-94f0-2ad83c42c429-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>Concat（&amp;T，S1，S2）：串联接。用T返回由S1和S2联接而成的新串</p>
+<ul>
+<li>T&#x3D;S1+S2，需要存储空间扩展</li>
+</ul>
+</li>
+<li><p>Index（S，T）：定位操作。若主串S中存在与串T值相同的子串，则返回它在主串S中第一次出现的位置；否则函数值为0</p>
+<ul>
+<li><p>使用取子串操作+比较操作</p>
+</li>
+<li><p>&#x2F;&#x2F;求出S和T的长度，定义一个串 暂存 取下的子串<img src="https://api2.mubu.com/v3/document_image/514a02e0-311d-449d-9929-ac176e0f3b40-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;使用循环，依次取长度&#x3D;T的子串，进行比较操作</p>
+<ul>
+<li><p>如果比较操作结果!&#x3D;0，则说明取下的子串与T不相等；如果比较操作结果&#x3D;0，说明子串&#x3D;T，返回子串的位置</p>
+</li>
+<li><p>n-m+1是子串的个数</p>
+</li>
+</ul>
+</li>
+<li><p>&#x2F;&#x2F;如果始终没有找到与T相同的子串，返回0<img src="https://api2.mubu.com/v3/document_image/43efb11e-49c9-4029-bbb3-10912eb4e737-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>ClearString（&amp;S）：清空操作。将s清为空串</p>
+<ul>
+<li><p>将字符串的内容在逻辑上清空，但是存储空间并没有释放，还可以往这个串里面存储数据</p>
+</li>
+<li><p>顺序存储方案4：将Length设为0</p>
+</li>
+</ul>
+</li>
+<li><p>DestroyString（&amp;S）：销毁串。将串S销毁</p>
+<ul>
+<li>将存储空间释放，不能往这个串里面存储数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="字符集编码：给字符集编码"><a href="#字符集编码：给字符集编码" class="headerlink" title="字符集编码：给字符集编码"></a>字符集编码：给字符集编码</h2><ul>
+<li><p>任何数据存储在计算机中时都是二进制数。确定字符和二进制数的对应规则就是编码。</p>
+<ul>
+<li>比较字符的大小其实就是比较二进制数的大小</li>
+</ul>
+</li>
+<li><p>ASCII编码的每个字符都占8bit（1B），所以空格占1B</p>
+</li>
+<li><p>英文字符——ASCII字符集（一个字符只有8bit，对于表示别的字符，8bit肯定不够用）</p>
+<ul>
+<li><p>01100001：a</p>
+</li>
+<li><p>01000001：A</p>
+</li>
+<li><p>00100000：空格</p>
+</li>
+</ul>
+</li>
+<li><p>中英文——Unicode字符集</p>
+<ul>
+<li><p>基于同一个字符集，也可以有不同的编码规则，如：</p>
+<ul>
+<li>UTF-8、UTF-16</li>
+</ul>
+</li>
+<li><p>注：基于不同的编码方式，每个字符所占空间不同，考研中每个字符只占1B</p>
+</li>
+</ul>
+</li>
+<li><p>文件乱码：</p>
+<ul>
+<li>解码与编码规则不同。</li>
+</ul>
+</li>
+</ul>
+<h1 id="串的模式匹配"><a href="#串的模式匹配" class="headerlink" title="串的模式匹配"></a>串的模式匹配</h1><h2 id="简单的模式匹配算法（朴素模式匹配算法）"><a href="#简单的模式匹配算法（朴素模式匹配算法）" class="headerlink" title="简单的模式匹配算法（朴素模式匹配算法）"></a>简单的模式匹配算法（朴素模式匹配算法）</h2><ul>
+<li><p>子串的定位操作通常称为串的模式匹配，它求的是子串（常称模式串）在主串中的位置</p>
+</li>
+<li><p>子串与模式串</p>
+<ul>
+<li><p>子串：主串的一部分，一定存在</p>
+</li>
+<li><p>模式串：想要查找的串，在主串中不一定找到</p>
+</li>
+</ul>
+</li>
+<li><p>实现思想</p>
+<ul>
+<li><p>将主串中与模式串长度相同的子串搞出来，挨个与模式串对比</p>
+</li>
+<li><p>当子串与模式串某个对应字符不匹配时，就立即放弃当前子串，转而检索下一个子串</p>
+</li>
+<li><p>找到第一个域模式串匹配的子串，则返回子串的起始位置</p>
+</li>
+<li><p>若所有子串都不匹配，则返回0</p>
+</li>
+</ul>
+</li>
+<li><p>长度为n的主串中，长度为m的子串的个数：n-m+1</p>
+</li>
+<li><p>实现代码：不使用字符串的基本操作，直接通过数组下标实现</p>
+<ul>
+<li><p>i &#x3D; i - j +2，i-j回到目前子串的前一个位置，i-j+2才能指向下一个子串的起始位置</p>
+</li>
+<li><p>j&#x3D;1，重新从模式串的第一个字符开始匹配</p>
+</li>
+<li><p>如果j&gt;T.length，则当前子串匹配成功，返回当前子串的第一个字符位置：i-T.length</p>
+</li>
+<li><p>&#x2F;&#x2F;指针i指向S的第一个字符，指针j指向T的第一个字符<img src="https://api2.mubu.com/v3/document_image/89c3f6d1-3689-448f-a40f-6e00bc33da2b-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;如果对应字符相同，逐个往后匹配字符；如果对应字符不同，i指针回退到下个子串的第一个字符，j指针回退到模式串的第一个字符<img src="https://api2.mubu.com/v3/document_image/a88b042a-2908-4973-b89c-53883a9a09ea-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;如果都匹配失败，则i指针会因为超出主串范围而停止；如果匹配成功j会因为超出模式串的长度而停止<img src="https://api2.mubu.com/v3/document_image/e1ce0c35-546d-4cfe-b05c-5280388e9c3d-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>缺点：主串指针会出现回溯现象导致时间开销增加</p>
+</li>
+<li><p>最坏时间复杂度： O(mn)，其中n和m分别为主串和模式串的长度</p>
+<ul>
+<li>对比了n-m+1个子串，每个子串都对比了m个字符</li>
+</ul>
+</li>
+<li><p>最好时间复杂度：O(m)，匹配第一个子串就成功了</p>
+</li>
+</ul>
+<h2 id="改进的模式匹配算法一KMP算法"><a href="#改进的模式匹配算法一KMP算法" class="headerlink" title="改进的模式匹配算法一KMP算法"></a>改进的模式匹配算法一KMP算法</h2><ul>
+<li><p>字符串的前缀、后缀和部分匹配值</p>
+</li>
+<li><p>next数组：当模式串的第j个字符匹配失败时，令模式串跳到next[j]再继续匹配</p>
+<ul>
+<li><p>对比主串元素与模式串元素是否相等，如果不相等，j的值&#x3D;next[j]</p>
+</li>
+<li><p>如果第一个元素匹配失败，除了j&#x3D;next[j]，还要i++，j++</p>
+</li>
+</ul>
+</li>
+<li><p>算法实现：in Index_KMP(SString S,SString T,int next[])</p>
+<ul>
+<li><p>&#x2F;&#x2F;从主串的1和模式串的1开始匹配<img src="https://api2.mubu.com/v3/document_image/ae518220-3440-41e4-9be3-fd6ab2f85331-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;如果主串的元素和模式串的元素都相等的话，同时++；当j&#x3D;0，说明第一个元素不匹配，i和j也需要同时++。否则主串和模式串的元素不匹配，发生失配，令j&#x3D;next[j]<img src="https://api2.mubu.com/v3/document_image/c3ffdfff-b544-4fa3-809f-573fba7e8ee7-3224585.jpg" alt="img"></p>
+</li>
+<li><p>&#x2F;&#x2F;如果j&gt;模式串的长度，则匹配成功；否则i超过主串的长度，则匹配失败<img src="https://api2.mubu.com/v3/document_image/8332efd4-12f0-4042-b866-f161961873cc-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>获取串的匹配值—求出与模式串相匹配的next数组</p>
+<ul>
+<li><p>手算：”google”</p>
+<ul>
+<li><p>next[1]&#x3D;0，任何模式串都一样，第1个字符不匹配时，只能匹配下一个子串，所以next[1]&#x3D;&#x3D;0</p>
+</li>
+<li><p>next[2]&#x3D;1，任何模式串都一样，第2个字符不匹配时，应尝试匹配模式串的第1个字符，因此next[2]&#x3D;&#x3D;1</p>
+</li>
+<li><p>next[3]&#x3D;1</p>
+<ul>
+<li>在主串的第i个字符左侧画一条线，模式串依次往右移，观察线左侧的主串和模式串是否匹配，如果匹配的话将指针j移动到线右侧第一个字符的位置</li>
+</ul>
+</li>
+<li><p>next[4]&#x3D;1</p>
+</li>
+<li><p>next[5]&#x3D;2</p>
+</li>
+</ul>
+</li>
+<li><p>‘ababa’为例</p>
+<ul>
+<li><p>‘a’的前缀和后缀都为空集，最长相等前后缀长度为0</p>
+</li>
+<li><p>‘ab’的前缀为{a},后缀为{b}，{a}n{b}&#x3D;0，最长相等前后缀长度为0</p>
+</li>
+<li><p>‘aba’的前缀为{a，ab}，后缀为{a，ba}，{a，ab}n{a，ba} &#x3D; {a}，最长相等前后缀长度为1</p>
+</li>
+<li><p>‘abab’的前缀{a，ab，aba}，后缀{b，ab，bab} &#x3D; {ab}，最长相等前后缀长度为2</p>
+</li>
+<li><p>‘ababa’的前缀{a，ab，aba，abab}，后缀{a，ba， aba，baba} &#x3D; {a，aba}，公共元素有两个最长相等前后缀长度为3</p>
+</li>
+<li><p>故字符串’ababa’的部分匹配值为00123</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>当子串和模式串不匹配时，主串指针i不回溯，模式串指针j&#x3D;next[j]</p>
+<ul>
+<li>利用好不匹配字符前的字符是一一匹配的信息，也就是利用好模式串已匹配的信息</li>
+</ul>
+</li>
+<li><p>最坏时间复杂度：O(m+n)</p>
+<ul>
+<li><p>其中求next数组的时间复杂度是O(m)</p>
+</li>
+<li><p>模式匹配过程的最坏复杂度是O(n)</p>
+</li>
+</ul>
+</li>
+<li><p>优点：主串不会进行回溯</p>
+</li>
+</ul>
+<h2 id="KMP算法的进一步优化"><a href="#KMP算法的进一步优化" class="headerlink" title="KMP算法的进一步优化"></a>KMP算法的进一步优化</h2><ul>
+<li>KMP算法优化：当子串和模式串不匹配时j &#x3D; nextval[j]<ul>
+<li>通过构造nextval函数</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_3%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" rel="prev" title="栈">
+                  <i class="fa fa-chevron-left"></i> 栈
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_5%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="next" title="树与二叉树">
+                  树与二叉树 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

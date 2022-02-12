@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="数制与编码进位计数制及其相互转换基本概念 常见种类：十进制、二进制、八进制、十六进制  特点：逢X进一（X进制）   种类特点 二进制  计算机使用最多  0、1组成   任意数位的权值为2^i，i为从右起的位数（注意：i是从零开始计数的）    八进制  0-7组成  二进制的一种书写形式，二进制的3位数码编为一组就是八进制数码（3位二进制最大为7）  任意数位的权值为8^i，i为从右起的位数（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据表示和运算">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_2.%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="数制与编码进位计数制及其相互转换基本概念 常见种类：十进制、二进制、八进制、十六进制  特点：逢X进一（X进制）   种类特点 二进制  计算机使用最多  0、1组成   任意数位的权值为2^i，i为从右起的位数（注意：i是从零开始计数的）    八进制  0-7组成  二进制的一种书写形式，二进制的3位数码编为一组就是八进制数码（3位二进制最大为7）  任意数位的权值为8^i，i为从右起的位数（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-03T15:20:18.843Z">
+<meta property="article:modified_time" content="2022-02-04T16:09:40.286Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_2.%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_2.%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/","path":"2022/02/03/2-计算机408_1.计算机组成原理_2.数据表示和运算/","title":"数据表示和运算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据表示和运算 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">数制与编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E4%BD%8D%E8%AE%A1%E6%95%B0%E5%88%B6%E5%8F%8A%E5%85%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">进位计数制及其相互转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%8D%E7%B1%BB%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">种类特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.3.</span> <span class="nav-text">进制转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%9F%E5%80%BC%E5%92%8C%E6%9C%BA%E5%99%A8%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">真值和机器数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BCD%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">BCD码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8421%E7%A0%81%EF%BC%88%E6%9C%80%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">8421码（最常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%993%E7%A0%81%EF%BC%88%E6%97%A0%E6%9D%83%E7%A0%81%EF%BC%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">余3码（无权码）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2421%E7%A0%81%EF%BC%88%E6%9C%89%E6%9D%83%E7%A0%81%EF%BC%89"><span class="nav-number">2.1.3.</span> <span class="nav-text">2421码（有权码）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.2.</span> <span class="nav-text">字符与字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text">校验码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.1.</span> <span class="nav-text">概念和原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">2.3.2.</span> <span class="nav-text">奇偶校验码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%B7%E6%98%8E%E7%A0%81"><span class="nav-number">2.3.3.</span> <span class="nav-text">海明码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRC-%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E7%A0%81"><span class="nav-number">2.3.4.</span> <span class="nav-text">CRC(循环冗余码)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E8%BF%90%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">定点数的表示与运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.1.</span> <span class="nav-text">定点数的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7"><span class="nav-number">3.1.1.</span> <span class="nav-text">有符号与无符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E6%95%B0%E5%AE%9A%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.1.2.</span> <span class="nav-text">机器数定点表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A%E6%9C%BA%E5%99%A8%E6%95%B0"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">补充：机器数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.3.</span> <span class="nav-text">机器数表示方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">原码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">补码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">3.1.3.3.</span> <span class="nav-text">反码表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">3.1.3.4.</span> <span class="nav-text">移码表示法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.1.4.</span> <span class="nav-text">不同表示方法间的相互转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.</span> <span class="nav-text">定点数的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.1.</span> <span class="nav-text">定点数移位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E5%8A%A0%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.2.</span> <span class="nav-text">原码定点数的加减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E5%AE%9A%E7%82%B9%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.3.</span> <span class="nav-text">补码定点数加减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="nav-number">3.2.4.</span> <span class="nav-text">符号扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%A4%E5%88%AB%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.5.</span> <span class="nav-text">溢出概念和判别方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.6.</span> <span class="nav-text">定点数的乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.7.</span> <span class="nav-text">定点数的除法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.2.8.</span> <span class="nav-text">强制类型转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E8%BF%90%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">浮点数的表示与运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.1.</span> <span class="nav-text">浮点数的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.1.</span> <span class="nav-text">表示格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">4.1.2.</span> <span class="nav-text">规格化浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-number">4.1.3.</span> <span class="nav-text">原码规格化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-number">4.1.4.</span> <span class="nav-text">补码规格化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE754"><span class="nav-number">4.1.5.</span> <span class="nav-text">IEEE754</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E4%B8%8E%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.1.6.</span> <span class="nav-text">定点数与浮点数的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">4.2.</span> <span class="nav-text">浮点数的加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E9%98%B6"><span class="nav-number">4.2.1.</span> <span class="nav-text">对阶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%BE%E6%95%B0%E6%B1%82%E5%92%8C"><span class="nav-number">4.2.2.</span> <span class="nav-text">尾数求和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-number">4.2.3.</span> <span class="nav-text">规格化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%88%8D%E5%85%A5"><span class="nav-number">4.2.4.</span> <span class="nav-text">舍入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E5%88%A4%E6%96%AD"><span class="nav-number">4.2.5.</span> <span class="nav-text">溢出判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-1"><span class="nav-number">4.2.6.</span> <span class="nav-text">强制类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A%E8%BE%B9%E7%95%8C%E5%AF%B9%E9%BD%90"><span class="nav-number">4.2.7.</span> <span class="nav-text">补充：边界对齐</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">算术逻辑单元（ALU）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E8%A1%8C%E5%8A%A0%E6%B3%95%E5%99%A8%E5%92%8C%E5%B9%B6%E8%A1%8C%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">串行加法器和并行加法器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BD%8D%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="nav-number">5.1.1.</span> <span class="nav-text">一位全加器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E8%A1%8C%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-number">5.1.2.</span> <span class="nav-text">串行加法器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-number">5.1.3.</span> <span class="nav-text">并行加法器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.</span> <span class="nav-text">算术逻辑单元的功能和结构</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_2.%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据表示和运算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-03 23:20:18" itemprop="dateCreated datePublished" datetime="2022-02-03T23:20:18+08:00">2022-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-05 00:09:40" itemprop="dateModified" datetime="2022-02-05T00:09:40+08:00">2022-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/" itemprop="url" rel="index"><span itemprop="name">计算机408</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">1.计算机组成原理</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/2-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">2.数据表示和运算</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：3.4k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈12 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="数制与编码"><a href="#数制与编码" class="headerlink" title="数制与编码"></a>数制与编码</h1><h2 id="进位计数制及其相互转换"><a href="#进位计数制及其相互转换" class="headerlink" title="进位计数制及其相互转换"></a>进位计数制及其相互转换</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li><p>常见种类：十进制、二进制、八进制、十六进制</p>
+</li>
+<li><p>特点：逢X进一（X进制）</p>
+</li>
+</ul>
+<h3 id="种类特点"><a href="#种类特点" class="headerlink" title="种类特点"></a>种类特点</h3><ul>
+<li><p>二进制</p>
+<ul>
+<li><p>计算机使用最多</p>
+<ul>
+<li>0、1组成</li>
+</ul>
+</li>
+<li><p>任意数位的权值为2^i，i为从右起的位数（注意：i是从零开始计数的）</p>
+</li>
+</ul>
+</li>
+<li><p>八进制</p>
+<ul>
+<li><p>0-7组成</p>
+</li>
+<li><p>二进制的一种书写形式，二进制的3位数码编为一组就是八进制数码（3位二进制最大为7）</p>
+</li>
+<li><p>任意数位的权值为8^i，i为从右起的位数（注意：i是从零开始计数的）</p>
+</li>
+</ul>
+</li>
+<li><p>十六进制</p>
+<ul>
+<li><p>o-9</p>
+<ul>
+<li>A～F组成（A～F）分别表示10—15</li>
+</ul>
+</li>
+<li><p>二进制的4位数码编为一组就是十六进制数码（4位二进制最大为15）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><ul>
+<li><p>二进制转化为八进制&#x2F;十六进制</p>
+<ul>
+<li>只需要将二讲制的3&#x2F;4位编为一组即可</li>
+</ul>
+</li>
+<li><p>八进制与十六进制相互转换</p>
+<ul>
+<li>先换成二进制再转换</li>
+</ul>
+</li>
+<li><p>任意进制转换为十进制</p>
+<ul>
+<li>任意进制数码与权值相乘，然后再将乘积相加</li>
+</ul>
+</li>
+<li><p>十进制转换为任意进制</p>
+<ul>
+<li><p>整数部分：除基取余法</p>
+</li>
+<li><p>小数部分：乘基取余法</p>
+<ul>
+<li>任意二进制小数都可以用十进制表示，但是并不是每个十进制小数都能用二进制表示（如0.3）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="真值和机器数"><a href="#真值和机器数" class="headerlink" title="真值和机器数"></a>真值和机器数</h2><ul>
+<li><p>真值：带符号的如-1，2，-3，4</p>
+</li>
+<li><p>机器数：常用最高位</p>
+<ul>
+<li>0表示正</li>
+<li>1表示负</li>
+</ul>
+</li>
+<li><p>补充：真值零表示方式</p>
+<ul>
+<li><p>两种表示法</p>
+<ul>
+<li><p>原码表示法：正零00000、负零10000</p>
+</li>
+<li><p>反码表示法：正零00000、负零11111</p>
+</li>
+</ul>
+</li>
+<li><p>唯一表示</p>
+<ul>
+<li><p>补码对真值零表示是唯一的</p>
+</li>
+<li><p>移码对真值零也是唯一的</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1></li>
+</ul>
+<h2 id="BCD码"><a href="#BCD码" class="headerlink" title="BCD码"></a>BCD码</h2><h3 id="8421码（最常用）"><a href="#8421码（最常用）" class="headerlink" title="8421码（最常用）"></a>8421码（最常用）</h3><ul>
+<li>注意：如果两个8421码相加后的和小于9（10进制），需要加6（10进制）进行修正</li>
+</ul>
+<h3 id="余3码（无权码）"><a href="#余3码（无权码）" class="headerlink" title="余3码（无权码）"></a>余3码（无权码）</h3><ul>
+<li>在8421码的基础上加（0011），因为每个数都多3，所以称为余3码<ul>
+<li>8——&gt;1011</li>
+</ul>
+</li>
+</ul>
+<h3 id="2421码（有权码）"><a href="#2421码（有权码）" class="headerlink" title="2421码（有权码）"></a>2421码（有权码）</h3><ul>
+<li><p>权值由高到低为2，4，2，1</p>
+</li>
+<li><p>&gt;&#x3D;5的4位二进制数中最高位为1，&lt;5最高位为0</p>
+<ul>
+<li>5——&gt;1011</li>
+</ul>
+</li>
+</ul>
+<h2 id="字符与字符串"><a href="#字符与字符串" class="headerlink" title="字符与字符串"></a>字符与字符串</h2><ul>
+<li><p>字符串编码ASCI码</p>
+<ul>
+<li>7位二进制编码</li>
+</ul>
+</li>
+<li><p>汉字的表示和编码</p>
+<ul>
+<li><p>每个编码用两个字节表示</p>
+</li>
+<li><p>种类</p>
+<ul>
+<li><p>输入编码</p>
+<ul>
+<li>计算机输入</li>
+</ul>
+</li>
+<li><p>汉字内码</p>
+<ul>
+<li>计算机内部处理</li>
+</ul>
+</li>
+<li><p>汉字字形码</p>
+<ul>
+<li>计算机输出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串存放</p>
+<ul>
+<li><p>小端模式</p>
+<ul>
+<li>将数据的最高有效字节存放在高地址单元中</li>
+</ul>
+</li>
+<li><p>大端模式</p>
+<ul>
+<li>将数据的最高有效字节存放在低地址单元中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>从低地址到高地址逐个字符存储，常采用”0作为结尾标志</p>
+</li>
+</ul>
+<h2 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h2><h3 id="概念和原理"><a href="#概念和原理" class="headerlink" title="概念和原理"></a>概念和原理</h3><ul>
+<li><p>概念：能够发现或者自动纠错的数据编码</p>
+</li>
+<li><p>原理：通过添加一些冗余码，实现检验或者纠错编码</p>
+</li>
+</ul>
+<h3 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h3><ul>
+<li><p>奇校验码：有效信息位和校验位中1的个数为奇数</p>
+</li>
+<li><p>偶校验码：有效信息位和校验位中1的个数为偶数</p>
+</li>
+<li><p>码距：2</p>
+</li>
+<li><p>&#x2F;但是如果编码中出现偶数位错误，无法检测</p>
+</li>
+</ul>
+<h3 id="海明码"><a href="#海明码" class="headerlink" title="海明码"></a>海明码</h3><ul>
+<li><p>在有效信息位中添加几个校验码形成海明码</p>
+</li>
+<li><p>不仅可以发现错位，还可以对错位进行纠错</p>
+</li>
+<li><p>编码最小码距L越大，检测位数越多，纠错能力越强（纠错能力恒小于等于检测能力）</p>
+<ul>
+<li>先检错，才能纠错</li>
+</ul>
+</li>
+<li><p>补充</p>
+<ul>
+<li><p>海明码有1位纠错，2位检错能力</p>
+</li>
+<li><p>为了区分1位错和2位错，还需添加”全校验位“对整体进行偶校验</p>
+</li>
+<li><p>注意：有的题目位置编号可能是从小到大的，但处理方法雷同</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="CRC-循环冗余码"><a href="#CRC-循环冗余码" class="headerlink" title="CRC(循环冗余码)"></a>CRC(循环冗余码)</h3><ul>
+<li><p>常用于大量的数据传送时的校验</p>
+</li>
+<li><p>接收到循环冗余码后，对生成多项式做模2除法，余数为0则无错误</p>
+</li>
+<li><p>余数不为0，对相应位置取反</p>
+</li>
+<li><p>检错、纠错能力</p>
+<ul>
+<li><p>可检测出所有奇数个错误</p>
+</li>
+<li><p>可检测出所有双比特的错误</p>
+</li>
+<li><p>可检测出所有小于等于校验位长度的连续错误</p>
+</li>
+<li><p>若选择合适的生成多项式，且2^R&gt;&#x3D;K+R+1，则可纠正单比特错</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="定点数的表示与运算"><a href="#定点数的表示与运算" class="headerlink" title="定点数的表示与运算"></a>定点数的表示与运算</h1><h2 id="定点数的表示"><a href="#定点数的表示" class="headerlink" title="定点数的表示"></a>定点数的表示</h2><h3 id="有符号与无符号"><a href="#有符号与无符号" class="headerlink" title="有符号与无符号"></a>有符号与无符号</h3><ul>
+<li><p>无符号数：整个机器字长的全部二进制位均为数值位，没有符号位</p>
+</li>
+<li><p>有符号数：最高位的0&#x2F;1分别表示正&#x2F;负</p>
+</li>
+</ul>
+<h3 id="机器数定点表示"><a href="#机器数定点表示" class="headerlink" title="机器数定点表示"></a>机器数定点表示</h3><ul>
+<li><p>定点小数</p>
+<ul>
+<li>定义：定点小数是纯小数，约定小数点位置在符号位之后，有效数值部分最高位之前</li>
+</ul>
+</li>
+<li><p>定点整数</p>
+<ul>
+<li>定义：定点整数是纯整数，小数点位置在有效数值部分的最低位之后</li>
+</ul>
+</li>
+</ul>
+<h4 id="补充：机器数"><a href="#补充：机器数" class="headerlink" title="补充：机器数"></a>补充：机器数</h4><ul>
+<li>​    机器数的定义</li>
+</ul>
+<h3 id="机器数表示方法"><a href="#机器数表示方法" class="headerlink" title="机器数表示方法"></a>机器数表示方法</h3><h4 id="原码表示法"><a href="#原码表示法" class="headerlink" title="原码表示法"></a>原码表示法</h4><ul>
+<li><p>最高位为符号，其余各位为表示数的绝对值</p>
+</li>
+<li><p>纯小数的原码</p>
+<ul>
+<li><p>字长为n+1,范围为：-(1-2^(-n))&lt;&#x3D;x&lt;&#x3D;1-2^(-n)</p>
+</li>
+<li><p>关于原点对构</p>
+</li>
+</ul>
+</li>
+<li><p>纯整数的原码</p>
+<ul>
+<li><p>字长为n+1,范围为-(2^n-1)&lt;&#x3D;X&lt;&#x3D;(2n-1)</p>
+</li>
+<li><p>关于原点对称</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="补码表示法"><a href="#补码表示法" class="headerlink" title="补码表示法"></a>补码表示法</h4><ul>
+<li><p>由于原码表示中加减法计算复杂，补码表示法可以更好地去表示加减法</p>
+</li>
+<li><p>纯小数补码</p>
+<ul>
+<li><p>表示范围-1&lt;&#x3D;X&lt;&#x3D;1-2^（-n）</p>
+</li>
+<li><p>比原码多表示-1</p>
+</li>
+</ul>
+</li>
+<li><p>纯整数补码</p>
+<ul>
+<li><p>表示范围-2^n&lt;&#x3D;X&lt;&#x3D;2^n-1</p>
+</li>
+<li><p>比原码多-2^n</p>
+</li>
+</ul>
+</li>
+<li><p>补码的算数移位</p>
+<ul>
+<li><p>实现除法功能：符号位与数值位一起右移，保持原符号位数值不变</p>
+</li>
+<li><p>变形补码（模4补码）</p>
+<ul>
+<li><p>正：00</p>
+</li>
+<li><p>负：11</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="反码表示法"><a href="#反码表示法" class="headerlink" title="反码表示法"></a>反码表示法</h4><ul>
+<li><p>原码与补码相互转化的过渡</p>
+</li>
+<li><p>纯小数反码</p>
+<ul>
+<li><p>表示范围：-(1-2^(-n))&lt;&#x3D;X&lt;&#x3D;1-2^(-n)</p>
+</li>
+<li><p>关于点对称</p>
+</li>
+</ul>
+</li>
+<li><p>纯整数反码</p>
+<ul>
+<li><p>表示范围：-(2^n-1)&lt;&#x3D;X&lt;&#x3D;2^n-1</p>
+</li>
+<li><p>关于原点对称</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="移码表示法"><a href="#移码表示法" class="headerlink" title="移码表示法"></a>移码表示法</h4><ul>
+<li><p>常用来表示浮点数的阶码，只能表示整数</p>
+</li>
+<li><p>最小值-2^n（全0）</p>
+</li>
+<li><p>最大值2^n-1（全1）</p>
+</li>
+<li><p>移码越大，真值就越大</p>
+</li>
+</ul>
+<h3 id="不同表示方法间的相互转换"><a href="#不同表示方法间的相互转换" class="headerlink" title="不同表示方法间的相互转换"></a>不同表示方法间的相互转换</h3><ul>
+<li><p>原码&lt;——&gt;补码</p>
+<ul>
+<li><p>正数：补码与原码表示相同</p>
+</li>
+<li><p>负数：原码符号位不变，数值部分按位取反</p>
+</li>
+</ul>
+</li>
+<li><p>不同机器数的转换关系图</p>
+</li>
+</ul>
+<h2 id="定点数的运算"><a href="#定点数的运算" class="headerlink" title="定点数的运算"></a>定点数的运算</h2><h3 id="定点数移位运算"><a href="#定点数移位运算" class="headerlink" title="定点数移位运算"></a>定点数移位运算</h3><ul>
+<li><p>算数移位</p>
+<ul>
+<li><p>正数</p>
+<ul>
+<li>移位后添零</li>
+</ul>
+</li>
+<li><p>负数</p>
+<ul>
+<li><p>原码</p>
+<ul>
+<li>添零</li>
+</ul>
+</li>
+<li><p>补码</p>
+<ul>
+<li>左0右</li>
+</ul>
+</li>
+<li><p>反码</p>
+<ul>
+<li>全部填1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>符号位不参与运算</p>
+</li>
+</ul>
+</li>
+<li><p>逻辑移位</p>
+<ul>
+<li><p>将操作数看做无符号数</p>
+</li>
+<li><p>左移或者右移都要添零</p>
+</li>
+</ul>
+</li>
+<li><p>循环移位</p>
+<ul>
+<li><p>带进位标志位的循环移位</p>
+</li>
+<li><p>不带进位标志位的移位的循环移位</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="原码定点数的加减法运算"><a href="#原码定点数的加减法运算" class="headerlink" title="原码定点数的加减法运算"></a>原码定点数的加减法运算</h3><ul>
+<li><p>加法准则</p>
+<ul>
+<li><p>符号相同：绝对值相加，符号不变</p>
+</li>
+<li><p>符号不同：绝对值大的减去绝对值小的，符号取绝对值大的数</p>
+</li>
+</ul>
+</li>
+<li><p>减法准则</p>
+<ul>
+<li><p>1、减数的符号取反</p>
+</li>
+<li><p>2、将其与被减数做原码加法运算</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="补码定点数加减法运算"><a href="#补码定点数加减法运算" class="headerlink" title="补码定点数加减法运算"></a>补码定点数加减法运算</h3><ul>
+<li><p>1、参与的操作数均为补码</p>
+</li>
+<li><p>2、按照二进制规则运算逢二进一</p>
+</li>
+<li><p>3、符号位与数值位同时参与运算，符号位产生的进位丢掉，结果的符号由运算得出</p>
+</li>
+<li><p>4、补码运算的结果仍然是补码</p>
+</li>
+</ul>
+<h3 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h3><ul>
+<li><p>正数</p>
+<ul>
+<li>在原有的基础上，添零凑位数即可</li>
+</ul>
+</li>
+<li><p>负数</p>
+<ul>
+<li><p>原码</p>
+<ul>
+<li>将原有形式的符号移动到新形式的符号位上，新形式的附加位进行添零处理</li>
+</ul>
+</li>
+<li><p>补码</p>
+<ul>
+<li>加1处理</li>
+</ul>
+</li>
+<li><p>反码</p>
+<ul>
+<li>加1处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="溢出概念和判别方法"><a href="#溢出概念和判别方法" class="headerlink" title="溢出概念和判别方法"></a>溢出概念和判别方法</h3><ul>
+<li><p>上溢：大于最大可以表示正数</p>
+</li>
+<li><p>下溢：小于最小可以表示的负数</p>
+</li>
+<li><p>补码判断溢出方法</p>
+<ul>
+<li><p>一位符号位：参加运算的两个数的符号相同，但是结果符号出现变化，则结果溢出</p>
+</li>
+<li><p>双符号位：（模4补码）</p>
+<ul>
+<li><p>00：正数、无溢出</p>
+</li>
+<li><p>01：正溢出</p>
+</li>
+<li><p>10：负溢出</p>
+</li>
+<li><p>11：负数、无溢出</p>
+</li>
+</ul>
+</li>
+<li><p>一位符号位根据数据位进位判断</p>
+<ul>
+<li>符号位进位与最高位进位相同，则无溢出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="定点数的乘法运算"><a href="#定点数的乘法运算" class="headerlink" title="定点数的乘法运算"></a>定点数的乘法运算</h3><ul>
+<li><p>原码一位乘法</p>
+<ul>
+<li><p>符号位：由两个数的符号位异或</p>
+</li>
+<li><p>数值：两个数的绝对值相乘之积</p>
+</li>
+<li><p>符号不参与运算</p>
+</li>
+<li><p>部分积2位、乘数0位</p>
+</li>
+<li><p>累加次数n</p>
+</li>
+</ul>
+</li>
+<li><p>补码一位乘法</p>
+<ul>
+<li><p>符号位参与运算</p>
+</li>
+<li><p>部分积2位、乘数1位</p>
+</li>
+<li><p>累加次数n+1</p>
+</li>
+</ul>
+</li>
+<li><p>注：移位</p>
+<ul>
+<li><p>方向：向右</p>
+</li>
+<li><p>次数：n</p>
+</li>
+<li><p>每位次数：1</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="定点数的除法运算"><a href="#定点数的除法运算" class="headerlink" title="定点数的除法运算"></a>定点数的除法运算</h3><ul>
+<li><p>原码除法运算（不恢复余数法）</p>
+<ul>
+<li><p>商符和商值分开运算</p>
+<ul>
+<li>商符由两个操作数异或</li>
+</ul>
+</li>
+<li><p>符号位不参与运算</p>
+</li>
+<li><p>加减次数n+1或n+2</p>
+</li>
+<li><p>若最终余数为负，需要恢复余数</p>
+</li>
+</ul>
+</li>
+<li><p>补码除法运算（加减交替法）</p>
+<ul>
+<li><p>符号位参与运算</p>
+</li>
+<li><p>加减次数n+1</p>
+</li>
+<li><p>商末衡置为一</p>
+</li>
+</ul>
+</li>
+<li><p>注：移位</p>
+<ul>
+<li><p>方向：左</p>
+</li>
+<li><p>次数：n</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><ul>
+<li>将所给数字写为二进制，然后按照转换成不同的码的规则进行读取</li>
+</ul>
+<h1 id="浮点数的表示与运算"><a href="#浮点数的表示与运算" class="headerlink" title="浮点数的表示与运算"></a>浮点数的表示与运算</h1><h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="表示格式"><a href="#表示格式" class="headerlink" title="表示格式"></a>表示格式</h3><ul>
+<li><p>阶码是整数，阶符与阶码的位数共同反映浮点数的表示范围与小数点的实际位置</p>
+</li>
+<li><p>数符表示浮点数的符号</p>
+</li>
+<li><p>尾数的位数表示浮点数的精度</p>
+</li>
+</ul>
+<h3 id="规格化浮点数"><a href="#规格化浮点数" class="headerlink" title="规格化浮点数"></a>规格化浮点数</h3><ul>
+<li><p>左规：尾数算数左移一位，阶码减一</p>
+</li>
+<li><p>右规：结果出现溢出（双符号位01或10），将尾数算数右移一位，阶码加1</p>
+</li>
+<li><p>左规可以多次，右规只能一次</p>
+</li>
+</ul>
+<h3 id="原码规格化"><a href="#原码规格化" class="headerlink" title="原码规格化"></a>原码规格化</h3><ul>
+<li><p>正数：0.1xxx</p>
+</li>
+<li><p>负数：1.1Xxx</p>
+</li>
+<li><p>注：</p>
+<ul>
+<li><p>基数：4原码规格化形式的尾数最高2位不全为0</p>
+</li>
+<li><p>基数：8原码规格化形式尾数最高3位不全为0</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="补码规格化"><a href="#补码规格化" class="headerlink" title="补码规格化"></a>补码规格化</h3><ul>
+<li><p>正数：0.1xxX</p>
+</li>
+<li><p>负数：1.0xxxx</p>
+</li>
+</ul>
+<h3 id="IEEE754"><a href="#IEEE754" class="headerlink" title="IEEE754"></a>IEEE754</h3><ul>
+<li><p>整数部分隐含1</p>
+<ul>
+<li><p>短浮点数（组成位数）</p>
+<ul>
+<li><p>数符:1</p>
+</li>
+<li><p>阶码：8</p>
+</li>
+<li><p>尾数数值：23</p>
+</li>
+<li><p>总位数：32</p>
+</li>
+<li><p>偏置值：</p>
+<ul>
+<li><p>7fh(16进制)</p>
+</li>
+<li><p>127(十进制)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>长浮点数（组成位数）</p>
+<ul>
+<li><p>数符：1</p>
+</li>
+<li><p>阶码：11</p>
+</li>
+<li><p>尾数数值：52</p>
+</li>
+<li><p>总位数：64</p>
+</li>
+<li><p>偏置值：</p>
+<ul>
+<li><p>3ffh（16进制）</p>
+</li>
+<li><p>1023（十进制）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>临时浮点数（组成位数）</p>
+<ul>
+<li><p>数符：1</p>
+</li>
+<li><p>阶码：15</p>
+</li>
+<li><p>尾数数值：64</p>
+</li>
+<li><p>总位数：80</p>
+</li>
+<li><p>偏置值：</p>
+<ul>
+<li><p>3ffh（16进制）</p>
+</li>
+<li><p>16383（十进制）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>浮点数范围</p>
+<ul>
+<li><p>单精度浮点数：</p>
+<ul>
+<li>2^(-126)～2^(127)*(2-2^(-23))</li>
+</ul>
+</li>
+<li><p>双精度浮点数：</p>
+<ul>
+<li>2^(-1022)～2^(1023)*(2-2^(-52))</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="定点数与浮点数的区别"><a href="#定点数与浮点数的区别" class="headerlink" title="定点数与浮点数的区别"></a>定点数与浮点数的区别</h3><ul>
+<li><p>相同字长，浮点数范围更大</p>
+</li>
+<li><p>浮点数精度降低</p>
+</li>
+<li><p>浮点数运算复杂</p>
+</li>
+<li><p>浮点数只有规格化后阶码超出表示范围，才发生溢出</p>
+</li>
+</ul>
+<h2 id="浮点数的加减运算"><a href="#浮点数的加减运算" class="headerlink" title="浮点数的加减运算"></a>浮点数的加减运算</h2><h3 id="对阶"><a href="#对阶" class="headerlink" title="对阶"></a>对阶</h3><ul>
+<li>小阶看齐大阶，阶码小的尾数右移一位，阶加一，直到阶码相等</li>
+</ul>
+<h3 id="尾数求和"><a href="#尾数求和" class="headerlink" title="尾数求和"></a>尾数求和</h3><ul>
+<li>尾数按照定点数加减规则运算</li>
+</ul>
+<h3 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h3><ul>
+<li><p>最高数值位与符号位不同即为规格化形式</p>
+</li>
+<li><p>左规：尾数左移1位，和的阶码减1</p>
+<ul>
+<li>直到00.1XX或者11.0xxx</li>
+</ul>
+</li>
+<li><p>右规，尾数求和结果溢出（10.XXX或者01.XXX）</p>
+<ul>
+<li>尾数右移一位，和的阶码加1</li>
+</ul>
+</li>
+</ul>
+<h3 id="舍入"><a href="#舍入" class="headerlink" title="舍入"></a>舍入</h3><ul>
+<li><p>0舍1入法</p>
+<ul>
+<li><p>尾数右移时，移去的最高数值位为0，则舍去</p>
+</li>
+<li><p>尾数左移时，移去的最高数值位为1，则尾数末位加1</p>
+</li>
+<li><p>可能会导致溢出，此时需要再一次右规</p>
+</li>
+</ul>
+</li>
+<li><p>恒置1法</p>
+<ul>
+<li>尾数右移，不论最高数值位丢掉的是1还是0，都将尾数末位恒置为1</li>
+</ul>
+</li>
+</ul>
+<h3 id="溢出判断"><a href="#溢出判断" class="headerlink" title="溢出判断"></a>溢出判断</h3><ul>
+<li><p>只有右规后，仍然溢出，此时才是真正溢出</p>
+</li>
+<li><p>上溢出：进入中断处理</p>
+</li>
+<li><p>下溢出：按机器零处理</p>
+</li>
+</ul>
+<h3 id="强制类型转换-1"><a href="#强制类型转换-1" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><ul>
+<li><p>char——&gt;int</p>
+<ul>
+<li>在前面补0</li>
+</ul>
+</li>
+<li><p>int&lt;——&gt;unsigned</p>
+<ul>
+<li>彼此都可能因为溢出丢失数据</li>
+</ul>
+</li>
+<li><p>int&lt;——&gt;float</p>
+<ul>
+<li><p>float转换为int，可能会出现精度损失和溢出</p>
+</li>
+<li><p>int转换为float，可能会出现数据舍入</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="补充：边界对齐"><a href="#补充：边界对齐" class="headerlink" title="补充：边界对齐"></a>补充：边界对齐</h3><ul>
+<li><p>现代计算机通常是按字节编址，即每个字节对应1个地址</p>
+</li>
+<li><p>通常也支持按字、按半字、按字节寻址</p>
+</li>
+</ul>
+<h1 id="算术逻辑单元（ALU）"><a href="#算术逻辑单元（ALU）" class="headerlink" title="算术逻辑单元（ALU）"></a>算术逻辑单元（ALU）</h1><p>运算器组成：算术逻辑单元累加器状态寄存器通用寄存器组</p>
+<h2 id="串行加法器和并行加法器"><a href="#串行加法器和并行加法器" class="headerlink" title="串行加法器和并行加法器"></a>串行加法器和并行加法器</h2><h3 id="一位全加器"><a href="#一位全加器" class="headerlink" title="一位全加器"></a>一位全加器</h3><ul>
+<li><p>两个加数输入，以及低位进入输入</p>
+</li>
+<li><p>本位结果和进位输出</p>
+</li>
+</ul>
+<h3 id="串行加法器"><a href="#串行加法器" class="headerlink" title="串行加法器"></a>串行加法器</h3><ul>
+<li><p>只有一个全加器，数据逐位的送入加法器中运算，逐位送回寄存器</p>
+</li>
+<li><p>操作数n位，则进行n次</p>
+</li>
+<li><p>成本低，但是速度慢</p>
+</li>
+</ul>
+<h3 id="并行加法器"><a href="#并行加法器" class="headerlink" title="并行加法器"></a>并行加法器</h3><ul>
+<li><p>多个加法器共同组成，每个全加器都有一个低位送来的进位输入，向高位的进位输出</p>
+</li>
+<li><p>进位方式</p>
+<ul>
+<li><p>串行进位</p>
+<ul>
+<li>将全加器串接在一起，每级进位依赖于前一级进位</li>
+</ul>
+</li>
+<li><p>并行进位</p>
+<ul>
+<li>同时进位，各级进位信号同时形成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注：提高并行加法器速度的关键在于加快进位产生和传递速度</p>
+</li>
+</ul>
+<h2 id="算术逻辑单元的功能和结构"><a href="#算术逻辑单元的功能和结构" class="headerlink" title="算术逻辑单元的功能和结构"></a>算术逻辑单元的功能和结构</h2><ul>
+<li>ALU：算数运算与逻辑运算</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" rel="prev" title="计算机系统概述">
+                  <i class="fa fa-chevron-left"></i> 计算机系统概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_3.%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" rel="next" title="存储系统">
+                  存储系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

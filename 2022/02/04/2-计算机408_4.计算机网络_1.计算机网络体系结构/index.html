@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="计算机网络概述计算机网络基本概念 广义观点：实现远程信息处理的系统或者能进一步达到资源共享的系统  资源共享观点  以能够相互共享资源的方式互联起来的自治计算机系统的集合  目的：资源共享  组成单元：分布在不同地理位置的多台独立的“自治计算机”  网络协议：网络中计算机必须遵循的统一规则    用户透明性观点：能为用户自动管理资源的网络操作系统，能够调用用户所需要的资源，整个网络就像一个大的计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络体系结构">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_4.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="计算机网络概述计算机网络基本概念 广义观点：实现远程信息处理的系统或者能进一步达到资源共享的系统  资源共享观点  以能够相互共享资源的方式互联起来的自治计算机系统的集合  目的：资源共享  组成单元：分布在不同地理位置的多台独立的“自治计算机”  网络协议：网络中计算机必须遵循的统一规则    用户透明性观点：能为用户自动管理资源的网络操作系统，能够调用用户所需要的资源，整个网络就像一个大的计算">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-04T11:27:04.897Z">
+<meta property="article:modified_time" content="2022-02-04T16:11:29.402Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_4.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_4.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/","path":"2022/02/04/2-计算机408_4.计算机网络_1.计算机网络体系结构/","title":"计算机网络体系结构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机网络体系结构 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">计算机网络概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">计算机网络基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">计算机网络的组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.</span> <span class="nav-text">计算机网络的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%B7%A5%E4%BD%9C%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%BB%84%E7%BB%87"><span class="nav-number">1.4.</span> <span class="nav-text">计算机网络的标准化工作及相关组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.</span> <span class="nav-text">计算机网络的性能指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">计算机网络体系结构与参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">网络分层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E3%80%81%E6%8E%A5%E5%8F%A3%E3%80%81%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.2.</span> <span class="nav-text">计算机网络协议、接口、服务的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">OSI参考模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">2.4.</span> <span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">2.5.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">2.6.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%EF%BC%88%E4%BD%9C%E4%B8%BA%E8%B5%84%E6%BA%90%E5%AD%90%E7%BD%91%E4%B8%8E%E9%80%9A%E4%BF%A1%E5%AD%90%E7%BD%91%E7%9A%84%E6%A1%A5%E6%A2%81%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">传输层（作为资源子网与通信子网的桥梁）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%E5%B1%82"><span class="nav-number">2.8.</span> <span class="nav-text">会话层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E5%B1%82"><span class="nav-number">2.9.</span> <span class="nav-text">表示层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">2.10.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-x2F-IP%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.11.</span> <span class="nav-text">TCP&#x2F;IP类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-x2F-IP%E6%A8%A1%E5%9E%8B%E4%B8%8EOSI%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">2.12.</span> <span class="nav-text">TCP&#x2F;IP模型与OSI模型的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B"><span class="nav-number">2.13.</span> <span class="nav-text">信息传输过程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_4.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络体系结构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-04 19:27:04" itemprop="dateCreated datePublished" datetime="2022-02-04T19:27:04+08:00">2022-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-05 00:11:29" itemprop="dateModified" datetime="2022-02-05T00:11:29+08:00">2022-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/" itemprop="url" rel="index"><span itemprop="name">计算机408</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">4.计算机网络</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">1.计算机网络体系结构</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：4k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈13 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h1><h2 id="计算机网络基本概念"><a href="#计算机网络基本概念" class="headerlink" title="计算机网络基本概念"></a>计算机网络基本概念</h2><ul>
+<li><p>广义观点：实现远程信息处理的系统或者能进一步达到资源共享的系统</p>
+</li>
+<li><p>资源共享观点</p>
+<ul>
+<li><p>以能够相互共享资源的方式互联起来的自治计算机系统的集合</p>
+</li>
+<li><p>目的：资源共享</p>
+</li>
+<li><p>组成单元：分布在不同地理位置的多台独立的“自治计算机”</p>
+</li>
+<li><p>网络协议：网络中计算机必须遵循的统一规则</p>
+</li>
+</ul>
+</li>
+<li><p>用户透明性观点：能为用户自动管理资源的网络操作系统，能够调用用户所需要的资源，整个网络就像一个大的计算机系统一样对用户是透明的</p>
+</li>
+</ul>
+<h2 id="计算机网络的组成"><a href="#计算机网络的组成" class="headerlink" title="计算机网络的组成"></a>计算机网络的组成</h2><ul>
+<li><p>组成部分角度</p>
+<ul>
+<li><p>硬件：主机（端系统）、通信链路（双绞线、光纤）、交换设备（路由器、交换机）以及通信处理机（网卡等）</p>
+</li>
+<li><p>软件：实现资源共享的软件以及方便用户使用的各种工具软件（网络操作系统、邮收发程序、FTP程序、聊天程序）</p>
+</li>
+<li><p>协议：计算机网络的核心，规定了网络传输数据遵循的规定</p>
+</li>
+</ul>
+</li>
+<li><p>工作角度</p>
+<ul>
+<li><p>边缘部分：所有连接到因特网上、供用户直接使用的主机组成，用来进行通信（传输数据、音频或者视频和资源共享）</p>
+<ul>
+<li><p>用户直接使用</p>
+<ul>
+<li><p>C&#x2F;S方式</p>
+</li>
+<li><p>P2P方式</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>核心部分：大量的网络和连接这些网络的路由器组成，为边缘部分提供连通性和交换服务</p>
+</li>
+</ul>
+</li>
+<li><p>功能组成角度</p>
+<ul>
+<li><p>通信子网：传输介质，通信设备，相应的网络协议</p>
+<ul>
+<li>使得网络具有数据传输，交换，控制和存储的能力，实现联网计算机之间的数据通信</li>
+</ul>
+</li>
+<li><p>资源子网：实现资源共享功能以及软件的集合，向网络用户提供共享其他计算机硬件、软件和数据的服务</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>计算机网络的功能</p>
+<ul>
+<li><p>数据通信：最基本最重要的功能，实现联网计算机之间的信息传输，将分散的计算机联系起来</p>
+</li>
+<li><p>资源共享：实现软件、硬件、数据的共享，使得计算机网络中的资源互通有无，分工协作，提高硬件、软件和数据资源的利用率</p>
+</li>
+<li><p>分布式处理：将某个计算机负载过重的任务分散到多台计算机上，提高整个系统的利用率</p>
+</li>
+<li><p>提高可靠性：各台计算机可以通过网络互为替代机</p>
+</li>
+<li><p>负载均衡：将工作任务均衡的分配给计算机网络中的各台计算机</p>
+</li>
+</ul>
+<h2 id="计算机网络的分类"><a href="#计算机网络的分类" class="headerlink" title="计算机网络的分类"></a>计算机网络的分类</h2><ul>
+<li><p>分布范围分类</p>
+<ul>
+<li><p>广域网</p>
+<ul>
+<li><p>范围：提供长距离通信，运送主机发送的数据广域网</p>
+</li>
+<li><p>距离：几十千米到几千千米</p>
+</li>
+<li><p>地位：广域网是因特网的核心部分，连接广域网的各节点交换机的链路一般是高速链路，具有较大的通信容量</p>
+</li>
+<li><p>采用交换技术</p>
+</li>
+</ul>
+</li>
+<li><p>城域网</p>
+<ul>
+<li><p>范围：跨越几个街区甚至几个城市</p>
+</li>
+<li><p>距离： 5—50km</p>
+</li>
+<li><p>地位：多采用以太网技术</p>
+</li>
+</ul>
+</li>
+<li><p>局域网</p>
+<ul>
+<li><p>范围：微机或者工作站通过高速线路相连，覆盖范围小</p>
+</li>
+<li><p>距离：几十米到几干米</p>
+</li>
+<li><p>地位：对计算机配置数量没有太多限制，采用广播技术</p>
+</li>
+</ul>
+</li>
+<li><p>个人区域网</p>
+<ul>
+<li><p>范围：个人工作的地方将电子设备用无线技术链接起来的网络</p>
+</li>
+<li><p>距离：区域直径为10m</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>传输技术分类</p>
+<ul>
+<li><p>广播式网络</p>
+<ul>
+<li><p>所有联网计算机共享一个公共通信信道</p>
+</li>
+<li><p>一台计算机发送报文分组，其他计算机也能收听这个分组（根据报文目的地址进行接收）</p>
+</li>
+<li><p>采用广播通信技术</p>
+<ul>
+<li>广域网中的无线，卫星通信网络也采用广播式通信技术</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>点对点网络</p>
+<ul>
+<li><p>计算机通过直接或者中间结点对分组进行接收，存储和转发直到目的地</p>
+</li>
+<li><p>采用分组存储转发机制</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>按照拓扑结构分类</p>
+<ul>
+<li><p>星型网络</p>
+<ul>
+<li><p>每个终端或者计算机都以单独的线路与中央设备相连</p>
+</li>
+<li><p>优点：便于集中控制和管理</p>
+</li>
+<li><p>缺点：成本高，中心节点对故障敏感</p>
+</li>
+</ul>
+</li>
+<li><p>总线型网络</p>
+<ul>
+<li><p>用单根传输线把计算机连接起来</p>
+</li>
+<li><p>优点：建网容易，增减节点方便，节省线路</p>
+</li>
+<li><p>缺点:重负载时通信效率不高,总线任意处对故障敏感</p>
+</li>
+</ul>
+</li>
+<li><p>环型网络</p>
+<ul>
+<li><p>所有计算机接口设备连接成一个环</p>
+</li>
+<li><p>典型：令牌环局域网</p>
+</li>
+</ul>
+</li>
+<li><p>网状型网络</p>
+<ul>
+<li><p>每个结点至少有两条链路与其他节点相连，形成一个网状结构</p>
+</li>
+<li><p>优点：可靠性高</p>
+</li>
+<li><p>缺点：成本高、控制复杂</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>按照使用者分类</p>
+<ul>
+<li><p>公用网</p>
+<ul>
+<li>公众使用的网络</li>
+</ul>
+</li>
+<li><p>专用网</p>
+<ul>
+<li>为满足某个部门特殊业务建立的网络（军队，电力，铁路）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>按照传输介质分类</p>
+<ul>
+<li><p>有线网络</p>
+<ul>
+<li>双绞线网络、同轴电缆网络</li>
+</ul>
+</li>
+<li><p>无线网络</p>
+<ul>
+<li>蓝牙、微波、无线电</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="计算机网络的标准化工作及相关组织"><a href="#计算机网络的标准化工作及相关组织" class="headerlink" title="计算机网络的标准化工作及相关组织"></a>计算机网络的标准化工作及相关组织</h2><ul>
+<li><p>生成RFC的过程</p>
+<ul>
+<li>因特网草案、建议标准、草案标准、因特网标准</li>
+</ul>
+</li>
+<li><p>国际组织</p>
+<ul>
+<li><p>国际标准化组织（ISO） ： OSI参考模型、HDLC</p>
+</li>
+<li><p>国际电信联盟（ITU ） ：远程通信标准</p>
+</li>
+<li><p>国际电气电子工程师协会（IEEE） ： 802标准</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="计算机网络的性能指标"><a href="#计算机网络的性能指标" class="headerlink" title="计算机网络的性能指标"></a>计算机网络的性能指标</h2><ul>
+<li><p>带宽</p>
+<ul>
+<li>网络在通信线路中传送该数据的能力，单位：比特&#x2F;每秒</li>
+</ul>
+</li>
+<li><p>时延</p>
+<ul>
+<li><p>数据从网络的一端传送到另一端所需要的总时间</p>
+</li>
+<li><p>发送时延</p>
+<ul>
+<li><p>发送分组的第一个比特开始，到最后也一个比特发送结束的时间</p>
+</li>
+<li><p>发送时延&#x3D;分组长度&#x2F;信道带宽</p>
+</li>
+</ul>
+</li>
+<li><p>传播时延</p>
+<ul>
+<li><p>一个比特从链路一端到另一端需要的时间</p>
+</li>
+<li><p>传播时延&#x3D;信道长度&#x2F;电磁波在信道上的传播速率</p>
+</li>
+</ul>
+</li>
+<li><p>处理时延</p>
+<ul>
+<li><p>数据在交换结点为存储转发而进行的一些必要的处理所花费的时间</p>
+</li>
+<li><p>如：分析分组的首部，从分组中提取数据部分，差错检验，寻找适当的路由器排队时延</p>
+</li>
+</ul>
+</li>
+<li><p>排队时延</p>
+<ul>
+<li>分组在进入路由器后，像排队一样等待被转发的时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>时延带宽积</p>
+<ul>
+<li><p>发送端连续发送数据且发送的第一个比特即将到达终点时，发送端已将发出的比特数</p>
+</li>
+<li><p>时延带宽积&#x3D;传播时延*信道带宽</p>
+</li>
+</ul>
+</li>
+<li><p>往返时延</p>
+<ul>
+<li>从发送数据到接收到接收端的确认，经历的时延</li>
+</ul>
+</li>
+<li><p>吞吐量</p>
+<ul>
+<li><p>单位时间内通过某个网络的数据量</p>
+</li>
+<li><p>受到网络带宽或者网络额定速率的限制</p>
+</li>
+</ul>
+</li>
+<li><p>速率</p>
+<ul>
+<li>连接到计算机网络上主机在数字信道上传送数据的速率（数据率或者比特率） ，最高的数据率即为带宽</li>
+</ul>
+</li>
+</ul>
+<h1 id="计算机网络体系结构与参考模型"><a href="#计算机网络体系结构与参考模型" class="headerlink" title="计算机网络体系结构与参考模型"></a>计算机网络体系结构与参考模型</h1><h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><ul>
+<li><p>原则</p>
+<ul>
+<li><p>每层实现一种相对独立的功能，降低系统的复杂度</p>
+</li>
+<li><p>各层之间界面清晰，易于理解，相互交流少</p>
+</li>
+<li><p>各层功能的精确定义独立于具体的实现方法，可以采用最合适的技术来实现</p>
+</li>
+<li><p>保持下层对上层的独立性，上层单向使用下层提供的服务</p>
+</li>
+<li><p>整个分层结构应能促进标准化工作</p>
+</li>
+</ul>
+</li>
+<li><p>基本概念</p>
+<ul>
+<li><p>实体：任何可以发送或者接受信息的硬件或者软件进程</p>
+</li>
+<li><p>不同机器上的同一层称为对等层，同一层的实体称为对等实体</p>
+</li>
+<li><p>n层实体实现的服务为n+1层所利用</p>
+</li>
+<li><p>服务数据单元（ SDU）：完成用户所要求的的功能而传送的数据，第n层为n-SDU</p>
+</li>
+<li><p>协议控制信息（PCI ）：控制层协议操作的信息 n-PCI</p>
+</li>
+<li><p>协议数据单元（ PDU ） ：对等层次之间传送的数据单元称为该层的PDU，n-PDU</p>
+</li>
+</ul>
+</li>
+<li><p>层次结构含义</p>
+<ul>
+<li><p>第N层的实体不仅要使用第N-1层的服务来实现自身定义的功能，还要想第N+1层提供本层的服务，该服务是第N层及下面各层提供的服务总和</p>
+</li>
+<li><p>最底层只提供服务，使整个层次结构的基础，中间各层既是下一层的服务使用者，又是上一层的服务提供者，最高层面向用户提供服务</p>
+</li>
+<li><p>上一层只能通过邻近层的接口使用下一层的服务，而不能调用其他层的服务，下一层所提供的服务的实现细节对上一层透明</p>
+</li>
+<li><p>两台主机通信时，对等层在逻辑上有一条直接信道，表现为不经过下层就把信息传送到对方</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="计算机网络协议、接口、服务的概念"><a href="#计算机网络协议、接口、服务的概念" class="headerlink" title="计算机网络协议、接口、服务的概念"></a>计算机网络协议、接口、服务的概念</h2><ul>
+<li><p>协议</p>
+<ul>
+<li><p>控制两个或者多个对等实体进行通信的规则集合，是水平的</p>
+</li>
+<li><p>不对等实体之间是没有协议的</p>
+</li>
+<li><p>组成</p>
+<ul>
+<li><p>语法：规定了传输数据的格式</p>
+</li>
+<li><p>语义：规定了要完成的功能</p>
+</li>
+<li><p>同步：规定了执行各种操作的条件、时序关系</p>
+</li>
+</ul>
+</li>
+<li><p>协议是水平的，是控制对等实体之间通信的规则</p>
+</li>
+</ul>
+</li>
+<li><p>接口</p>
+<ul>
+<li><p>同一节点内相邻两层间交换信息的连接点，是一个系统内部的规定</p>
+</li>
+<li><p>接口每层只能为紧邻的层次之间定义接口，不能跨层定义接口</p>
+</li>
+</ul>
+</li>
+<li><p>服务</p>
+<ul>
+<li><p>下层为紧邻的上层提供的功能调用，是垂直的</p>
+</li>
+<li><p>服务原语</p>
+<ul>
+<li><p>由服务用户发往服务提供者，请求完成某项任务</p>
+</li>
+<li><p>由服务提供者发往服务用户，指示用户做某件事情</p>
+</li>
+<li><p>由服务用户发往服务提供者，作为对指示的响应</p>
+</li>
+<li><p>证实：由服务提供者发往服务用户，作为请求的证实</p>
+</li>
+</ul>
+</li>
+<li><p>只有本层的协议的实现才能保证向上一层提供服务，本层的服务用户只能看见服务，而无法看见下面的协议</p>
+</li>
+</ul>
+</li>
+<li><p>服务的分类</p>
+<ul>
+<li><p>面向连接服务和无连接服务</p>
+<ul>
+<li><p>面向连接服务</p>
+<ul>
+<li><p>通信双方必须建立连接，分配相应资源，结束后释放连接与资源（可靠服务）</p>
+</li>
+<li><p>阶段</p>
+<ul>
+<li><p>连接建立</p>
+</li>
+<li><p>数据传输</p>
+</li>
+<li><p>连接释放</p>
+</li>
+</ul>
+</li>
+<li><p>代表协议： TCP协议</p>
+</li>
+</ul>
+</li>
+<li><p>无连接服务</p>
+<ul>
+<li><p>通信双方不需要建立连接，直接发送数据（不可靠服务）</p>
+</li>
+<li><p>尽最大努力交付（IP协议UDP协议）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可靠服务和不可靠服务</p>
+<ul>
+<li><p>可靠服务</p>
+<ul>
+<li>网络具有纠错，检错，应答机制，保证数据正确可靠的传送到目的地</li>
+</ul>
+</li>
+<li><p>不可靠服务</p>
+<ul>
+<li><p>网络尽可能正确，可靠的传送，不能保证数据的正确，可靠的传送到目的地</p>
+</li>
+<li><p>可靠性由应用或者用户来保障</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>有应答服务和无应答服务</p>
+<ul>
+<li><p>有应答服务</p>
+<ul>
+<li>接收方在收到数据后向发送方发出相应的应答，传输系统自动实现</li>
+</ul>
+</li>
+<li><p>无应等服务</p>
+<ul>
+<li>接收方受到数据后不会自动给出应答，如果需要应答就由高层实现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><ul>
+<li><p>目的：支持异构网络系统的互联互通</p>
+</li>
+<li><p>资源子网</p>
+<ul>
+<li><p>应用层</p>
+</li>
+<li><p>表示层</p>
+</li>
+<li><p>会话层</p>
+</li>
+</ul>
+</li>
+<li><p>承上启下</p>
+<ul>
+<li>传输层</li>
+</ul>
+</li>
+<li><p>通信子网</p>
+<ul>
+<li><p>网络层</p>
+</li>
+<li><p>数据链路层</p>
+</li>
+<li><p>物理层</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><ul>
+<li><p>传输单位：比特流</p>
+</li>
+<li><p>任务：透明传输的比特流</p>
+</li>
+<li><p>功能：物理媒体上为数据端设备透明的传输原始比特流</p>
+</li>
+<li><p>定义数据终端设备和数据通信设备的物理与逻辑连接方法</p>
+<ul>
+<li>接口的机械形状和尺寸，交换电路的数量和排列</li>
+</ul>
+</li>
+<li><p>接口协议</p>
+<ul>
+<li>EIA—232C， EIA&#x2F;TIA、RS-449， CCITT的X2.1等</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><ul>
+<li><p>传输单位：帧</p>
+</li>
+<li><p>任务：将网络层传来的IP数据报组装成帧</p>
+</li>
+<li><p>功能：成帧、差错控制、流量控制、传输管理</p>
+<ul>
+<li><p>差错控制：对传输中受到干扰的信号进行检错，并对其丢弃</p>
+</li>
+<li><p>流量控制：控制发送方的速度</p>
+</li>
+</ul>
+</li>
+<li><p>介质访问子层控制共享信道的访问</p>
+</li>
+<li><p>典型协议： SDLC、HDLC、PPP、STP、帧中继</p>
+</li>
+</ul>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><ul>
+<li><p>传输单位：数据报</p>
+</li>
+<li><p>任务：把网络层的协议数据单元（分组）从源端传到目的端，为分组交换网上的不同主机提供通信服务</p>
+</li>
+<li><p>功能：流量控制、拥塞控制、差错控制、网际互联</p>
+<ul>
+<li><p>拥塞控制：对网络中因为来不及接收导致大量丢失的情况，网络层采取一定的措施对拥塞进行缓解</p>
+</li>
+<li><p>网际互联：将大量异构网络通过路由器相互连接起来</p>
+</li>
+</ul>
+</li>
+<li><p>典型协议: IP、IPX、ICMP、ARP、RARP、OSPF</p>
+</li>
+</ul>
+<h2 id="传输层（作为资源子网与通信子网的桥梁）"><a href="#传输层（作为资源子网与通信子网的桥梁）" class="headerlink" title="传输层（作为资源子网与通信子网的桥梁）"></a>传输层（作为资源子网与通信子网的桥梁）</h2><ul>
+<li><p>传输单位：报文段（TCP ）或者用户数据报（UDP）</p>
+</li>
+<li><p>任务：主机之间两个进程的相互通信</p>
+</li>
+<li><p>功能：端到端传输、流量控制、差错控制、服务质量、数据传输管理等服务</p>
+</li>
+<li><p>典型协议： TCP、UDP</p>
+</li>
+</ul>
+<h2 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h2><ul>
+<li><p>任务：允许不同主机上的各个进程之间进行通话</p>
+</li>
+<li><p>功能：建立会话同步、管理主机间的会话进程（建立、管理及终止）</p>
+</li>
+<li><p>使用校验点恢复通信，实现数据同步</p>
+</li>
+</ul>
+<h2 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h2><ul>
+<li><p>任务：处理两个通信系统中交换信息的表示方式</p>
+</li>
+<li><p>功能：数据压缩加密和解密数据表示变换</p>
+</li>
+</ul>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><ul>
+<li><p>任务：用户与网络的界面，为特定类型的网络应用提供访问OSI环境的手段</p>
+</li>
+<li><p>典型协议： FTP、SMTP、HTTP</p>
+</li>
+</ul>
+<h2 id="TCP-x2F-IP类型"><a href="#TCP-x2F-IP类型" class="headerlink" title="TCP&#x2F;IP类型"></a>TCP&#x2F;IP类型</h2><ul>
+<li><p>应用层</p>
+<ul>
+<li><p>对应OSI的会话层、表示层和应用层</p>
+</li>
+<li><p>包含所有高层协议（ Telnet、FTP、DNS、SMTP、HTTP）</p>
+</li>
+</ul>
+</li>
+<li><p>传输层</p>
+<ul>
+<li><p>对应OSI的传输层</p>
+</li>
+<li><p>实现发送端和目的端主机上的对等实体进行会话</p>
+</li>
+<li><p>传输控制协议（TCP）</p>
+<ul>
+<li><p>面向连接（可靠交付）</p>
+</li>
+<li><p>数据传输的基本单位是报文段</p>
+</li>
+</ul>
+</li>
+<li><p>用户数据报协议（ UDP）</p>
+<ul>
+<li><p>无连接的（不可靠交付）</p>
+</li>
+<li><p>传输基本单位是用户数据报（尽最大努力交付）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>网际层</p>
+<ul>
+<li><p>对应OSI的网络层</p>
+</li>
+<li><p>将分组发送到任何网络上，选择合适的路由</p>
+</li>
+<li><p>不能保证有序到达，有序交付交给高层负责</p>
+</li>
+<li><p>定义了IP协议：IPV4、IPV6</p>
+</li>
+</ul>
+</li>
+<li><p>网络接口层</p>
+<ul>
+<li><p>对应OSI的数据链路层和物理层</p>
+</li>
+<li><p>指出主机必须使用的某种协议与网络连接</p>
+</li>
+<li><p>作用：从主机或者结点接收IP分组，并把他们发送到指定的物理网络</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="TCP-x2F-IP模型与OSI模型的对比"><a href="#TCP-x2F-IP模型与OSI模型的对比" class="headerlink" title="TCP&#x2F;IP模型与OSI模型的对比"></a>TCP&#x2F;IP模型与OSI模型的对比</h2><ul>
+<li><p>相同</p>
+<ul>
+<li><p>都采用分层结构</p>
+</li>
+<li><p>都是基于独立的协议栈的概念</p>
+</li>
+<li><p>都可以解决异构网络的互联，实现不同厂家的计算机的相互通信</p>
+</li>
+</ul>
+</li>
+<li><p>不同</p>
+<ul>
+<li><p>OSI精确的定义了服务、接口和协议</p>
+<ul>
+<li>TCP&#x2F;P没有明确区分</li>
+</ul>
+</li>
+<li><p>OS1通用性良好</p>
+<ul>
+<li>TCP&#x2F;IP协议是对已有协议的描述，但是不适用于其他非TCP&#x2F;IP的协议栈</li>
+</ul>
+</li>
+<li><p>OSI没有考虑多种异构网络的互联问题</p>
+</li>
+<li><p>网络层（网际层）</p>
+<ul>
+<li><p>OSI中支持无连接和面向连接</p>
+</li>
+<li><p>TCP&#x2F;IP只有无连接</p>
+</li>
+</ul>
+</li>
+<li><p>传输层</p>
+<ul>
+<li><p>OSI只支持面向连接的通信</p>
+</li>
+<li><p>TCP&#x2F;IP支持面向连接和无连接的通信</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="信息传输过程"><a href="#信息传输过程" class="headerlink" title="信息传输过程"></a>信息传输过程</h2><ul>
+<li><p>用户发送数据报</p>
+</li>
+<li><p>应用层：将自然语言转化为通信数据</p>
+</li>
+<li><p>然后开始每层都会加上SDU和PCI进行包裹包装</p>
+</li>
+<li><p>到达目的主机又会进行包裹拆包，将SDU和PCI—层层拆开最终获得数据</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_2.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_5.%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" rel="prev" title="输入输出管理">
+                  <i class="fa fa-chevron-left"></i> 输入输出管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/04/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_4.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_2.%E7%89%A9%E7%90%86%E5%B1%82/" rel="next" title="物理层">
+                  物理层 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

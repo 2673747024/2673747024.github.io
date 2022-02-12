@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"2673747024.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="排序的定义 排序：就是重新排列表中的元素，使表中的元素满足按关键字有序的过程  分类  根据数据是否在内存中进行分类  内部排序：在排序期间元素全部存放在内存中的排序  关注：时间复杂度、空间复杂度   外部排序：在排序期间元素无法全部同时存放在内存中  必须在排序的过程中根据要求不断地在内、外存之间移动的排序  关注：时间复杂度、空间复杂度、读写磁盘次数      基本类型  插入排序  交换排">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序">
+<meta property="og:url" content="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_8%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="mananaの博客">
+<meta property="og:description" content="排序的定义 排序：就是重新排列表中的元素，使表中的元素满足按关键字有序的过程  分类  根据数据是否在内存中进行分类  内部排序：在排序期间元素全部存放在内存中的排序  关注：时间复杂度、空间复杂度   外部排序：在排序期间元素无法全部同时存放在内存中  必须在排序的过程中根据要求不断地在内、外存之间移动的排序  关注：时间复杂度、空间复杂度、读写磁盘次数      基本类型  插入排序  交换排">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/8d54f2b8-21d0-4287-b419-342123b3c8c8-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/aad76bd8-adbe-4d2c-9f9c-c315f0db21a0-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/ae84aa05-ddb2-4335-99f9-daf339e62094-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/318b83bb-8994-49ce-9d66-5c91dc25ee5e-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/5c71c849-1054-4f13-8974-c15a06daddbb-3224585.jpg">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/57cf7327-4a6b-4b5e-8450-5694ac1e164e-3224585.jpg">
+<meta property="article:published_time" content="2022-02-03T14:59:42.402Z">
+<meta property="article:modified_time" content="2022-02-04T16:11:19.564Z">
+<meta property="article:author" content="QQ2673747024">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api2.mubu.com/v3/document_image/8d54f2b8-21d0-4287-b419-342123b3c8c8-3224585.jpg">
+
+
+<link rel="canonical" href="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_8%E6%8E%92%E5%BA%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_8%E6%8E%92%E5%BA%8F/","path":"2022/02/03/2-计算机408_3.数据结构_8排序/","title":"排序"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>排序 | mananaの博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mananaの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">排序的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">直接插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%98%E5%8D%8A%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">折半插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">2.4.</span> <span class="nav-text">希尔排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">3.2.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">3.3.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">4.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">4.2.</span> <span class="nav-text">简单选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">4.3.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">4.4.</span> <span class="nav-text">堆的插入和删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%92%8C%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">归并排序和基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">5.1.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">5.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">5.3.</span> <span class="nav-text">基数排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%86%85%E9%83%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">各种内部排序算法的比较及应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F"><span class="nav-number">7.</span> <span class="nav-text">外部排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">外部排序的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">7.2.</span> <span class="nav-text">外部排序的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K%E8%B7%AF%E5%B9%B3%E8%A1%A1%E5%BD%92%E5%B9%B6"><span class="nav-number">7.3.</span> <span class="nav-text">K路平衡归并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%B9%B3%E8%A1%A1%E5%BD%92%E5%B9%B6%E4%B8%8E%E8%B4%A5%E8%80%85%E6%A0%91"><span class="nav-number">7.4.</span> <span class="nav-text">多路平衡归并与败者树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E2%80%94%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%EF%BC%88%E5%87%8F%E5%B0%91%E7%94%9F%E6%88%90%E5%88%9D%E5%A7%8B%E5%BD%92%E5%B9%B6%E6%AE%B5%E6%95%B0%E9%87%8F%EF%BC%89"><span class="nav-number">7.5.</span> <span class="nav-text">置换—选择排序（减少生成初始归并段数量）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%BD%92%E5%B9%B6%E6%A0%91"><span class="nav-number">7.6.</span> <span class="nav-text">最佳归并树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="nav-number">7.6.1.</span> <span class="nav-text">结构概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96"><span class="nav-number">7.6.2.</span> <span class="nav-text">算法优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%BF%AE%E6%AD%A3"><span class="nav-number">7.6.3.</span> <span class="nav-text">算法修正</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QQ2673747024</p>
+  <div class="site-description" itemprop="description">短暂的休息不是退缩，而是为了更好地战斗</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://2673747024.github.io/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_8%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QQ2673747024">
+      <meta itemprop="description" content="短暂的休息不是退缩，而是为了更好地战斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mananaの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          排序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-03 22:59:42" itemprop="dateCreated datePublished" datetime="2022-02-03T22:59:42+08:00">2022-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-05 00:11:19" itemprop="dateModified" datetime="2022-02-05T00:11:19+08:00">2022-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/" itemprop="url" rel="index"><span itemprop="name">计算机408</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">3.数据结构</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA408/3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/8-%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">8.排序</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+          <span title="post.wordcount">
+            字数统计：6.7k 字
+          </span>
+          <span title="post.min2read">
+            &nbsp;|&nbsp;&nbsp;阅读时间≈23 分钟
+          </span>
+
+        </div>
+
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="排序的定义"><a href="#排序的定义" class="headerlink" title="排序的定义"></a>排序的定义</h1><ul>
+<li><p>排序：就是重新排列表中的元素，使表中的元素满足按关键字有序的过程</p>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>根据数据是否在内存中进行分类</p>
+<ul>
+<li><p>内部排序：在排序期间元素全部存放在内存中的排序</p>
+<ul>
+<li>关注：时间复杂度、空间复杂度</li>
+</ul>
+</li>
+<li><p>外部排序：在排序期间元素无法全部同时存放在内存中</p>
+<ul>
+<li><p>必须在排序的过程中根据要求不断地在内、外存之间移动的排序</p>
+</li>
+<li><p>关注：时间复杂度、空间复杂度、读写磁盘次数</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基本类型</p>
+<ul>
+<li><p>插入排序</p>
+</li>
+<li><p>交换排序</p>
+</li>
+<li><p>选择排序</p>
+</li>
+<li><p>归并排序</p>
+</li>
+<li><p>基数排序</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>排序算法的评价指标</p>
+<ul>
+<li><p>时间复杂度</p>
+</li>
+<li><p>空间复杂度</p>
+</li>
+<li><p>算法的稳定性（是否需要稳定，具体情况具体分析）</p>
+<ul>
+<li><p>稳定的</p>
+<ul>
+<li>关键字相同的元素在排序之后相对位置不变</li>
+</ul>
+</li>
+<li><p>不稳定的</p>
+<ul>
+<li>关键字相同的元素在排序之后相对位置改变</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><p>基本思想</p>
+<ul>
+<li>每次将一个待排序的记录按其关键字大小插入到前面已排好序的子序列中，直到全部记录插入完成</li>
+</ul>
+</li>
+<li><p>引申出的算法</p>
+<ul>
+<li><p>直接插入排序</p>
+</li>
+<li><p>折半插入排序</p>
+</li>
+<li><p>希尔排序</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><ul>
+<li><p>实现过程</p>
+<ul>
+<li><p>将整个序列分为两部分</p>
+<ul>
+<li><p>有序序列</p>
+</li>
+<li><p>无序序列</p>
+</li>
+</ul>
+</li>
+<li><p>每次从无序序列中取出一个元素，然后在有序序列中遍历，寻找合适的位置将该元素插入有序序列中</p>
+</li>
+<li><p>自插入的位置开始有序序列向后移动一个元素位置</p>
+</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li><p>不带哨兵</p>
+</li>
+<li><p>带哨兵：不需要每轮循环都判断j&gt;&#x3D;0</p>
+</li>
+</ul>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间效率：空间复杂度为O(1)</p>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>来自：对比关键字、移动元素</p>
+</li>
+<li><p>最好情况</p>
+<ul>
+<li><p>表中元素已经有序，此时每插入一个元素，都只需比较一次而不用移动元素</p>
+</li>
+<li><p>时间复杂度为O(n)</p>
+<ul>
+<li>对于n-1个元素，每个元素进行1次对比</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最坏情况</p>
+<ul>
+<li><p>表中元素顺序刚好与排序结果中的元素顺序相反（逆序）</p>
+</li>
+<li><p>时间复杂度为O(n^2)</p>
+<ul>
+<li><p>对于n-1个元素，第n-1趟，进行n次对比，n+1次移动</p>
+</li>
+<li><p>总的比较次数达到最大<img src="https://api2.mubu.com/v3/document_image/8d54f2b8-21d0-4287-b419-342123b3c8c8-3224585.jpg" alt="img"></p>
+</li>
+<li><p>总的移动次数也达到最大<img src="https://api2.mubu.com/v3/document_image/aad76bd8-adbe-4d2c-9f9c-c315f0db21a0-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>平均情况</p>
+<ul>
+<li>时间复杂度O(n^2)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>稳定的算法</p>
+</li>
+</ul>
+</li>
+<li><p>适用于顺序存储和链式存储</p>
+<ul>
+<li><p>采用链式存储时，时间复杂度：O(n^2)</p>
+<ul>
+<li><p>移动元素的次数是O(n)</p>
+</li>
+<li><p>关键字的对比次数是O(n^2)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h2><ul>
+<li><p>目的：更快找到插入的位置</p>
+</li>
+<li><p>实现过程</p>
+<ul>
+<li><p>首先确定折半插入排序的范围</p>
+</li>
+<li><p>然后对其进行类似于二分法定界的方式，不断缩小其范围</p>
+<ul>
+<li><p>low&#x3D;1，high&#x3D;i-1</p>
+</li>
+<li><p>当low&gt;high时，折半查找结束，将[low，i-1]内元素全部右移，并将A[0]复制到low所指的位置</p>
+</li>
+<li><p>当A[mid]&#x3D;&#x3D;A[0]时，为了保证算法的稳定性，应继续在mid所指范围右边寻找插入位置，即low&#x3D;mid+1</p>
+</li>
+</ul>
+</li>
+<li><p>最后对数据进行移动，对待排序算法进行插入</p>
+</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间效率：空间复杂度为O(1)</p>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>时间复杂度：O(n^2)</p>
+</li>
+<li><p>比较次数：</p>
+<ul>
+<li><p>O(nlog_2(n))</p>
+</li>
+<li><p>该算法比较次数仅与表中元素个数有关</p>
+</li>
+</ul>
+</li>
+<li><p>移动次数：</p>
+<ul>
+<li>O(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>稳定的算法</p>
+</li>
+</ul>
+</li>
+<li><p>适用于顺序存储</p>
+</li>
+</ul>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><ul>
+<li><p>实现思想：先追求表中的元素部分有序，再逐渐逼近全局有序</p>
+</li>
+<li><p>实现过程</p>
+<ul>
+<li><p>先将待排序表分割成若干形如L[i，i+d，i+2d，……，i+kd]的“特殊”子表，对各个子表分别进行直接插入排序。缩小增量d，重复上述过程，直到d&#x3D;1为止</p>
+</li>
+<li><p>每次排序定长都减小，然后对各个子表的元素中分别进行直接插入排序</p>
+</li>
+<li><p>步长逐渐减小，最后为1，最后一次相当于对整个表进行直接插入排序</p>
+<ul>
+<li>建议每次将增量减小一半</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>算法实现</p>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间效率：空间复杂度为0(1)</p>
+</li>
+<li><p>时间复杂度为O(n^2)</p>
+</li>
+<li><p>不稳定的算法</p>
+</li>
+</ul>
+</li>
+<li><p>适用于顺序存储</p>
+</li>
+</ul>
+<h1 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h1><h2 id="基本概述"><a href="#基本概述" class="headerlink" title="基本概述"></a>基本概述</h2><ul>
+<li><p>根据序列中两个元素关键字的比较结果来对换这两个记录在序列中的位置</p>
+</li>
+<li><p>考试涉及范围</p>
+<ul>
+<li><p>冒泡排序</p>
+</li>
+<li><p>快速排序</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><ul>
+<li><p>基本思想</p>
+<ul>
+<li><p>从后往前（或从前往后）两两比较相邻元素的值，若为逆序（即Ai—1]）&gt;A[j），则交换它们直到序列比较完</p>
+</li>
+<li><p>将最小的元素交换到待排序列的第一个位置（或将最大的元素交换到待排序列的最后一个位置）</p>
+</li>
+<li><p>进行下一趟冒泡时，前一趟确定的最小元素不再参与比较，每趟冒泡的结果是把序列中的最小元素（或最大元素）放到了序列的最终位置</p>
+</li>
+<li><p>如果某一趟排序过程中未发生“交换” ，则算法可提前结束</p>
+</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li><p>从后往前冒泡排序</p>
+</li>
+<li><p>交换</p>
+</li>
+<li><p>从前往后冒泡排序</p>
+</li>
+</ul>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间复杂度：O(1)</p>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>最好情况</p>
+<ul>
+<li>时间复杂度为O(n)<ul>
+<li>有序：比较次数n-1，交换次数0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最坏情况</p>
+<ul>
+<li>时间复杂度O(n^2)<ul>
+<li>逆序：比较次数n(n-1)&#x2F;2，交换次数&#x3D;比较次数，移动元素次数&#x3D;3*交换次数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>平均情况</p>
+</li>
+<li><p>时间复杂度为O(n^2)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>稳定算法</p>
+</li>
+<li><p>适用于顺序存储和链式存储</p>
+<ul>
+<li>从链头像链尾冒泡，每次将更大的元素“冒”到链尾</li>
+</ul>
+</li>
+</ul>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><ul>
+<li><p>快速排序被认为是目前基于比较的内部排序方法中最好的方法</p>
+</li>
+<li><p>基本思想</p>
+<ul>
+<li><p>首先选取一个元素作为枢纽，然后以此枢轴为界分为两个部分，左面小于该枢轴值，右面大于该枢轴值</p>
+</li>
+<li><p>然后再对这两个部分分别递归的进行上述步骤</p>
+</li>
+</ul>
+</li>
+<li><p>实现过程</p>
+<ul>
+<li><p>low：指向第一个元素，作为基准（枢轴）；high：指向最后一个元素</p>
+</li>
+<li><p>如果high所指元素&gt;基准，不处理；high向左移动</p>
+</li>
+<li><p>如果high所指元素&lt;基准，high所指元素移动到low所指位置，low指针向右移动</p>
+</li>
+<li><p>如果low所指元素&lt;基准，不处理；low向右移动</p>
+</li>
+<li><p>如果low所指元素&gt;基准，low所指元素移动到high所指位置，high指针向左移动</p>
+</li>
+<li><p>如果low&#x3D;high，基准元素移动到low和high所指的位置</p>
+</li>
+</ul>
+</li>
+<li><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2></li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间复杂度</p>
+<ul>
+<li><p>最好情况：O(log_2(n))</p>
+<ul>
+<li>空间复杂度与递归层数有关</li>
+</ul>
+</li>
+<li><p>最坏情况：O(n)</p>
+</li>
+<li><p>平均情况：O(log_2(n))</p>
+</li>
+</ul>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>最好时间复杂度：O(n*log_2(n))</p>
+<ul>
+<li>时间复杂度与递归层数有关</li>
+</ul>
+</li>
+<li><p>最坏情况：O(n^2)</p>
+</li>
+<li><p>快速排序的运行时间与划分是否对称有关</p>
+</li>
+<li><p>对应于初始排序表基本有序或基本逆序时，就得到最坏情况下的时间复杂度为O(n^2)</p>
+<ul>
+<li>有序和逆序时，左右划分都很不均匀</li>
+</ul>
+</li>
+<li><p>平均时间复杂度为：O(n*log_2(n))</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>算法优化</p>
+<ul>
+<li><p>1、每次选取头、中、尾三个位置的元素，取中间值作为基准元素</p>
+</li>
+<li><p>2、随机选取一个元素作为枢轴元素</p>
+</li>
+</ul>
+</li>
+<li><p>不稳定算法</p>
+</li>
+<li><p>适用于顺序存储</p>
+</li>
+<li><p>注：</p>
+<ul>
+<li><p>一趟排序：对所有尚未确定最终位置的所有元素进行一遍处理，可能确定多个元素的位置</p>
+<ul>
+<li>将各个部分分别划分为两部分</li>
+</ul>
+</li>
+<li><p>一次划分：确认一个元素的最终位置</p>
+<ul>
+<li>将一部分划分为两部分</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><ul>
+<li>每一趟从待排序元素中选取关键字最小的元素加入有序子序列（与第一个无序元素交换）</li>
+</ul>
+<h2 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h2><ul>
+<li><p>基本思想</p>
+<ul>
+<li><p>将表分为两部分，有序部分和无序部分</p>
+</li>
+<li><p>每次从无序部分中选取最小的元素，然后将其放入有序部分中</p>
+</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间效率：O(1)</p>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>元素间比较的次数与序列的初始状态无关</p>
+</li>
+<li><p>时间复杂度为O(n^2）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不稳定的排序算法</p>
+</li>
+<li><p>适合顺序存储和链式存储</p>
+</li>
+</ul>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><ul>
+<li><p>基本概述</p>
+<ul>
+<li><p>堆</p>
+<ul>
+<li><p>大根堆：父节点的值大于相对应的孩子结点值（L(i)&gt;&#x3D;L(2i)且L(i)&gt;&#x3D;L(2i)）</p>
+</li>
+<li><p>小跟堆：父节点的值小于相对应的孩子结点值（L(i)&lt;&#x3D;L(2i)且L(i)&lt;&#x3D;L(2i)）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基本思想</p>
+<ul>
+<li><p>建堆：按照大根堆或者小根堆的规则建立起相应的二叉树，那么根节点一定是最大值或者最小值</p>
+<ul>
+<li><p>1、检查所有的分支节点（非终端结点），即i&lt;&#x3D;【n&#x2F;2】向下取整</p>
+<ul>
+<li>对于所有的分支节点，从后往前进行检查（即从底层分支结点开始调整）</li>
+</ul>
+</li>
+<li><p>2、检查当前结点是否满足大根堆，如果不满足，则将当前结点与更大的孩子互换</p>
+</li>
+</ul>
+</li>
+<li><p>堆排序：</p>
+<ul>
+<li><p>每一趟将堆顶元素加入有序子序列</p>
+<ul>
+<li>堆顶元素与堆底元素互换</li>
+</ul>
+</li>
+<li><p>调整堆：将待排序元素序列再次调整为大根堆</p>
+<ul>
+<li>当根节点输出后，整颗二叉树可能被破坏，这是要根据相应的建堆规则（从下往上，从右往左），进行父节点与子节点交换以满足相应的建堆规则</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li><p>大根堆</p>
+<ul>
+<li><p>将以k为根的子树调整为大根堆</p>
+</li>
+<li><p>建立大根堆</p>
+</li>
+<li><p>基于大根堆进行排序</p>
+</li>
+</ul>
+</li>
+<li><p>小根堆</p>
+<ul>
+<li><p>将以k为根的子树调整为小根堆</p>
+</li>
+<li><p>建立小根堆</p>
+</li>
+<li><p>基于小根堆进行排序</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间效率：空间复杂度为O(1)</p>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>建堆时间为O(n)</p>
+<ul>
+<li><p>一个结点，每下坠一层，最多只需对比关键字2次</p>
+</li>
+<li><p>若树高为h，某结点在第i层，则将这个结点向下调整最多只需下坠h-i层，关键字对比次数不超过2(h-i)</p>
+</li>
+<li><p>建堆过程，关键字对比次数不超过4n</p>
+</li>
+</ul>
+</li>
+<li><p>进行排序</p>
+<ul>
+<li><p>调整的时间复杂度为O(h)，h为二叉树的高度，O(log_2(n))</p>
+</li>
+<li><p>n-1趟调整：O(n)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>时间复杂度O(n*log_2(n))</p>
+<ul>
+<li>O(n)+O(n)*O(log_2(n))&#x3D;O(nlog_2(n))</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不稳定排序算法</p>
+</li>
+</ul>
+<h2 id="堆的插入和删除"><a href="#堆的插入和删除" class="headerlink" title="堆的插入和删除"></a>堆的插入和删除</h2><ul>
+<li><p>插入的实现过程</p>
+<ul>
+<li><p>对于小根堆，新元素放到表尾，与父节点对比</p>
+</li>
+<li><p>若新元素比父结点更小，则将两者互换。新元素一路上升，直到无法上升</p>
+<ul>
+<li>注：上升过程中，只需要对比一次（自己和夫结点）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>删除的实现过程</p>
+<ul>
+<li><p>对于小根堆，使用堆底元素代替被删除元素</p>
+</li>
+<li><p>让该元素不断下坠，直到无法下坠为止</p>
+<ul>
+<li>注：下坠过程中，需要对比两次（分别和左右孩子），也可能对比1次（只有一个孩子）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="归并排序和基数排序"><a href="#归并排序和基数排序" class="headerlink" title="归并排序和基数排序"></a>归并排序和基数排序</h1><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><ul>
+<li><p>归并：</p>
+<ul>
+<li>把两个或多个已经有序的序列合并成一个</li>
+</ul>
+</li>
+<li><p>基本思想</p>
+<ul>
+<li><p>每次选定相应的元素分别合成一个新的有序表</p>
+<ul>
+<li><p>“2路归并”——二合一</p>
+<ul>
+<li>每选出一个小元素需对比关键字一次</li>
+</ul>
+</li>
+<li><p>“k路归并”——k合一</p>
+<ul>
+<li>m路归并，每选出一个元素需要对比关键字m-1次</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/ae84aa05-ddb2-4335-99f9-daf339e62094-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>实现过程</p>
+<ul>
+<li><p>i指向第一个有序序列的第一个元素，j指向第二个有序序列的第一个元素</p>
+</li>
+<li><p>对比i所指元素与j所指元素，选择更小的一个放入k所指的位置</p>
+</li>
+<li><p>只剩下一个子表未合并时，可以将该表中剩余元素全部加到总表</p>
+</li>
+</ul>
+</li>
+<li><p>归并排序（手算）</p>
+<ul>
+<li>核心操作：把数组内的两个有序序列合并为一个</li>
+</ul>
+</li>
+<li><h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2></li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间复杂度为O(n)</p>
+<ul>
+<li>辅助数组：存放所有的数组元素</li>
+</ul>
+</li>
+<li><p>时间复杂度为O(n*log_2(n))</p>
+<ul>
+<li><p>n个元素进行2路归并排序，归并趟数&#x3D;【log_2(n)】向上取整</p>
+</li>
+<li><p>每趟归并的时间复杂度为O(n)</p>
+</li>
+<li><p>所以算法的时间复杂度为O(n*log_2(n))</p>
+</li>
+</ul>
+</li>
+<li><p>稳定排序算法</p>
+</li>
+<li><p>适用于顺序表</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><ul>
+<li><p>概念：</p>
+<ul>
+<li><p>假设长度为n的线性表中每个结点a_j的关键字由d元组（最高（主）位关键字，……，最低（次）位关键字）组成</p>
+</li>
+<li><p>其中0&lt;&#x3D;关键字&lt;&#x3D;r-1，其中r称为基数</p>
+</li>
+</ul>
+</li>
+<li><p>排序思想</p>
+<ul>
+<li><p>最高位优先（MSD）法：按关键字位权重递减依次逐层划分成若干更小的子序列，最后将所有子序列依次连接成一个有序序列</p>
+</li>
+<li><p>最低位优先（ LSD ）法：按关键字权重递增依次进行排序，最后形成一个有序序列</p>
+</li>
+</ul>
+</li>
+<li><p>实现过程</p>
+<ul>
+<li><p>以个位进行</p>
+<ul>
+<li><p>分配：将一个序列按照个位分配为多个子序列</p>
+</li>
+<li><p>收集：将多个子序列连接起来</p>
+<ul>
+<li>得到按照个位递减的序列</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以十位进行</p>
+<ul>
+<li><p>分配：使得十位数相同的子序列中个位数更大的先入队，个位数更小的后入队</p>
+</li>
+<li><p>收集：得到按十位递减排序的序列，若十位相同则按个位递减排序</p>
+</li>
+</ul>
+</li>
+<li><p>以百位进行</p>
+<ul>
+<li><p>分配：使得百位数相同的子序列中，十位数更大的先入队</p>
+</li>
+<li><p>收集：得到按照按百位递减的序列，若百位相同则按照十位递减排序，若十位相同则按照个位递减排序</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实现递减序列的过程</p>
+<ul>
+<li><p>初始化：设置r个空队列</p>
+</li>
+<li><p>按照各个关键字位权重递增的次序（个、十、百），对d个关键字分别做分配和收集</p>
+<ul>
+<li><p>分配：顺序扫描各个元素，若当前处理的关键字位&#x3D;x，则将元素插入Qx队尾</p>
+</li>
+<li><p>收集：把Qr-1，Qr-2，……，Q0各个队列中的结点依次出队并链接</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实现递增序列的过程</p>
+<ul>
+<li>区别<ul>
+<li>收集：把Q0，……，Qr-2，Qr-1各个队列中的结点依次出队并链接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>特点</p>
+<ul>
+<li>基数排序不是基于比较的排序算法</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li><p>结点定义</p>
+</li>
+<li><p>链式队列定义</p>
+</li>
+</ul>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>空间效率</p>
+<ul>
+<li><p>一趟排序需要的辅助存储空间为r（r个队列：r个队头指针和r个队尾指针）</p>
+</li>
+<li><p>基数排序的空间复杂度为O（r）</p>
+<ul>
+<li><p>r个辅助队列</p>
+</li>
+<li><p>一个辅助队列有两个指针（不算结点所占空间，因为空间效率指的是临时所占空间）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li><p>基数排序需要进行d趟分配和收集，一趟分配需要O(n )，一趟收集需要O(r)</p>
+<ul>
+<li>收集一个队列只需要O(1)，只需要上一队列的最后一个元素的指针指向下一队列的第一个元素</li>
+</ul>
+</li>
+<li><p>基数排序的时间复杂度为O(d(n+r))</p>
+<ul>
+<li>与序列的初始状态无关（每一趟排序都不设置判断是否终止，序列的初始排序无论是怎样的都执行相同的次数）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>稳定排序算法</p>
+</li>
+<li><p>应用</p>
+<ul>
+<li><p>按年龄递减排序</p>
+<ul>
+<li><p>第一趟分配、收集（按日递增）</p>
+</li>
+<li><p>第二趟分配、收集（按月递增）</p>
+</li>
+<li><p>第三趟分配、收集（按年递增）</p>
+</li>
+</ul>
+</li>
+<li><p>善于解决的问题</p>
+<ul>
+<li><p>数据元素的关键字可以方便地拆分为d组，且d较小</p>
+<ul>
+<li>反例：5个人按身份证号排序</li>
+</ul>
+</li>
+<li><p>每组关键字的取值范围不大，即r较小</p>
+<ul>
+<li>反例：按中国人名排序</li>
+</ul>
+</li>
+<li><p>数据元素个数n较大</p>
+<ul>
+<li>擅长：给10亿人按身份证号排序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="各种内部排序算法的比较及应用"><a href="#各种内部排序算法的比较及应用" class="headerlink" title="各种内部排序算法的比较及应用"></a>各种内部排序算法的比较及应用</h1><ul>
+<li><p>排序算法小结</p>
+<ul>
+<li><p>若n较小，可采用直接插入排序或简单选择排序</p>
+</li>
+<li><p>当记录本身信息量较大时，用简单选择排序较好</p>
+</li>
+<li><p>若文件的初始状态已按关键字基本有序则选用直接插入或冒泡排序为宜</p>
+</li>
+<li><p>快速排序被认为是目前基于比较的内部排序方法中最好的方法</p>
+<ul>
+<li>待排序的关键字随机分布时，快速排序的平均时间最短</li>
+</ul>
+</li>
+<li><p>若n较大，则应采用时间复杂度为O(n*log_2(n))的排序方法：快速排序、堆排序或归并排序</p>
+</li>
+<li><p>要求排序稳定且时间复杂度为O(n*log_2(n))，则可选用归并排序</p>
+</li>
+<li><p>若n很大，记录的关键字位数较少且可以分解时，采用基数排序较好</p>
+</li>
+<li><p>当记录本身信息量较大时，为避免耗费大量时间移动记录，可用链表作为存储结构</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h1><h2 id="外部排序的基本概念"><a href="#外部排序的基本概念" class="headerlink" title="外部排序的基本概念"></a>外部排序的基本概念</h2><ul>
+<li><p>对大文件进行排序，因为文件中的记录很多、信息量庞大，无法将整个文件复制进内存中进行排序</p>
+</li>
+<li><p>需要将待排序的记录存储在外存上，排序时再把数据一部分一部分地调入内存进行排序，在排序过程中需要多次进行内存和外存之间的交换</p>
+</li>
+</ul>
+<h2 id="外部排序的方法"><a href="#外部排序的方法" class="headerlink" title="外部排序的方法"></a>外部排序的方法</h2><ul>
+<li><p>外存与内存之间的数据交换</p>
+<ul>
+<li><p>文件通常是按块存储在磁盘上的，操作系统也是按块为单位对磁盘上的信息进行读写的</p>
+<ul>
+<li>修改磁盘块数据时<ul>
+<li>在内存中申请缓冲区，将磁盘块读入内存，数据读入内存后才能被修改，修改完之后还要写回磁盘</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>外部排序：数据元素太多，无法一次全部读入内存进行排序，将外存中的数据进行排序</p>
+</li>
+<li><p>外部排序过程中的时间代价主要考虑访问磁盘的次数，即I&#x2F;O次数</p>
+</li>
+</ul>
+</li>
+<li><p>外部排序通常采用归并排序法</p>
+<ul>
+<li><p>最少只需在内存中分配三块大小的缓冲区，即可对任何一个大文件进行排序</p>
+<ul>
+<li>2个输入缓冲区，1个输出缓冲区</li>
+</ul>
+</li>
+<li><p>算法实现的两个阶段</p>
+<ul>
+<li><p>构造初始归并段</p>
+<ul>
+<li><p>据内存缓冲区大小将外存上的文件分成若干长度为的子文件，依次读入内存并利用内部排序方法对它们进行排序，并将排序后得到的有序子文件重新写回外存（归并段或顺串）</p>
+</li>
+<li><p>读写操作：2*子文件个数</p>
+</li>
+</ul>
+</li>
+<li><p>第一趟归并：对这些归并段进行逐趟归并使归并段（有序子文件）逐渐由小到大，直至得到整个有序文件为止</p>
+<ul>
+<li><p>把初始归并段进行两两归并，将归并段1和归并段2中更小的部分读入缓冲区，利用内部排序对它们进行归并，如果输出缓冲区满了，就将输出缓冲区的数据写回外存（外存的另外一块空间）</p>
+</li>
+<li><p>继续将两个缓冲区进行归并排序</p>
+</li>
+<li><p>当其中一个缓冲区空了之后，立即用该归并段的下一块补上</p>
+</li>
+<li><p>当输出缓冲区又满了，就接着将输出缓冲区的数据写回外存</p>
+</li>
+<li><p>当另一个缓冲区空了之后，继续用该归并段中的下一块补上</p>
+</li>
+<li><p>将剩余部分进行归并排序，输出</p>
+</li>
+</ul>
+</li>
+<li><p>第二趟归并</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>耗费时间</p>
+<ul>
+<li><p>外部排序的总时间&#x3D;内部排序所需的时间+外存信息读写的时间+内部归并所需的时间</p>
+<ul>
+<li><p>外存信息读取时间：(归并次数+1)·文件总块数·2·读写时间</p>
+</li>
+<li><p>内部排序时间：在内存中生成初始归并段的时间</p>
+</li>
+<li><p>内部归并时间：在内存中进行内部归并的时间</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>归并排序优化（都能减少归井趟数s，进而减少读写磁盘的次数达到提高外部排序速度的目的）</p>
+<ul>
+<li><p>增大归并路数k：在内存中增加输入缓冲区个数</p>
+<ul>
+<li><p>多路归并的负面影响：</p>
+<ul>
+<li><p>K路归并时，需要开辟k个输入缓冲区，内存开销增加</p>
+</li>
+<li><p>每挑选一个关键字需要对比关键字k-1次，内部归并时间增加</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>减少初始归并段个数r：生成初始归并段的内存工作区越大，初始归并段越长</p>
+<ul>
+<li>r&#x3D;N&#x2F;L，N为总记录数，L为内存工作区可以容纳的记录数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="K路平衡归并"><a href="#K路平衡归并" class="headerlink" title="K路平衡归并"></a>K路平衡归并</h2><ul>
+<li><p>最多只有k个段归并为一个</p>
+</li>
+<li><p>每一趟归并中，若有m个归并段参与归并，则经过这一趟处理得到（【m&#x2F;k】向上取整）个新的归并段</p>
+</li>
+</ul>
+<h2 id="多路平衡归并与败者树"><a href="#多路平衡归并与败者树" class="headerlink" title="多路平衡归并与败者树"></a>多路平衡归并与败者树</h2><ul>
+<li><p>引入败者树的背景</p>
+<ul>
+<li><p>减少归并排序时关键字对比次数</p>
+</li>
+<li><p>为了使内部归并不受k （归并路数）的增大的影响</p>
+</li>
+</ul>
+</li>
+<li><p>基本思想</p>
+<ul>
+<li><p>败者树是树形选择排序的一种变体，可视为一棵完全二叉树</p>
+</li>
+<li><p>k个叶结点分别存放k个归并段在归并过程中当前参加比较的记录，内部结点用来记忆左右子树中的“失败者”，而让胜者往上继续进行比较，一直到根结点</p>
+</li>
+<li><p>若比较两个数，大的为失败者、小的为胜利者，则根结点指向的数为最小数</p>
+</li>
+<li><p>基于已经构建好的败者树，选出新的胜者只需要比较【log_2(k)】向上取整（上限）</p>
+</li>
+</ul>
+</li>
+<li><p>败者树在多路平衡归并中的应用</p>
+<ul>
+<li><p>每个叶子结点对应一个归并段，首先将关键字最小的加入叶子结点</p>
+</li>
+<li><p>分支结点记录失败者来自于哪个归并段；根结点记录冠军来自于哪个归并段</p>
+</li>
+<li><p>对于K路归并，第一次构造败者树需要对比关键字k-1次</p>
+</li>
+<li><p>有了败者树，选出最小元素，只需对比关键字【log_2(k)】向上取整（上限）</p>
+</li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li>K路归并的败者树只需要定义一个长度为K的数组：0对应败者树新增加的结点，1对应传统二叉树意义上的根结点，叶子结点时虚拟的</li>
+</ul>
+</li>
+<li><p>性能分析</p>
+<ul>
+<li><p>k路归并的败者树深度【log_2(k)】向上取整</p>
+</li>
+<li><p>总的比较次数<img src="https://api2.mubu.com/v3/document_image/318b83bb-8994-49ce-9d66-5c91dc25ee5e-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>注意</p>
+<ul>
+<li><p>归并路数k并不是越大越好。归并路数k增大时，相应地需要增加输入缓沖区的个数</p>
+</li>
+<li><p>当k值过大时，虽然归并趟数会减少，但读写外存的次数仍会增加</p>
+</li>
+</ul>
+</li>
+<li><p>优化</p>
+<ul>
+<li><p>增加归并路数k，进行多路平衡归并</p>
+<ul>
+<li><p>代价1 ：需要增加相应的输入缓冲区</p>
+</li>
+<li><p>代价2 ：每次从k个归并段中选一个最小元素需要（k—1）次关键字对比</p>
+</li>
+</ul>
+</li>
+<li><p>减少初始归并段数量</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="置换—选择排序（减少生成初始归并段数量）"><a href="#置换—选择排序（减少生成初始归并段数量）" class="headerlink" title="置换—选择排序（减少生成初始归并段数量）"></a>置换—选择排序（减少生成初始归并段数量）</h2><ul>
+<li><p>土办法</p>
+<ul>
+<li><p>用一片更大的内存区域来进行内部排序</p>
+</li>
+<li><p>用于内部排序的内存工作区WA可容纳l个记录，则每个初始归并段只能包含l个记录，若文件共有n个记录，则初始归并段的数量r&#x3D;n&#x2F;l</p>
+</li>
+</ul>
+</li>
+<li><p>实现过程</p>
+<ul>
+<li><p>设初始待排文件为FI，初始归并段输出文件为FO，内存工作区为WA，FO和WA的初始状态为空，WA可容纳w个记录</p>
+</li>
+<li><p>1）从FI输入w个记录到工作区WA</p>
+</li>
+<li><p>2）从WA中选出其中关键字取最小值的记录，记为MINIMAX记录</p>
+</li>
+<li><p>3）将MINIMAX记录输出到FO中去</p>
+</li>
+<li><p>4）若FI不空，则从FI输入下一个记录到WA中</p>
+</li>
+<li><p>5）从WA中所有关键字比MINIMAX记录的关键字大的记录中选出最小关键字记录，作为新的MINIMAX记录</p>
+</li>
+<li><p>6）重复3） ～5），直至在WA中选不出新的MINIMAX记录为止，由此得到一个初始归并段，输出一个归并段的结束标志到FO中去</p>
+<ul>
+<li>即WA内的关键字都要比MINIMAX更小，则该归并段在此截止，FO中的记录输出为归并段</li>
+</ul>
+</li>
+<li><p>7）重复2）～6），直至WA为空。由此得到全部初始归并段</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="最佳归并树"><a href="#最佳归并树" class="headerlink" title="最佳归并树"></a>最佳归并树</h2><h3 id="结构概述"><a href="#结构概述" class="headerlink" title="结构概述"></a>结构概述</h3><ul>
+<li><p>各叶结点表示一个初始归并段，上面的权值表示该归并段的长度</p>
+</li>
+<li><p>叶结点到根的路径长度表示其参加归并的趟数</p>
+</li>
+<li><p>各非叶结点代表归并成的新归并段</p>
+</li>
+<li><p>根结点表示最终生成的归并</p>
+</li>
+<li><p>树的带权路径长度WPL为归并过程中的总读记录数</p>
+<ul>
+<li>归并过程中的磁盘I&#x2F;O次数&#x3D;归并树的WPL*2</li>
+</ul>
+</li>
+</ul>
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><ul>
+<li><p>引入哈夫曼树的思想：要想让磁盘I&#x2F;O次数最少，就要使归并树WPL最小——哈夫曼树</p>
+</li>
+<li><p>在归并树中，让记录数少的初始归并段最先归并，记录数多的初始归并段最晚归并，就可以建立总的I&#x2F;O次数最少的最佳归并树</p>
+</li>
+<li><p>示意图：3路归并的最佳归并树<img src="https://api2.mubu.com/v3/document_image/5c71c849-1054-4f13-8974-c15a06daddbb-3224585.jpg" alt="img"></p>
+</li>
+</ul>
+<h3 id="算法修正"><a href="#算法修正" class="headerlink" title="算法修正"></a>算法修正</h3><ul>
+<li><p>若初始归并段不足以构成一棵严格k叉树时，需添加长度为0的“虚段”</p>
+</li>
+<li><p>按照哈夫曼树的原则，权为0的叶子应离树根最远</p>
+</li>
+<li><p>示意图<img src="https://api2.mubu.com/v3/document_image/57cf7327-4a6b-4b5e-8450-5694ac1e164e-3224585.jpg" alt="img"></p>
+</li>
+<li><p>需要修正的条件（添加虚段的数量）</p>
+<ul>
+<li><p>设度为0的结点有n0个，度为k的结点有nk个，归并树总结点数&#x3D;n</p>
+</li>
+<li><p>n0&#x3D;初始归并段数量+虚段数量</p>
+</li>
+<li><p>n&#x3D;n0+nk</p>
+</li>
+<li><p>严格k叉树有n0&#x3D;(k-1)nk+1，变形可得nk&#x3D;(n0-1)&#x2F;(k-1)</p>
+<ul>
+<li>度为k的结点的分叉&#x3D;总结点数-1</li>
+</ul>
+</li>
+<li><p>(n0-1)%(k-1)&#x3D;0，说明正好可以构造k叉归并树</p>
+</li>
+<li><p>(n0-1)%(k-1)&#x3D;u≠0，再加上k-u-1个空归并段，就可以建立归并树</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%99%E4%BD%9C/" rel="tag"># 写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_3.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_7%E6%9F%A5%E6%89%BE/" rel="prev" title="查找">
+                  <i class="fa fa-chevron-left"></i> 查找
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/03/2-%E8%AE%A1%E7%AE%97%E6%9C%BA408_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" rel="next" title="计算机系统概述">
+                  计算机系统概述 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">manana</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
